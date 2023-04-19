@@ -93,13 +93,20 @@ class Like(models.Model):
 def count_like(id):
     count = 0
 
+    try:
+        post = Post.objects.get(id=id)
+        sys.stderr.write("Found post\n\n")
+        count+=len([Like.objects.filter(post_id=id)])-1
+        sys.stderr.write(count + "\n\n")
+        post.likes = count
+        post.save()
+    except:
+        comment = Comment.objects.get(id=id)
+        count += len([Like.objects.filter(comment_id=id)])-1
+        comment.likes = count
+        comment.save()
     
-    post = Post.objects.get(id=id)
-    count+=len([Like.objects.filter(post_id=id)])-1
-    post.likes = count
-    post.save()
-    
-
+    sys.stderr.write(count + '\n\n')
     return count
 
 

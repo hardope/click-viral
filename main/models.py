@@ -37,7 +37,7 @@ class Post(models.Model):
                 "name": self.user,
                 "article": self.article,
                 "media": self.media,
-                "likes": self.likes,
+                "likes": count_like(self.id),
                 "like_value": like_value,
                 "created_at": f"{get_time(self.created_at)}",
                 "comments": self.comments,
@@ -73,7 +73,7 @@ class Comment(models.Model):
                 "name": self.user,
                 "article": self.article,
                 "media": self.media,
-                "likes": self.likes,
+                "likes": count_like(self.id),
                 "like_value": like_value,
                 "created_at": f"{get_time(self.created_at)}",
                 "comments": self.comments,
@@ -90,7 +90,8 @@ class Like(models.Model):
     def name_user(self):
         return User.objects.get(id=self.user_id).username
 
-
+def count_like(id):
+    return len([Like.objects.filter(post_id=id)] + [Like.objects.filter(comment_id=id)])
 
 
 

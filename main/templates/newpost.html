@@ -34,7 +34,7 @@
       {% csrf_token %}
       <center>
             <h1>Create New Post</h1>
-            <textarea name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{about}}</textarea>
+            <textarea name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea>
       </center>
       <center>
             <input type="file" id="media" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden>

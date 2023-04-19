@@ -7,6 +7,9 @@ urlpatterns = [
     path('', views.feed, name="feed"),
     path('new_post', views.new_post, name="new_post"),
     path('comment/<query>', views.comment, name="comment"),
+    path('edit_post/<query>', views.edit_post, name="edit_post"),
+    path('delete/<query>', views.delete, name="delete"),
+    path('profile/<query>', views.profile, name="profile"),
 
     # Json Views
     path('notification', views.notification, name="notification"),

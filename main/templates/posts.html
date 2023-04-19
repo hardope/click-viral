@@ -33,7 +33,16 @@
                         {{i.name}}
                     </div>
                 </a>
-                <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">{{i.created_at}}</div>
+                <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">
+                    {{i.created_at}}
+                    {% if i.name == request.user %}
+                        <a href="edit_post/{{i.id}}"><button style="background-color: lightblue;border: none; margin-left: 90%; width: 40px; height:40px; border-radius: 20px;" type="submit">✏️</button></a>
+                    {% else %}
+                        {% if i.edited == True %}
+                        <button style="background-color: lightblue;border: none; margin-left: 80%; width: 100px; height:40px; border-radius: 15px;" type="submit">Edited</button>
+                        {% endif %}
+                    {% endif %}
+                </div>
             </div>
                 <div class="div">
                     <div>{{i.article}}</div>

@@ -11,13 +11,6 @@
                   label.style.background = "green";
             }
       }
-
-      function submitted(){
-            if(document.getElementById("media").value != ""){
-                  alert("Uploading Your Media File....Please Wait")
-            }
-      }
-
 </script>
 <script src="/static/like.js"></script>
 <link rel="stylesheet" href="/static/posts.css">
@@ -37,7 +30,18 @@
             {{post.name}}
         </div>
     </a>
-    <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">{{post.created_at}}</div>
+    <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">
+        {{post.created_at}}
+        {% if post.name == request.user %}
+            <a href="/edit_post/{{post.id}}" style="margin-bottom: 10px">
+                <button style="background-color: lightblue;border: none; margin-left: 90%; width: 40px; height:40px; border-radius: 20px;" type="submit">✏️</button>
+            </a>
+        {% else %}
+            {% if post.edited == True %}
+            <button style="background-color: lightblue;border: none; margin-left: 80%; width: 100px; height:40px; border-radius: 15px;" type="submit">Edited</button>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
 <div class="div">
     <div>{{post.article}}</div>
@@ -66,7 +70,7 @@
 <form action="/comment/{{post.id}}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <center>
-            <h1>Create New Post</h1>
+            <h1>New Comment</h1>
             <textarea name="comment" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{about}}</textarea>
       </center>
       <center>
@@ -88,11 +92,28 @@
             {{i.name}}
         </div>
     </a>
-    <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">{{post.created_at}}</div>
+    <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">
+        {{i.created_at}}
+        {% if i.name == request.user %}
+            <a href="/edit_post/{{i.id}}"><button style="background-color: lightblue;border: none; margin-left: 90%; width: 40px; height:40px; border-radius: 20px;" type="submit">✏️</button></a>
+        {% else %}
+            {% if i.edited == True %}
+            <button style="background-color: lightblue;border: none; margin-left: 80%; width: 100px; height:40px; border-radius: 15px;" type="submit">Edited</button>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
-     <div class="div">
+{% if i.name == request.user %}
+    <a href="/edit_post/{{i.id}}">
+        <div class="div" style="color: black !important">
+            <div>{{i.article}}</div>
+        </div>
+    </a>
+{% else %}
+    <div class="div">
         <div>{{i.article}}</div>
-     </div>
+    </div>
+{% endif %}
      {% if i.media != "empty" %}
         {% if i.media == "mp4" %}
             <video src="/media/posts/{{i.id}}.mp4" controls loop preload="auto"></video>

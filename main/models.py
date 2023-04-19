@@ -91,7 +91,7 @@ class Like(models.Model):
         return User.objects.get(id=self.user_id).username
 
 def count_like(id):
-    return len([Like.objects.filter(post_id=id)] + [Like.objects.filter(comment_id=id)])
+    return len([Like.objects.filter(post_id=id)] + [Like.objects.filter(comment_id=id)]) + 1
 
 
 

@@ -95,12 +95,12 @@ def count_like(id):
 
     try:
         post = Post.objects.get(id=id)
-        count+=len([Like.objects.filter(post_id=id)])
+        count+=len([Like.objects.filter(post_id=id)])-1
         post.likes = count
         post.save()
     except:
         comment = Comment.objects.get(id=id)
-        count += len([Like.objects.filter(comment_id=id)])
+        count += len([Like.objects.filter(comment_id=id)])-1
         comment.likes = count
         comment.save()
 

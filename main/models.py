@@ -14,7 +14,7 @@ class Profile(models.Model):
     image = models.CharField(max_length=50, default="empty")
     gender = models.CharField(max_length=20, default="Null")
     location = models.CharField(max_length=20, default="Null")
-    birthday = models.DateTimeField(default=Null, null=True)
+    birthday = models.CharField(max_length=100, default="Null")
     followers = models.IntegerField(default=0)
 
 class Preference(models.Model):

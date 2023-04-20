@@ -109,15 +109,17 @@ def count_like(id):
     try:
         post = Post.objects.get(id=id)
         likes = Like.objects.filter(post_id=id)
-        likes = [str(i) for i in likes]
-        count = len(likes)
+        count = count_objects(likes)
         post.likes = count
         post.save()
     except:
         comment = Comment.objects.get(id=id)
         likes = Like.objects.filter(comment_id=id)
-        likes = [str(i) for i in likes]
-        count = len(likes)
+        count = count_objects(likes)
         comment.save()
 
     return count
+
+
+def count_objects(model):
+    return len([str(i) for i in model])

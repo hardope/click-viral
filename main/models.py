@@ -43,7 +43,7 @@ class Post(models.Model):
             "likes": count_like(self.id),
             "like_value": like_value,
             "created_at": f"{get_time(self.created_at)}",
-            "comments": self.comments,
+            "comments": count_comments(self.id),
             "edited": self.edited,
             "edited_at": f"{get_time(self.created_at)}",
         }
@@ -84,7 +84,7 @@ class Comment(models.Model):
             "likes": count_like(self.id),
             "like_value": like_value,
             "created_at": f"{get_time(self.created_at)}",
-            "comments": self.comments,
+            "comments": count_comments(self.id),
             "edited": self.edited,
             "edited_at": f"{get_time(self.created_at)}",
         }
@@ -118,6 +118,22 @@ def count_like(id):
         count = count_objects(likes)
         comment.save()
 
+    return count
+
+def count_comments(id):
+    count = 0
+    try:
+        post = Post.objects.get(id=id)
+        comments = Comment.objects.filter(post_id=id)
+        count = count_objects(comments)
+        post.comments = count
+        post.save()
+    except:
+        comment = Comment.objects.get(id=id)
+        comments = Comment.objects.filter(comment_id=id)
+        count = count_objects(comments)
+        comment.comments = count
+        comment.save()
     return count
 
 

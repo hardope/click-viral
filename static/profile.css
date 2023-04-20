@@ -1,5 +1,6 @@
 .about{
-    width: 80px;
+    width: 80vw;
+    border-radius: 10px;
     height: auto;
     min-height: 35px;
     max-width: 750px;

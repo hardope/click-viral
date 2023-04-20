@@ -13,8 +13,16 @@ class Profile(models.Model):
     about = models.CharField(max_length=1000, default="")
     image = models.CharField(max_length=50, default="empty")
     gender = models.CharField(max_length=20, default="Null")
-    visibility = models.CharField(max_length=20, default="visible")
+    location = models.CharField(max_length=20, default="Null")
+    birthday = models.DateTimeField(default=Null, null=True)
     followers = models.IntegerField(default=0)
+
+class Preference(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.BooleanField(default=True)
+    location = models.BooleanField(default=True)
+    gender = models.BooleanField(default=True)
+    birthday = models.BooleanField(default=True)
 
 
 class Post(models.Model):

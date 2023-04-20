@@ -25,7 +25,7 @@ class Preference(models.Model):
     birthday = models.BooleanField(default=True)
 
 class Follow(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, relates_name="user")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     follow = models.ForeignKey(User, on_delete=models.CASCADE, related_name="follower")
 
 class Post(models.Model):

@@ -26,7 +26,7 @@ class Preference(models.Model):
 
 class Follow(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    follower = models.ForeignKey(User, on_delete=models.CASCADE)
+    follow = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)

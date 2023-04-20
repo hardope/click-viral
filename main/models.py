@@ -46,6 +46,9 @@ class Post(models.Model):
                 "edited_at": f"{get_time(self.created_at)}",
                 }
 
+    def __str__(self):
+        return f"{self.id}"
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete = models.CASCADE, null=True)
     m_comment = models.ForeignKey('self', on_delete = models.CASCADE, null=True)
@@ -81,6 +84,8 @@ class Comment(models.Model):
                 "edited": self.edited,
                 "edited_at": f"{get_time(self.created_at)}",
                 }
+    def __str__(self):
+        return f"{self.id}"
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete = models.CASCADE, null=True)
@@ -97,17 +102,20 @@ def count_like(id):
     try:
         post = Post.objects.get(id=id)
         sys.stderr.write("Found post\n\n")
-        count+=len([Like.objects.filter(post_id=id)])-1
-        sys.stderr.write(count + "\n\n")
+        likes = Like.objects.filter(post_id=id)
+        likes = [str(i) for i in likes]
+        count = len(likes)
+        sys.stderr.write(f"{count}\n\n")
         post.likes = count
         post.save()
     except:
         comment = Comment.objects.get(id=id)
-        count += len([Like.objects.filter(comment_id=id)])-1
-        comment.likes = count
+        likes = Comment.objects.filter(post_id=id)
+        likes = [str(i) for i in likes]
+        count = len(likes)
         comment.save()
     
-    sys.stderr.write(count + '\n\n')
+    sys.stderr.write("f{count}\n\n")
     return count
 
 

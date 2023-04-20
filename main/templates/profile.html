@@ -36,7 +36,7 @@
             <p>Birthday - {{user.profile.birthday}}</p>
         {% endif %}
         {% if user.profile.location != "Null" and user.preference.location != False %}
-            <p>{{user.profile.location}}</p>
+            <p>Lives In {{user.profile.location}}</p>
         {% endif %}
     </center>
     {% if user == request.user %}

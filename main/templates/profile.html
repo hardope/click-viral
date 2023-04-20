@@ -39,15 +39,17 @@
             <p>Lives In {{user.profile.location}}</p>
         {% endif %}
     </center>
-    {% if user == request.user %}
-        <form action="/me/{{user}}">
-            <button  type="submit" id='button' class="btn btn-outline-light" data-mdb-ripple-color="dark" style="text-size: 60px; color: black; border: 0ch; margin-bottom: 2%; margin-left: 35%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Edit Profile</button>
-        </form>
-    {% else %}
-        <form action="/chat/{{user}}">
-            <button  type="submit" id='button' class="btn btn-outline-light" data-mdb-ripple-color="dark" style="text-size: 60px; color: black; border: 0ch; margin-bottom: 2%; margin-left: 35%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Message</button>
-        </form>
-    {% endif %}
+    <center>
+        {% if user == request.user %}
+            <form action="/me/{{user}}">
+                <button  type="submit" id='button' class="btn btn-outline-light" data-mdb-ripple-color="dark" style="color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Edit Profile</button>
+            </form>
+        {% else %}
+            <form action="/chat/{{user}}">
+                <button  type="submit" id='button' class="btn btn-outline-light" data-mdb-ripple-color="dark" style="color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Message</button>
+            </form>
+        {% endif %}
+    </center>
     {% for i in posts %}
     <div class="name_container">
         <a class="a" href="/profile/{{i.name}}" style="display: inline-flex">

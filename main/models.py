@@ -130,7 +130,7 @@ def count_comments(id):
         post.save()
     except:
         comment = Comment.objects.get(id=id)
-        comments = Comment.objects.filter(comment_id=id)
+        comments = Comment.objects.filter(m_comment_id=id)
         count = count_objects(comments)
         comment.comments = count
         comment.save()

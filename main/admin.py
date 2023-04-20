@@ -8,6 +8,7 @@ from .models import Post, Like, Comment, Profile, Preference
 admin.site.register(Post)
 admin.site.register(Like)
 admin.site.register(Comment)
+admin.site.register(Follow)
 
 
 class ProfileInline(admin.StackedInline):

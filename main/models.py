@@ -24,6 +24,9 @@ class Preference(models.Model):
     gender = models.BooleanField(default=True)
     birthday = models.BooleanField(default=True)
 
+class Follow(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)

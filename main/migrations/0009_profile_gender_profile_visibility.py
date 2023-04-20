@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('main', '0008_profile_image'),
+        ("main", "0008_profile_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='gender',
-            field=models.CharField(default='Null', max_length=20),
+            model_name="profile",
+            name="gender",
+            field=models.CharField(default="Null", max_length=20),
         ),
         migrations.AddField(
-            model_name='profile',
-            name='visibility',
-            field=models.CharField(default='visible', max_length=20),
+            model_name="profile",
+            name="visibility",
+            field=models.CharField(default="visible", max_length=20),
         ),
     ]

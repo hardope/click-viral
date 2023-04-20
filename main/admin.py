@@ -9,6 +9,7 @@ admin.site.register(Post)
 admin.site.register(Like)
 admin.site.register(Comment)
 
+
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False

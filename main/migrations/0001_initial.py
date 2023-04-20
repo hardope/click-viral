@@ -8,7 +8,6 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -17,42 +16,91 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False)),
-                ('article', models.TextField(default='')),
-                ('media', models.CharField(default='empty', max_length=100)),
-                ('likes', models.IntegerField(default=0)),
-                ('comments', models.IntegerField(default=0)),
-                ('edited', models.BooleanField(default=False)),
-                ('created_at', models.DateTimeField(default=datetime.datetime.now)),
-                ('edited_at', models.DateTimeField(default=datetime.datetime.now)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4, primary_key=True, serialize=False
+                    ),
+                ),
+                ("article", models.TextField(default="")),
+                ("media", models.CharField(default="empty", max_length=100)),
+                ("likes", models.IntegerField(default=0)),
+                ("comments", models.IntegerField(default=0)),
+                ("edited", models.BooleanField(default=False)),
+                ("created_at", models.DateTimeField(default=datetime.datetime.now)),
+                ("edited_at", models.DateTimeField(default=datetime.datetime.now)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Like',
+            name="Like",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('time', models.DateTimeField(default=datetime.datetime.now)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.post')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("time", models.DateTimeField(default=datetime.datetime.now)),
+                (
+                    "post",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="main.post"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False)),
-                ('user', models.IntegerField()),
-                ('article', models.TextField(default='')),
-                ('media', models.CharField(default='empty', max_length=100)),
-                ('likes', models.IntegerField(default=0)),
-                ('comments', models.IntegerField(default=0)),
-                ('edited', models.BooleanField(default=False)),
-                ('created_at', models.DateTimeField(default=datetime.datetime.now)),
-                ('edited_at', models.DateTimeField(default=datetime.datetime.now)),
-                ('m_comment', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='main.comment')),
-                ('post', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='main.post')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4, primary_key=True, serialize=False
+                    ),
+                ),
+                ("user", models.IntegerField()),
+                ("article", models.TextField(default="")),
+                ("media", models.CharField(default="empty", max_length=100)),
+                ("likes", models.IntegerField(default=0)),
+                ("comments", models.IntegerField(default=0)),
+                ("edited", models.BooleanField(default=False)),
+                ("created_at", models.DateTimeField(default=datetime.datetime.now)),
+                ("edited_at", models.DateTimeField(default=datetime.datetime.now)),
+                (
+                    "m_comment",
+                    models.ForeignKey(
+                        default=None,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="main.comment",
+                    ),
+                ),
+                (
+                    "post",
+                    models.ForeignKey(
+                        default=None,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="main.post",
+                    ),
+                ),
             ],
         ),
     ]

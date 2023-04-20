@@ -7,6 +7,7 @@ import sys
 
 # Create your models here.
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     about = models.CharField(max_length=1000, default="")
@@ -15,9 +16,10 @@ class Profile(models.Model):
     visibility = models.CharField(max_length=20, default="visible")
     followers = models.IntegerField(default=0)
 
+
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.TextField(default="")
     media = models.CharField(max_length=100, default="empty")
     likes = models.IntegerField(default=0)
@@ -26,7 +28,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(default=datetime.now)
     edited_at = models.DateTimeField(default=datetime.now)
 
-
     def to_dict(self, user):
         try:
             count_likes = Like.objects.get(user_id=user, post_id=self.id)
@@ -34,26 +35,28 @@ class Post(models.Model):
         except:
             like_value = "False"
 
-        return {"id": str(self.id),
-                "name": self.user,
-                "article": self.article,
-                "media": self.media,
-                "likes": count_like(self.id),
-                "like_value": like_value,
-                "created_at": f"{get_time(self.created_at)}",
-                "comments": self.comments,
-                "edited": self.edited,
-                "edited_at": f"{get_time(self.created_at)}",
-                }
+        return {
+            "id": str(self.id),
+            "name": self.user,
+            "article": self.article,
+            "media": self.media,
+            "likes": count_like(self.id),
+            "like_value": like_value,
+            "created_at": f"{get_time(self.created_at)}",
+            "comments": self.comments,
+            "edited": self.edited,
+            "edited_at": f"{get_time(self.created_at)}",
+        }
 
     def __str__(self):
         return f"{self.id}"
 
+
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete = models.CASCADE, null=True)
-    m_comment = models.ForeignKey('self', on_delete = models.CASCADE, null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    m_comment = models.ForeignKey("self", on_delete=models.CASCADE, null=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.TextField(default="")
     media = models.CharField(max_length=100, default="empty")
     likes = models.IntegerField(default=0)
@@ -72,53 +75,49 @@ class Comment(models.Model):
         except:
             like_value = "False"
 
-        return {"id": str(self.id),
-                "post": str(self.post_id),
-                "name": self.user,
-                "article": self.article,
-                "media": self.media,
-                "likes": count_like(self.id),
-                "like_value": like_value,
-                "created_at": f"{get_time(self.created_at)}",
-                "comments": self.comments,
-                "edited": self.edited,
-                "edited_at": f"{get_time(self.created_at)}",
-                }
+        return {
+            "id": str(self.id),
+            "post": str(self.post_id),
+            "name": self.user,
+            "article": self.article,
+            "media": self.media,
+            "likes": count_like(self.id),
+            "like_value": like_value,
+            "created_at": f"{get_time(self.created_at)}",
+            "comments": self.comments,
+            "edited": self.edited,
+            "edited_at": f"{get_time(self.created_at)}",
+        }
+
     def __str__(self):
         return f"{self.id}"
 
+
 class Like(models.Model):
-    post = models.ForeignKey(Post, on_delete = models.CASCADE, null=True)
-    comment = models.ForeignKey(Comment, on_delete = models.CASCADE, null=True)
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     time = models.DateTimeField(default=datetime.now)
 
     def name_user(self):
         return User.objects.get(id=self.user_id).username
+
 
 def count_like(id):
     count = 0
 
     try:
         post = Post.objects.get(id=id)
-        sys.stderr.write("Found post\n\n")
         likes = Like.objects.filter(post_id=id)
         likes = [str(i) for i in likes]
         count = len(likes)
-        sys.stderr.write(f"{count}\n\n")
         post.likes = count
         post.save()
     except:
         comment = Comment.objects.get(id=id)
-        likes = Comment.objects.filter(comment_id=id)
+        likes = Like.objects.filter(comment_id=id)
         likes = [str(i) for i in likes]
         count = len(likes)
         comment.save()
-    
-    sys.stderr.write("f{count}\n\n")
+
     return count
-
-
-
-
-

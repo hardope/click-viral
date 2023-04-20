@@ -5,20 +5,25 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('main', '0004_alter_comment_m_comment_alter_comment_post'),
+        ("main", "0004_alter_comment_m_comment_alter_comment_post"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='like',
-            name='comment',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='main.comment'),
+            model_name="like",
+            name="comment",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="main.comment",
+            ),
         ),
         migrations.AlterField(
-            model_name='like',
-            name='post',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='main.post'),
+            model_name="like",
+            name="post",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.CASCADE, to="main.post"
+            ),
         ),
     ]

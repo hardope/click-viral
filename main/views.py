@@ -12,12 +12,12 @@ from datetime import datetime, timezone
 root = "/home/clickviral/viral"
 # Create your views here.
 
-def feed(request):
 
+def feed(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
 
-    user= request.user.id
+    user = request.user.id
     try:
         posts = Post.objects.all()
         posts = [i.to_dict(user) for i in posts]
@@ -26,10 +26,12 @@ def feed(request):
     except:
         posts = []
 
-    return render(request, "posts.html", {"username": request.user.username, "posts": posts})
+    return render(
+        request, "posts.html", {"username": request.user.username, "posts": posts}
+    )
+
 
 def comment(request, query):
-
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
 
@@ -38,42 +40,54 @@ def comment(request, query):
         media = "empty"
         user_id = request.user.id
         try:
-            media_file = request.FILES['media']
-            media = str(media_file).split('.')[1]
-
+            media_file = request.FILES["media"]
+            media = str(media_file).split(".")[1]
 
             assert media_file is not None
             try:
                 update = Post.objects.get(id=query)
-                update.comments+=1
+                update.comments += 1
                 update.save()
 
-                new_comment = Comment(media=media, user_id=user_id, article=comment_article, post_id=query)
+                new_comment = Comment(
+                    media=media, user_id=user_id, article=comment_article, post_id=query
+                )
             except:
                 update = Comment.objects.get(id=query)
-                update.comments+=1
+                update.comments += 1
                 update.save()
 
-                new_comment = Comment(media=media, user_id=user_id, article=comment_article, m_comment_id=query)
+                new_comment = Comment(
+                    media=media,
+                    user_id=user_id,
+                    article=comment_article,
+                    m_comment_id=query,
+                )
 
-            with open(f"{root}/media/posts/{new_comment.id}.{media}", 'wb+') as file:
+            with open(f"{root}/media/posts/{new_comment.id}.{media}", "wb+") as file:
                 for chunk in media_file.chunks():
                     file.write(chunk)
 
         except:
-
             try:
                 update = Post.objects.get(id=query)
-                update.comments+=1
+                update.comments += 1
                 update.save()
 
-                new_comment = Comment(media=media, user_id=user_id, article=comment_article, post_id=query)
+                new_comment = Comment(
+                    media=media, user_id=user_id, article=comment_article, post_id=query
+                )
             except:
                 update = Comment.objects.get(id=query)
-                update.comments+=1
+                update.comments += 1
                 update.save()
 
-                new_comment = Comment(media=media, user_id=user_id, article=comment_article, m_comment_id=query)
+                new_comment = Comment(
+                    media=media,
+                    user_id=user_id,
+                    article=comment_article,
+                    m_comment_id=query,
+                )
 
         new_comment.save()
 
@@ -88,13 +102,14 @@ def comment(request, query):
         comments = Comment.objects.filter(post_id=query)
         comments1 = Comment.objects.filter(m_comment_id=query)
 
-        comments = [i.to_dict(request.user.id) for i in comments] + [i.to_dict(request.user.id) for i in comments1]
+        comments = [i.to_dict(request.user.id) for i in comments] + [
+            i.to_dict(request.user.id) for i in comments1
+        ]
 
-        return render(request, "comment.html", {"post":post, "comments":comments})
+        return render(request, "comment.html", {"post": post, "comments": comments})
 
 
 def edit_post(request, query):
-
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
 
@@ -125,12 +140,13 @@ def edit_post(request, query):
         now = datetime.now(timezone.utc)
         diff = now - created
         post = post.to_dict(request.user.id)
-        if post['name'] != request.user:
+        if post["name"] != request.user:
             return redirect("/comment/{pid}")
         if diff.total_seconds() > 1800:
             editable = False
 
         return render(request, "edit_post.html", {"post": post, "editable": editable})
+
 
 def profile(request, query):
     try:
@@ -139,6 +155,7 @@ def profile(request, query):
         return render(request, "nopage.html")
 
     return render(request, "profile.html", {"user": user})
+
 
 def delete(request, query):
     try:
@@ -155,11 +172,13 @@ def delete(request, query):
         post = Comment.objects.get(id=query).delete()
     return redirect("/")
 
-def fetch_posts(request):
-     posts = Post.objects.all()
-     posts = [i.to_dict() for i in posts]
 
-     return JsonResponse(posts, safe=False)
+def fetch_posts(request):
+    posts = Post.objects.all()
+    posts = [i.to_dict() for i in posts]
+
+    return JsonResponse(posts, safe=False)
+
 
 def view_likes(request, query):
     try:
@@ -173,9 +192,10 @@ def view_likes(request, query):
 
     return HttpResponse(json.dumps(names))
 
-def notification(request):
 
+def notification(request):
     return HttpResponse(json.dumps([]))
+
 
 def like(request, query):
     id = request.user.id
@@ -187,13 +207,13 @@ def like(request, query):
     except:
         try:
             update_post = Post.objects.get(id=query)
-            update_post.likes+=1
+            update_post.likes += 1
             update_post.save()
 
             new_like = Like(post_id=query, user_id=id)
         except:
             update_post = Comment.objects.get(id=query)
-            update_post.likes+=1
+            update_post.likes += 1
             update_post.save()
 
             new_like = Like(comment_id=query, user_id=id)
@@ -202,17 +222,18 @@ def like(request, query):
 
     return HttpResponse(json.dumps([]))
 
+
 def unlike(request, query):
     id = request.user.id
 
     try:
         update_post = Post.objects.get(id=query)
-        update_post.likes-=1
+        update_post.likes -= 1
         update_post.save()
         Like.objects.get(user_id=id, post_id=query).delete()
     except:
         update_post = Comment.objects.get(id=query)
-        update_post.likes-=1
+        update_post.likes -= 1
         update_post.save()
         Like.objects.get(user_id=id, comment_id=query).delete()
 
@@ -225,26 +246,25 @@ def new_post(request):
         media = "empty"
         user_id = request.user.id
         try:
-           media_file = request.FILES['media']
-           media = str(media_file).split('.')[1]
+            media_file = request.FILES["media"]
+            media = str(media_file).split(".")[1]
 
+            assert media_file is not None
 
-           assert media_file is not None
+            post = Post(media=media, user_id=user_id, article=post_article)
 
-           post = Post(media=media, user_id=user_id, article=post_article)
-
-           with open(f"{root}/media/posts/{post.id}.{media}", 'wb+') as file:
+            with open(f"{root}/media/posts/{post.id}.{media}", "wb+") as file:
                 for chunk in media_file.chunks():
                     file.write(chunk)
 
         except:
-
             post = Post(media=media, user_id=user_id, article=post_article)
 
         post.save()
 
         return HttpResponseRedirect(reverse("feed"))
     return render(request, "newpost.html")
+
 
 def login_view(request):
     if request.method == "POST":
@@ -254,15 +274,14 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-           login(request, user)
+            login(request, user)
 
-           return HttpResponseRedirect(reverse("feed"))
+            return HttpResponseRedirect(reverse("feed"))
 
-        return render(request, "login.html", {
-           "message": "Invalid Credentials"
-        })
+        return render(request, "login.html", {"message": "Invalid Credentials"})
 
     return render(request, "login.html")
+
 
 def register(request):
     if request.method == "POST":
@@ -271,19 +290,15 @@ def register(request):
         confirm = request.POST.get("confirm")
 
         if confirm != password:
-            return render(request, "register.html", {
-                "message": "Invalid Credentials"
-            })
+            return render(request, "register.html", {"message": "Invalid Credentials"})
 
         if confirm != password:
-            return render(request, "register.html", {
-                "message": "Invalid Credentials"
-            })
+            return render(request, "register.html", {"message": "Invalid Credentials"})
 
         if " " in username:
-            return render(request, "register.html", {
-                "message": "Username cannot contain spaces"
-            })
+            return render(
+                request, "register.html", {"message": "Username cannot contain spaces"}
+            )
 
         try:
             user = User.objects.create_user(username=username, password=password)
@@ -291,14 +306,12 @@ def register(request):
             return HttpResponseRedirect(reverse("feed"))
 
         except:
-            return render(request, "register.html", {
-                "message": "Username Taken"
-            })
+            return render(request, "register.html", {"message": "Username Taken"})
 
     return render(request, "register.html")
 
-def logout_view(request):
 
+def logout_view(request):
     logout(request)
 
     return HttpResponseRedirect(reverse("login"))

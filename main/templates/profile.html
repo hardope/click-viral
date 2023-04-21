@@ -24,14 +24,14 @@
         {% if user.profile.about == "" or user.preference.about == False %}
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1>{{user.first_name}} {{user.last_name}}</h1>
-            {% else %}
+            {% endif %}
             <h2 style="font-size: 30px !important">{{user}}</h2>
             <p>{{user.profile.followers}} followers</p>
             <p class="about">No Information</p>
         {% else %}
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1>{{user.first_name}} {{user.last_name}}</h1>
-            {% else %}
+            {% endif %}
             <h2 style="font-size: 30px !important">{{user}}</h2>
             <p class="about">{{user.profile.about}}</p>
         {% endif %}

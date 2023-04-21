@@ -5,7 +5,8 @@
 
 {% block body %}
 <script>
-    function follow(value){
+    function follow(){
+        value = document.getElementById('follow').value
         if (value === "True"){
             document.getElementById('follow').className = "not_following"
             document.getElementById('follow').value = "False"
@@ -43,9 +44,9 @@
                 <p class="not_following" id="follow">{{user.profile.followers}} followers</p>
             {% else %}
                 {% if follow_value == True %}
-                    <p class="following" id="follow" value="{{follow_value}}" onclick="follow('{{follow_value}}')">{{user.profile.followers}} following</p>
+                    <p class="following" id="follow" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} following</p>
                 {% else %}
-                    <p class="not_following" id="follow" value="{{follow_value}}" onclick="follow('{{follow_value}}')">{{user.profile.followers}} followers</p>
+                    <p class="not_following" id="follow" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} followers</p>
                 {% endif %}
             {% endif %}
             <p class="about">No Information</p>
@@ -58,9 +59,9 @@
                 <p class="not_following" id="follow">{{user.profile.followers}} followers</p>
             {% else %}
                 {% if follow_value == True %}
-                    <p class="following" id="follow" value="{{follow_value}}" onclick="follow('{{follow_value}}')">{{user.profile.followers}} following</p>
+                    <p class="following" id="follow" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} following</p>
                 {% else %}
-                    <p class="not_following" id="follow" value="{{follow_value}}" onclick="follow('{{follow_value}}')">{{user.profile.followers}} followers</p>
+                    <p class="not_following" id="follow" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} followers</p>
                 {% endif %}
             {% endif %}
             <p class="about">{{user.profile.about}}</p>

@@ -17,6 +17,7 @@ class Profile(models.Model):
     birthday = models.CharField(max_length=100, default="Null")
     followers = models.IntegerField(default=0)
 
+
 class Preference(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.BooleanField(default=True)
@@ -24,9 +25,11 @@ class Preference(models.Model):
     gender = models.BooleanField(default=True)
     birthday = models.BooleanField(default=True)
 
+
 class Follow(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     follow = models.ForeignKey(User, on_delete=models.CASCADE, related_name="follower")
+
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -130,6 +133,7 @@ def count_like(id):
         comment.save()
 
     return count
+
 
 def count_comments(id):
     count = 0

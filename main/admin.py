@@ -16,6 +16,7 @@ class ProfileInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = "profile"
 
+
 class PreferenceInline(admin.StackedInline):
     model = Preference
     can_delete = False

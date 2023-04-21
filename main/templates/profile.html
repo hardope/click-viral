@@ -25,14 +25,14 @@
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
             {% endif %}
-            <h1>{{user}}</h1>
+            <h1>@{{user}}</h1>
             <p>{{user.profile.followers}} followers</p>
             <p class="about">No Information</p>
         {% else %}
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
             {% endif %}
-            <h2>{{user}}</h2>
+            <h2>@{{user}}</h2>
             <p class="about">{{user.profile.about}}</p>
         {% endif %}
         {% if user.profile.gender != "Null" and user.preference.gender != False %}

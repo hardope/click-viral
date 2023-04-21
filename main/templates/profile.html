@@ -6,6 +6,7 @@
 {% block body %}
 <script>
     function follow(){
+        username = document.getElementById("username").getAttribute("username")
         value = document.getElementById('follow').getAttribute("value")
         if (value === "True"){
             document.getElementById('follow').className = "not_following"
@@ -15,6 +16,15 @@
             document.getElementById('follow').className = "following"
             document.getElementById('follow').setAttribute("value", "True")
             console.log("Following")
+        }
+        let url = window.location.origin
+        let request = new XMLHttpRequest()
+        request.open("GET", url + "/follow/" + username);
+        request.send();
+        request.onload = () => {
+            if (request.status === 200) {
+                console.log(request.response)
+            }
         }
     }
 </script>
@@ -39,7 +49,7 @@
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
             {% endif %}
-            <h1>@{{user}}</h1>
+            <h1 id="username" username="{{user}}">@{{user}}</h1>
             {% if user.id == request.user.id %}
                 <p class="not_following" id="follow">{{user.profile.followers}} followers</p>
             {% else %}
@@ -54,7 +64,7 @@
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
             {% endif %}
-            <h2>@{{user}}</h2>
+            <h1 id="username" username="{{user}}">@{{user}}</h1>
             {% if user.id == request.user.id %}
                 <p class="not_following" id="follow">{{user.profile.followers}} followers</p>
             {% else %}

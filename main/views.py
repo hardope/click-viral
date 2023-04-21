@@ -179,7 +179,7 @@ def delete(request, query):
 def follow(request, query):
     try:
         try:
-            follow = Follow.objects.get(user=request.user, follow=query)
+            follow = Follow.objects.get(user=query, follow=request.user)
             follow.delete()
         except:
             user = User.objects.get(username=query)
@@ -188,7 +188,7 @@ def follow(request, query):
             Follow(user=user, follow=request.user).save()
     except:
         pass
-    count = Follow.objects.filter(user=request.user).count()
+    count = Follow.objects.filter(user=query).count()
     return HttpResponse(count)
 
 

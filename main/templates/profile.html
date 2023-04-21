@@ -40,9 +40,9 @@
                 <p class="not_following">{{user.profile.followers}} followers</p>
             {% else %}
                 {% if follow_value == True %}
-                    <p class="following" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} following</p>
+                    <p class="following" value="{{follow_value}}" onclick="follow({{follow_value}})">{{user.profile.followers}} following</p>
                 {% else %}
-                    <p class="not_following" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} followers</p>
+                    <p class="not_following" value="{{follow_value}}" onclick="follow({{follow_value}})">{{user.profile.followers}} followers</p>
                 {% endif %}
             {% endif %}
             <p class="about">No Information</p>
@@ -55,9 +55,9 @@
                 <p class="not_following">{{user.profile.followers}} followers</p>
             {% else %}
                 {% if follow_value == True %}
-                    <p class="following" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} following</p>
+                    <p class="following" value="{{follow_value}}" onclick="follow({{follow_value}})">{{user.profile.followers}} following</p>
                 {% else %}
-                    <p class="not_following" value="{{follow_value}}" onclick="follow()">{{user.profile.followers}} followers</p>
+                    <p class="not_following" value="{{follow_value}}" onclick="follow({{follow_value}})">{{user.profile.followers}} followers</p>
                 {% endif %}
             {% endif %}
             <p class="about">{{user.profile.about}}</p>

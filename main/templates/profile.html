@@ -6,7 +6,7 @@
 {% block body %}
 <script>
     function follow(){
-        value = document.getElementById('follow').value
+        value = document.getElementById('follow').getAttribute("value")
         if (value === "True"){
             document.getElementById('follow').className = "not_following"
             document.getElementById('follow').setAttribute("value", "False")

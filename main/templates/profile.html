@@ -8,9 +8,11 @@
     function follow(value){
         if (value === "True"){
             document.getElementById('follow').className = "not_following"
+            document.getElementById('follow').value = "False"
         }
         else{
             document.getElementById('follow').className = "following"
+            document.getElementById('follow_status').value = "True"
             console.log("Following")
         }
     }

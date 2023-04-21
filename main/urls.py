@@ -16,6 +16,7 @@ urlpatterns = [
     path("unlike/<query>", views.unlike, name="unlike"),
     path("fetch_posts", views.fetch_posts, name="fetch_posts"),
     path("view_likes/<query>", views.view_likes, name="view_likes"),
+    path("follow/<query>", views.follow, name="follow"),
     # Auth Views
     path("login", views.login_view, name="login"),
     path("register", views.register, name="register"),

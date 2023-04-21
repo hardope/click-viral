@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Post, Like, Comment
+from .models import Post, Like, Comment, Follow
 import json
 import sys
 import os
@@ -151,10 +151,14 @@ def edit_post(request, query):
 def profile(request, query):
     try:
         user = User.objects.get(username=query)
+        user.followers = Follow.objects.filter(user=user).count()
+        user.save()
+        user = User.objects.get(username=query)
+        follow_value = request.user in Follow.objects.filter(user=user).values_list("follow", flat=True)
     except:
         return render(request, "nopage.html")
 
-    return render(request, "profile.html", {"user": user})
+    return render(request, "profile.html", {"user": user, "follow_value": follow_value})
 
 
 def delete(request, query):
@@ -171,6 +175,21 @@ def delete(request, query):
     except:
         post = Comment.objects.get(id=query).delete()
     return redirect("/")
+
+def follow(request, query):
+    try:
+        try:
+            follow = Follow.objects.get(user=request.user, follow=query)
+            follow.delete()
+        except:
+            user = User.objects.get(username=query)
+            user.profile.followers += 1
+            user.save()
+            Follow(user=user, follow=request.user).save()
+    except:
+        pass
+
+    return HttpResponse(json.dumps([]))
 
 
 def fetch_posts(request):

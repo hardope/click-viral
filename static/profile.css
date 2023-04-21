@@ -7,3 +7,25 @@
     padding: 6px;
     background-color: rgb(233, 233, 233);
 }
+.following{
+    width: auto;
+    height: auto;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 5px;
+    border: none;
+    color: white;
+}
+.following:hover{
+    background-color: rgb(233, 233, 233);
+    color: black;
+}
+.not_following{
+    width: auto;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+    border: 0.5px;
+    color: black;
+}

@@ -26,7 +26,7 @@
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
             {% endif %}
             <h1>@{{user}}</h1>
-            {% if user == request.user %}
+            {% if user.id == request.user.id %}
                 <p class="not_following">{{user.profile.followers}} followers</p>
             {% else %}
                 <p class="following">{{user.profile.followers}} followers</p>

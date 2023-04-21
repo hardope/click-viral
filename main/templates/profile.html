@@ -37,7 +37,11 @@
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
             {% endif %}
             <h2>@{{user}}</h2>
-            <p>{{user.profile.followers}} followers</p>
+            {% if user.id == request.user.id %}
+                <p class="not_following">{{user.profile.followers}} followers</p>
+            {% else %}
+                <p class="following">{{user.profile.followers}} followers</p>
+            {% endif %}
             <p class="about">{{user.profile.about}}</p>
         {% endif %}
         {% if user.profile.gender != "Null" and user.preference.gender != False %}

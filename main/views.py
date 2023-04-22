@@ -189,8 +189,7 @@ def follow(request, query):
     except:
         pass
     f_user = User.objects.get(username=query)
-    count = Follow.objects.filter(user=f_user)
-    count = len(str(i) for i in count)
+    count = Follow.objects.filter(user=f_user).count()
     return HttpResponse(count)
 
 

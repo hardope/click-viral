@@ -179,7 +179,8 @@ def delete(request, query):
 def follow(request, query):
     try:
         try:
-            follow = Follow.objects.get(user=User.get.objects(username=query), follow=request.user)
+            f_user = User.objects.get(username=query)
+            follow = Follow.objects.get(user=f_user, follow=request.user)
             follow.delete()
         except:
             user = User.objects.get(username=query)

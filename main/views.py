@@ -151,15 +151,14 @@ def edit_post(request, query):
 def profile(request, query):
     try:
         user = User.objects.get(username=query)
-        follow_count = Follow.objects.filter(user=user).count()
-        user.followers = follow_count
+        user.profile.followers = Follow.objects.filter(user=user).count()
         user.save()
         user = User.objects.get(username=query)
         follow_value = request.user in [i.follow for i in Follow.objects.filter(user=user)]
     except:
         return render(request, "nopage.html")
 
-    return render(request, "profile.html", {"user": user, "follow_value": follow_value, "f_count": follow_count})
+    return render(request, "profile.html", {"user": user, "follow_value": follow_value})
 
 
 def delete(request, query):

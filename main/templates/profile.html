@@ -50,6 +50,7 @@
         {% else %}
             <a href="/media/profile/{{user}}.{{image}}"><img src="/media/profile/{{user}}.{{image}}" style="border-radius: 50%; width:30%;"></a>
         {% endif %}
+        {{follow_value}}
         {% if user.profile.about == "" or user.preference.about == False %}
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>

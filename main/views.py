@@ -163,7 +163,11 @@ def profile(request, query):
         except:
             return render(request, "nopage.html")
 
-        return render(request, "profile.html", {"user": user, "follow_value": follow_value, "f_count": f_count})
+        return render(
+            request,
+            "profile.html",
+            {"user": user, "follow_value": follow_value, "f_count": f_count},
+        )
 
 
 def delete(request, query):

@@ -188,8 +188,8 @@ def follow(request, query):
             Follow(user=user, follow=request.user).save()
     except:
         pass
-
-    count = Follow.objects.filter(username=query)
+    f_user = User.objects.get(username=query)
+    count = Follow.objects.filter(user=f_user)
     count = len(str(i) for i in count)
     return HttpResponse(count)
 

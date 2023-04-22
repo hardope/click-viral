@@ -154,7 +154,9 @@ def profile(request, query):
         user.profile.followers = Follow.objects.filter(user=user).count()
         user.save()
         user = User.objects.get(username=query)
-        follow_value = request.user in [i.follow for i in Follow.objects.filter(user=user)]
+        follow_value = request.user in [
+            i.follow for i in Follow.objects.filter(user=user)
+        ]
     except:
         return render(request, "nopage.html")
 
@@ -175,6 +177,7 @@ def delete(request, query):
     except:
         post = Comment.objects.get(id=query).delete()
     return redirect("/")
+
 
 def follow(request, query):
     try:

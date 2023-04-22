@@ -15,7 +15,6 @@
         else{
             document.getElementById('follow').className = "following"
             document.getElementById('follow').setAttribute("value", "True")
-            console.log("Following")
         }
         let url = window.location.origin
         let request = new XMLHttpRequest()
@@ -23,7 +22,13 @@
         request.send();
         request.onload = () => {
             if (request.status === 200) {
-                console.log(request.response)
+                let button = document.getElementById("follow")
+                if (button.getAttribute("value") === "True") {
+                    button.innerHTML = request.responseText + "following";
+                }
+                else{
+                    button.innerHTML = request.responseText + "followers";
+                }
             }
         }
     }

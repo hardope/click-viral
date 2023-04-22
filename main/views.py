@@ -154,7 +154,7 @@ def profile(request, query):
         user.followers = Follow.objects.filter(user=user).count()
         user.save()
         user = User.objects.get(username=query)
-        follow_value = request.user in [str(i) for i in Follow.objects.filter(user=user)]
+        follow_value = request.user in [i.follow for i in Follow.objects.filter(user=user)]
     except:
         return render(request, "nopage.html")
 

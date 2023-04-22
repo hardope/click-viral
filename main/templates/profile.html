@@ -24,10 +24,10 @@
             if (request.status === 200) {
                 let button = document.getElementById("follow")
                 if (button.getAttribute("value") === "True") {
-                    button.innerHTML = request.responseText + "following";
+                    button.innerHTML = request.responseText + " following";
                 }
                 else{
-                    button.innerHTML = request.responseText + "followers";
+                    button.innerHTML = request.responseText + " followers";
                 }
             }
         }

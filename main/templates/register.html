@@ -11,23 +11,15 @@
           let verify = document.getElementById('verify')
           let details = document.getElementById('details')
           let first_name = document.getElementById('first_name').value
-          console.log("1")
           let last_name = document.getElementById('last_name').value
-          console.log("2")
           let email = document.getElementById('email').value
-          console.log("3")
           let password = document.getElementById('password').value
-          console.log("4")
-          let confirm_password = document.getElementById('confirm_password').value
-          console.log("5")
+          let confirm_password = document.getElementById('password_confirm').value
           let details_message = document.getElementById('details_message').value
-          console.log("6")
 
           if (first_name == "" || last_name == "" || email == "" || password == "" || confirm_password == ""){
                details_message.innerHTML = "Please Fill in All fields"
-               console.log("Here")
           } else{
-               console.log("Here")
                details.style.display = "none"
                verify.style.display = "block"
           }

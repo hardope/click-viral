@@ -13,12 +13,15 @@
           let first_name = document.getElementById('first_name').value
           let last_name = document.getElementById('last_name').value
           let email = document.getElementById('email').value
+          let username = document.getElementById('username').value
           let password = document.getElementById('password').value
           let confirm_password = document.getElementById('password_confirm').value
           let details_message = document.getElementById('details_message')
 
-          if (first_name == "" || last_name == "" || email == "" || password == "" || confirm_password == ""){
+          if (first_name == "" || last_name == "" || email == "" || password == "" || confirm_password == "" || username == ""){
                details_message.innerHTML = "Please Fill in All fields"
+          } else if (password != confirm_password) {
+               details_message.innerHTML = "Password Does Not Match Confirmation"
           } else{
                details.style.display = "none"
                verify.style.display = "block"

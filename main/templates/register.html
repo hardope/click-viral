@@ -6,31 +6,71 @@
 {% if message %}
 <center><p style="width: 500px; height: 50px; border-radius: 15px; text-align: center; background-color: rgba(255, 134, 134, 0.9)">{{message}}</p></center>
 {% endif %}
+<script>
+     function confirm(){
+          let verify = document.getElementById('verify')
+          let details = document.getElementById('details')
+          let first_name = document.getElementById('first_name').value
+          let last_name = document.getElementById('last_name').value
+          let email = document.getElementById('email').value
+          let password = document.getElementById('password').value
+          let confirm_password = document.getElementById('confirm_password').value
+          let details_message = document.getElementById('details_message').value
+
+          if (first_name == "" || last_name == "" || email == "" || password == "" || confirm_password == ""){
+               details_message.innerHTML = "Please Fill in All fields"
+          } else{
+               details.style.display = "none"
+               verify.style.display = "block"
+          }
+     }
+</script>
      <form action="/register" method="post">
           {% csrf_token %}
           <section class="u-clearfix u-section-1" id="sec-afdb">
                <div class="u-clearfix u-sheet u-sheet-1">
                <div class="u-form u-login-control u-form-1">
-                    <div class="u-form-group u-form-name">
-                    <label for="username-c4f9" class="u-label">Username *</label>
-                    <input type="text" name="username" placeholder="Enter your Username" id="username-c4f9" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                    </div>
-                    <div class="u-form-group u-form-password">
-                    <label for="password-c4f9" class="u-label">Password *</label>
-                    <input type="password" minlength="8" name="password" placeholder="Enter your Password" id="password-c4f9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                    </div>
-                    <div class="u-form-group u-form-password">
+                    <div id="details">
+                         <h1 id="details_message"></h1>
+                         <div class="u-form-group u-form-name">
+                         <label for="first_name" class="u-label">First Name *</label>
+                         <input type="text" name="username" placeholder="First Name" id="first_name" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                         </div>
+                         <div class="u-form-group u-form-name">
+                         <label for="last_name" class="u-label">Last Name *</label>
+                         <input type="text" name="username" placeholder="Last name" id="last_name" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                         </div>
+                         <div class="u-form-group u-form-name">
+                         <label for="username" class="u-label">Username *</label>
+                         <input type="text" name="username" placeholder="Enter your Username" id="username" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                         </div>
+                         <div class="u-form-group u-form-name">
+                         <label for="email" class="u-label">Email *</label>
+                         <input type="email" name="email" placeholder="Email" id="email" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                         </div>
+                         <div class="u-form-group u-form-password">
+                         <label for="password-c4f9" class="u-label">Password *</label>
+                         <input type="password" minlength="8" name="password" placeholder="Enter your Password" id="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                         </div>
+                         <div class="u-form-group u-form-password">
                          <label for="password-c4f9" class="u-label">Confirm Password *</label>
-                         <input type="password" name="confirm" placeholder="Enter your Password" id="password-c4f9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                         <input type="password" name="confirm" placeholder="Enter your Password" id="password_confirm" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                         </div>
+                         <div class="u-align-center u-form-group u-form-submit">
+                              <button id='auth' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;" onclick="confirm()">Confirm Mail</button>
+                         </div>
                     </div>
-                    <div class="u-form-checkbox u-form-group">
-                    <input type="checkbox" id="checkbox-c4f9" name="remember" value="On">
-                    <label for="checkbox-c4f9" class="u-label">Remember me</label>
+                    <div id="verify" style="display: none">
+                         <h1 id="verify_message"></h1>
+                         <div class="u-align-center u-form-group u-form-submit">
+                              <input type="text" name="otp" placeholder="Verification Code" id="otp" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                         </div>
+                         <div class="u-align-center u-form-group u-form-submit">
+                              <button id='verify_otp' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;" onclick="confirm()">Verify</button>
+                         </div>
                     </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                    <a href="/login" data-page-id="98986827" class="u-btn u-btn-submit u-button-style u-btn-1">&nbsp;Create Account<br>
-                    </a>
-                    <input type="submit" value="submit" class="u-form-control-hidden">
+                    <div class="u-align-center u-form-group u-form-submit" id="submit_block" style="display: none;">
+                         <button  type="submit" id='button' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Sign Up</button>
                     </div>
                     <input type="hidden" value="" name="recaptchaResponse">
                     <a href="/login">Have an account? Log in</a>

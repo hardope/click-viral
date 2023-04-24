@@ -15,12 +15,12 @@
           let url = window.location.origin
           let request = new XMLHttpRequest();
           var csrftoken = document. querySelector('meta[name="csrf-token"]')
-          request.setRequestHeader("X-CSRFToken", csrftoken); 
-          request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8"); 
           var formdata = new FormData()
           formdata.append("username", username)
           formdata.append("email", email)
           request.open("POST", url + "/request_code")
+          request.setRequestHeader("X-CSRFToken", csrftoken); 
+          request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8"); 
           request.send(formdata)
           request.onload = () => {
                if (request.status == 200){

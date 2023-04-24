@@ -382,7 +382,7 @@ def check_otp(request):
         try:
             otp = Otp.objects.get(username=username, otp=otp, mail=email)
 
-            if otp.trials > 3:
+            if otp.tries > 3:
                 return HttpResponse("2")
             
             created = otp.created_at

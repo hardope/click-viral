@@ -80,6 +80,7 @@
                details_message.innerHTML = "Invalid Email"
           } else{
                let status = request_code(username, email)
+               console.log(status)
                if (status == 0){
                     details.style.display = "none"
                     verify.style.display = "block"

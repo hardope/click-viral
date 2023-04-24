@@ -14,7 +14,7 @@
      function request_code(username, email) {
           let url = window.location.origin
           let request = new XMLHttpRequest();
-          var csrftoken = Cookies.get('csrftoken');
+          var csrftoken = document. querySelector('meta[name="csrf-token"]')
           request.setRequestHeader("X-CSRFToken", csrftoken); 
           request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8"); 
           var formdata = new FormData()
@@ -133,6 +133,7 @@
                <div class="u-clearfix u-sheet u-sheet-1">
                <div class="u-form u-login-control u-form-1">
                     <div id="details">
+                         {% csrf_token %}
                          <center><h1 id="details_message"></h1></center>
                          <div class="u-form-group u-form-name">
                          <label for="first_name" class="u-label">First Name *</label>

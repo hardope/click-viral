@@ -7,6 +7,30 @@
 <center><p style="width: 500px; height: 50px; border-radius: 15px; text-align: center; background-color: rgba(255, 134, 134, 0.9)">{{message}}</p></center>
 {% endif %}
 <script>
+     function validateEmail(email) {
+          var re = /\S+@\S+\.\S+/;
+          return re.test(email);
+     }
+     function request_code(username, email) {
+          let request = new XMLHttpRequest();
+          var formdata = new FormData()
+          formdata.append("username", username)
+          formdata.append("email", email)
+          request.open("POST", url + "/request_code")
+          request.onload = () => {
+               if (request.status == 200){
+                    if (request.responseText == "0"){
+                         return 0;
+                    }
+                    else if (request.responseText == "1"){
+                         return 1;
+                    }
+               }
+               else{
+                    return 2;
+               }
+          }
+     }
      function confirm(){
           let verify = document.getElementById('verify')
           let details = document.getElementById('details')
@@ -22,9 +46,18 @@
                details_message.innerHTML = "Please Fill in All fields"
           } else if (password != confirm_password) {
                details_message.innerHTML = "Password Does Not Match Confirmation"
+          } else if (validateEmail(email) == false){
+               details_message.innerHTML = "Invalid Email"
           } else{
-               details.style.display = "none"
-               verify.style.display = "block"
+               let status = request_code(username, email)
+               if (status == 0){
+                    details.style.display = "none"
+                    verify.style.display = "block"
+               } else if (status == 1){
+                    details_message.innerHTML = "Username Is Unavailable"
+               } else {
+                    alert("An Error occurred")
+               }
           }
      }
 </script>

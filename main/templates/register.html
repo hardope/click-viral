@@ -23,6 +23,7 @@
           request.setRequestHeader("X-CSRFToken", csrftoken); 
           request.send(formdata)
           request.onload = () => {
+               console.log(request.responseText)
                if (request.status == 200){
                     if (request.responseText == "0"){
                          return 0;

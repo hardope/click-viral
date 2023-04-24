@@ -8,7 +8,7 @@ import sys
 # Create your models here.
 
 class Otp(models.Model):
-    email = models.EmailField(max_length=100)
+    email = models.CharField(max_length=100)
     username = models.CharField(max_length=100)
     otp = models.CharField(max_length=7)
     tries = models.IntegerField(default=0)

@@ -19,6 +19,7 @@
           formdata.append("email", email)
           request.open("POST", url + "/request_code")
           request.onload = () => {
+               console.log(request.response)
                if (request.status == 200){
                     if (request.responseText == "0"){
                          return 0;
@@ -47,7 +48,6 @@
           formdata.append("otp", otp)
           request.open("POST", url + "/check_otp")
           request.onload = () => {
-               console.log(request.response)
                if (request.status == 200){
                     if (request.responseText == "0"){
                          return 0;

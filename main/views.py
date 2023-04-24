@@ -366,7 +366,7 @@ def request_code(request):
         
         otp = str(random.randint(100000, 999999))
         sys.stderr.write(f"Email: {email}, Username: {username}\n")
-        new_otp = Otp(u_name=username, mail=email, otp=otp)
+        new_otp = Otp(username=username, mail=email, otp=otp)
 
         new_otp.save()
         return HttpResponse("0")

@@ -20,7 +20,7 @@
           formdata.append("csrftoken", csrftoken)
           formdata.append("email", email)
           request.open("POST", url + "/request_code")
-          request.setRequestHeader("X-CSRFToken", csrftoken); 
+          request.setRequestHeader("X-CSRFToken", csrftoken);
           request.send(formdata)
           request.onload = () => {
                if (request.responseText == "0"){
@@ -79,7 +79,8 @@
           } else if (validateEmail(email) == false){
                details_message.innerHTML = "Invalid Email"
           } else{
-               let status = request_code(username, email)
+               console.log(request_code(username, email))
+               let status = request_code(username, email);
                console.log(status)
                if (status == 0){
                     details.style.display = "none"

@@ -379,4 +379,6 @@ def check_otp(request):
         email = request.POST.get("email")
         otp = request.POST.get("otp")
 
+        return HttpResponse("0")
+
         

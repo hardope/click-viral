@@ -12,7 +12,7 @@
           return re.test(email);
      }
      function request_code(username, email) {
-          let value = 0;
+          var value = 0;
           let url = window.location.origin
           let request = new XMLHttpRequest();
           var csrftoken = '{{ csrf_token }}';
@@ -28,12 +28,12 @@
                     value = 0;
                }
                else if (request.responseText == "1"){
-                    value = 1;
+                    value += 1;
                }
                else if (request.responseText == "2"){
-                    value = 2;
+                    value += 2;
                } else {
-                    value = 3
+                    value += 3
                }
           }
           console.log(value)

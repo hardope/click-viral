@@ -12,6 +12,7 @@
           return re.test(email);
      }
      function request_code(username, email) {
+          console.log("About To send Request")
           let url = window.location.origin
           let request = new XMLHttpRequest();
           var formdata = new FormData()

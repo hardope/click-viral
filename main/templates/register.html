@@ -23,20 +23,15 @@
           request.setRequestHeader("X-CSRFToken", csrftoken); 
           request.send(formdata)
           request.onload = () => {
-               console.log(request.responseText)
-               console.log(request.status)
-               if (request.status == 200){
-                    if (request.responseText == "0"){
-                         return 0;
-                    }
-                    else if (request.responseText == "1"){
-                         return 1;
-                    }
-                    else if (request.responseText == "2"){
-                         return 2;
-                    }
+               if (request.responseText == "0"){
+                    return 0;
                }
-               else {
+               else if (request.responseText == "1"){
+                    return 1;
+               }
+               else if (request.responseText == "2"){
+                    return 2;
+               } else {
                     return 3;
                }
           }
@@ -54,16 +49,13 @@
           request.open("POST", url + "/check_otp")
           request.send(formdata)
           request.onload = () => {
-               if (request.status == 200){
-                    if (request.responseText == "0"){
-                         return 0;
-                    } else if (request.responseText == "1"){
-                         return 1;
-                    } else if (request.responseText == "2"){
-                         return 2;
-                    }
-               }
-               else {
+               if (request.responseText == "0"){
+                    return 0;
+               } else if (request.responseText == "1"){
+                    return 1;
+               } else if (request.responseText == "2"){
+                    return 2;
+               } else {
                     return 3;
                }
           }

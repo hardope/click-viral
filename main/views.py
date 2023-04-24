@@ -351,7 +351,6 @@ def logout_view(request):
 def request_code(request):
     if request.method == "POST":
         username = request.POST["username"]
-        password = request.POST["password"]
         email = request.POST.get["email"]
 
         try:

@@ -372,13 +372,28 @@ def request_code(request):
 
 def check_otp(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        first_name = request.POST.get("first_name")
-        last_name = request.POST.get("last_name")
-        email = request.POST.get("email")
-        otp = request.POST.get("otp")
+        username = request.POST["username"]
+        password = request.POST["password"]
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        email = request.POST["email"]
+        otp = request.POST["otp"]
 
-        return HttpResponse("0")
+        try:
+            otp = Otp.objects.get(username=username, otp=otp, mail=email)
+
+            if otp.trials > 3:
+                return HttpResponse("2")
+            
+            created = otp.created_at
+            now = datetime.now(timezone.utc)
+            diff = now - created
+
+            if diff.total_seconds() > 43200:
+                return HttpResponse("2")
+
+            return HttpResponse("0")
+        except:
+            return HttpResponse("1")
 
         

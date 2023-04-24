@@ -26,7 +26,6 @@
           request.setRequestHeader("X-CSRFToken", csrftoken);
           request.send(formdata)
           request.onload = () => {
-               console.log(request.responseText)
                if (request.responseText == "0"){
                     details.style.display = "none"
                     verify.style.display = "block"
@@ -41,6 +40,9 @@
           }
      }
      function check_otp(username, password, first_name, last_name, email, otp){
+          let sign_up = document.getElementById('submit_block')
+          let verify = document.getElementById('verify')
+          let verify_message = document.getElementById('verify_message')
           let url = window.location.origin
           let request = new XMLHttpRequest();
           let formdata = new FormData()
@@ -54,13 +56,17 @@
           request.send(formdata)
           request.onload = () => {
                if (request.responseText == "0"){
-                    return (0);
-               } else if (request.responseText == "1"){
-                    return (1);
-               } else if (request.responseText == "2"){
-                    return (2);
-               } else {
-                    return (3);
+                    verify.style.display = "none"
+                    sign_up.style.display = "block"
+               }
+               else if (request.responseText == "1"){
+                    verify_message.innerHTML = "Invalid Code"
+               }
+               else if (request.responseText == "2"){
+                    verify_message.innerHTML = "Code is expired"
+               }
+               else{
+                    alert("An Error occurred")
                }
           }
      }
@@ -99,20 +105,7 @@
           if (otp == ""){
                verify_message.innerHTML = "Please Provide Code"
           } else {
-               let status = check_otp(username, password, first_name, last_name, email, otp)
-               if (status == 0){
-                    verify.style.display = "none"
-                    sign_up.style.display = "block"
-               }
-               else if (status == 1){
-                    verify_message.innerHTML = "Invalid Code"
-               }
-               else if (status == 2){
-                    verify_message.innerHTML = "Code is expired"
-               }
-               else{
-                    alert("An Error occurred")
-               }
+               check_otp(username, password, first_name, last_name, email, otp)
           }
      }
 </script>

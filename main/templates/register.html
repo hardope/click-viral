@@ -12,8 +12,9 @@
           return re.test(email);
      }
      function request_code(username, email) {
-          var value = 0;
-          var response;
+          let verify = document.getElementById('verify')
+          let details = document.getElementById('details')
+          let details_message = document.getElementById('details_message')
           let url = window.location.origin
           let request = new XMLHttpRequest();
           var csrftoken = '{{ csrf_token }}';
@@ -25,7 +26,17 @@
           request.setRequestHeader("X-CSRFToken", csrftoken);
           request.send(formdata)
           request.onload = () => {
-               return request.responseText;
+               if (status == "0"){
+                    details.style.display = "none"
+                    verify.style.display = "block"
+               } else if (status == "1"){
+                    details_message.innerHTML = "Username Is Unavailable"
+               } else if (status == "2"){
+                    details_message.innerHTML = "Email Is In use by another account"
+               }
+               else {
+                    alert("An Error occurred")
+               }
           }
      }
      function check_otp(username, password, first_name, last_name, email, otp){
@@ -70,18 +81,7 @@
           } else if (validateEmail(email) == false){
                details_message.innerHTML = "Invalid Email"
           } else{
-               let status = request_code(username, email);
-               if (status == "0"){
-                    details.style.display = "none"
-                    verify.style.display = "block"
-               } else if (status == "1"){
-                    details_message.innerHTML = "Username Is Unavailable"
-               } else if (status == "2"){
-                    details_message.innerHTML = "Email Is In use by another account"
-               }
-               else {
-                    alert("An Error occurred")
-               }
+               request_code(username, email);
           }
      }
      function confirm_otp(){

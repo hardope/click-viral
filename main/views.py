@@ -382,7 +382,7 @@ def check_otp(request):
         try:
             otp = Otp.objects.get(username=username, otp=otp, mail=email)
 
-            if otp.tries > 3:
+            if otp.tries > 10:
                 return HttpResponse("2")
             
             created = otp.created_at
@@ -392,8 +392,17 @@ def check_otp(request):
             if diff.total_seconds() > 43200:
                 return HttpResponse("2")
 
+            user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email)
+            login(request, user)
+
             return HttpResponse("0")
         except:
+            try:
+                otp = Otp.objects.get(username=username, mail=email)
+                otp.tries += 1
+                otp.save()
+            except:
+                pass
             return HttpResponse("1")
 
         

@@ -36,6 +36,7 @@
                     value = 3
                }
           }
+          console.log(value)
           return value;
      }
      function check_otp(username, password, first_name, last_name, email, otp){
@@ -80,9 +81,7 @@
           } else if (validateEmail(email) == false){
                details_message.innerHTML = "Invalid Email"
           } else{
-               console.log(request_code(username, email))
                let status = request_code(username, email);
-               console.log(status)
                if (status == 0){
                     details.style.display = "none"
                     verify.style.display = "block"

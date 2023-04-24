@@ -12,17 +12,14 @@
           return re.test(email);
      }
      function request_code(username, email) {
-          console.log("About To send Request")
           let url = window.location.origin
           let request = new XMLHttpRequest();
           var formdata = new FormData()
           formdata.append("username", username)
           formdata.append("email", email)
-          console.log("Packed_data")
           request.open("POST", url + "/request_code")
+          request.send(formdata)
           request.onload = () => {
-               console.log(request)
-               console.log(request.response)
                if (request.status == 200){
                     if (request.responseText == "0"){
                          return 0;
@@ -50,6 +47,7 @@
           formdata.append("email", email)
           formdata.append("otp", otp)
           request.open("POST", url + "/check_otp")
+          request.send(formdata)
           request.onload = () => {
                if (request.status == 200){
                     if (request.responseText == "0"){

@@ -26,6 +26,7 @@
           request.setRequestHeader("X-CSRFToken", csrftoken);
           request.send(formdata)
           request.onload = () => {
+               console.log(request.responseText)
                if (request.responseText == "0"){
                     details.style.display = "none"
                     verify.style.display = "block"

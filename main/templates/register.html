@@ -24,6 +24,7 @@
           request.send(formdata)
           request.onload = () => {
                console.log(request.responseText)
+               console.log(request.status)
                if (request.status == 200){
                     if (request.responseText == "0"){
                          return 0;

@@ -25,20 +25,8 @@
           request.setRequestHeader("X-CSRFToken", csrftoken);
           request.send(formdata)
           request.onload = () => {
-               response = request.responseText;
+               return request.responseText;
           }
-          if (response == "0"){
-               return 0
-          }
-          else if (response == "1"){
-               return 1
-          }
-          else if (response == "2"){
-               return 2
-          } else {
-               return 3
-          }
-          console.log(response)
      }
      function check_otp(username, password, first_name, last_name, email, otp){
           let url = window.location.origin
@@ -83,12 +71,12 @@
                details_message.innerHTML = "Invalid Email"
           } else{
                let status = request_code(username, email);
-               if (status == 0){
+               if (status == "0"){
                     details.style.display = "none"
                     verify.style.display = "block"
-               } else if (status == 1){
+               } else if (status == "1"){
                     details_message.innerHTML = "Username Is Unavailable"
-               } else if (status == 2){
+               } else if (status == "2"){
                     details_message.innerHTML = "Email Is In use by another account"
                }
                else {

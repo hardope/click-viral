@@ -51,16 +51,12 @@
           request.onload = () => {
                console.log(request.responseText)
                if (request.responseText == "0"){
-                    console.log("01")
                     return 0;
                } else if (request.responseText == "1"){
-                    console.log("02")
                     return 1;
                } else if (request.responseText == "2"){
-                    console.log("03")
                     return 2;
                } else {
-                    console.log("04")
                     return 3;
                }
           }
@@ -84,6 +80,7 @@
                details_message.innerHTML = "Invalid Email"
           } else{
                let status = request_code(username, email)
+               console.log(status)
                if (status == 0){
                     details.style.display = "none"
                     verify.style.display = "block"

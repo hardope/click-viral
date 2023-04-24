@@ -46,6 +46,7 @@
           let url = window.location.origin
           let request = new XMLHttpRequest();
           let formdata = new FormData()
+          var csrftoken = '{{ csrf_token }}';
           formdata.append("username", username)
           formdata.append("password", password)
           formdata.append("first_name", first_name)
@@ -53,6 +54,7 @@
           formdata.append("email", email)
           formdata.append("otp", otp)
           request.open("POST", url + "/check_otp")
+          request.setRequestHeader("X-CSRFToken", csrftoken);
           request.send(formdata)
           request.onload = () => {
                if (request.responseText == "0"){

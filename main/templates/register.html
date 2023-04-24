@@ -14,7 +14,7 @@
      function request_code(username, email) {
           let url = window.location.origin
           let request = new XMLHttpRequest();
-          var csrftoken = document. querySelector('meta[name="csrf-token"]')
+          var csrftoken = document. querySelector('meta[name="csrfmiddlewaretoken"]')
           var formdata = new FormData()
           formdata.append("username", username)
           formdata.append("email", email)

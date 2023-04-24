@@ -24,12 +24,15 @@
           request.send(formdata)
           request.onload = () => {
                if (request.responseText == "0"){
+                    console.log("0")
                     return 0;
                }
                else if (request.responseText == "1"){
+                    console.log("1")
                     return 1;
                }
                else if (request.responseText == "2"){
+                    console.log("2")
                     return 2;
                } else {
                     return 3;

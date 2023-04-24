@@ -154,10 +154,14 @@ def profile(request, query):
         return HttpResponseRedirect(reverse("login"))
     else:
         try:
-            user = User.objects.get(username=query)
-            f_count = Follow.objects.filter(user=user).count()
-            user.profile.followers = f_count
-            user.profile.save()
+            f_count = 0
+            try:
+                user = User.objects.get(username=query)
+                f_count = Follow.objects.filter(user=user).count()
+                user.profile.followers = f_count
+                user.profile.save()
+            except:
+                pass
             user = User.objects.get(username=query)
             follow_value = request.user in [
                 i.follow for i in Follow.objects.filter(user=user)

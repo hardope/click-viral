@@ -154,14 +154,9 @@ def profile(request, query):
         return HttpResponseRedirect(reverse("login"))
     else:
         try:
-            f_count = 0
-            try:
-                user = User.objects.get(username=query)
-                f_count = Follow.objects.filter(user=user).count()
-                user.profile.followers = f_count
-                user.profile.save()
-            except:
-                pass
+            user = User.objects.get(username=query)
+            user.profile.followers = f_count = Follow.objects.filter(user=user).count()
+            user.profile.save()
             user = User.objects.get(username=query)
             follow_value = request.user in [
                 i.follow for i in Follow.objects.filter(user=user)
@@ -208,7 +203,6 @@ def follow(request, query):
     f_user = User.objects.get(username=query)
     count = Follow.objects.filter(user=f_user).count()
     return HttpResponse(count)
-
 
 def fetch_posts(request):
     posts = Post.objects.all()

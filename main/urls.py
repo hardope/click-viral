@@ -11,6 +11,8 @@ urlpatterns = [
     path("delete/<query>", views.delete, name="delete"),
     path("profile/<query>", views.profile, name="profile"),
     # Json Views
+    path("request_code", views.request_code, name="request_code"),
+    path("check_otp", views.check_otp, name="check_otp"),
     path("notification", views.notification, name="notification"),
     path("like/<query>", views.like, name="like"),
     path("unlike/<query>", views.unlike, name="unlike"),

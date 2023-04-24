@@ -7,6 +7,12 @@ import sys
 
 # Create your models here.
 
+class Otp(models.Model):
+    email = models.EmailField(max_length=100, unique=True)
+    username = models.CharField(max_length=100)
+    otp = models.CharField(max_length=7)
+    tries = models.IntegerField(default=0)
+    created_at = models.DateTimeField(default=datetime.now)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

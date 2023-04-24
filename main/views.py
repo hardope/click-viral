@@ -3,10 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Post, Like, Comment, Follow
+from .models import Post, Like, Comment, Follow, Otp
 import json
 import sys
 import os
+import random
 from datetime import datetime, timezone
 
 root = "/home/clickviral/viral"
@@ -346,3 +347,36 @@ def logout_view(request):
     logout(request)
 
     return HttpResponseRedirect(reverse("login"))
+
+def request_code(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+
+        try:
+            try:
+                user = User.objects.get(username=username)
+                return HttpResponse("1")
+            except:
+                user = User.objects.get(email=email)
+                return HttpResponse("2")
+        except:
+            pass
+        
+        otp = str(random.randint(100000, 999999))
+        new_otp = Otp(username=username, email=email, otp=otp)
+
+        new_otp.save()
+        return HttpResponse("0")
+
+def check_otp(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        otp = request.POST.get("otp")
+
+        

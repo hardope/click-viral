@@ -14,6 +14,8 @@
      function request_code(username, email) {
           let url = window.location.origin
           let request = new XMLHttpRequest();
+          request.setRequestHeader("X-CSRFToken", csrftoken); 
+          request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8"); 
           var formdata = new FormData()
           formdata.append("username", username)
           formdata.append("email", email)

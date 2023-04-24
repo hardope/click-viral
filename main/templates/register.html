@@ -98,15 +98,15 @@
           if (otp == ""){
                verify_message.innerHTML = "Please Provide Code"
           } else {
-               let request.responseText = check_otp(username, password, first_name, last_name, email, otp)
-               if (request.responseText == 0){
+               let status = check_otp(username, password, first_name, last_name, email, otp)
+               if (status == 0){
                     verify.style.display = "none"
                     sign_up.style.display = "block"
                }
-               else if (request.responseText == 1){
+               else if (status == 1){
                     verify_message.innerHTML = "Invalid Code"
                }
-               else if (request.responseText == 2){
+               else if (status == 2){
                     verify_message.innerHTML = "Code is expired"
                }
                else{

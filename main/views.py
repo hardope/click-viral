@@ -153,15 +153,18 @@ def profile(request, query):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
-        user = User.objects.get(username=query)
-        f_count = Follow.objects.filter(user=user).count()
-        profile = Profile.objects.get(user=user)
-        profile.followers = f_count
-        profile.save()
-        profile = Profile.objects.get(user=user)
-        follow_value = request.user in [
-            i.follow for i in Follow.objects.filter(user=user)
-        ]
+        try:
+            user = User.objects.get(username=query)
+            f_count = Follow.objects.filter(user=user).count()
+            profile = Profile.objects.get(user=user)
+            profile.followers = f_count
+            profile.save()
+            profile = Profile.objects.get(user=user)
+            follow_value = request.user in [
+                i.follow for i in Follow.objects.filter(user=user)
+            ]
+        except:
+            return render(request, "nopage.html")
         return render(
             request,
             "profile.html",

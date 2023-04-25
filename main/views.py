@@ -155,18 +155,20 @@ def profile(request, query):
     else:
         try:
             user = User.objects.get(username=query)
-            f_count = Follow.objects.filter(user=user).count()
+            user.profile.followers = f_count = Follow.objects.filter(user=user).count()
+            user.profile.save()
+            user = User.objects.get(username=query)
             follow_value = request.user in [
                 i.follow for i in Follow.objects.filter(user=user)
             ]
-            profile = user.profile
+            sys.stderr.write(f"{user.profile.image}, {user.profile.gender}\n")
         except:
             return render(request, "nopage.html")
 
         return render(
             request,
             "profile.html",
-            {"user": user, "follow_value": follow_value, "f_count": f_count; "profile":profile},
+            {"user": user, "follow_value": follow_value, "f_count": f_count},
         )
 
 

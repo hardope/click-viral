@@ -57,7 +57,7 @@ class Post(models.Model):
 
         return {
             "id": str(self.id),
-            "name": self.user,
+            "name": self.user.first_name + " " + self.user.last_name,
             "article": self.article,
             "media": self.media,
             "likes": count_like(self.id),

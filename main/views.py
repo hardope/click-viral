@@ -196,7 +196,7 @@ def follow(request, query):
             profile = Profile.objects.get(user=f_user)
             profile.followers += 1
             profile.save()
-            Follow(user=user, follow=request.user).save()
+            Follow(user=f_user, follow=request.user).save()
     except:
         pass
     f_user = User.objects.get(username=query)

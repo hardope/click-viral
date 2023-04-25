@@ -40,7 +40,6 @@
           }
      }
      function check_otp(username, password, first_name, last_name, email, otp){
-          let sign_up = document.getElementById('submit_block')
           let verify = document.getElementById('verify')
           let verify_message = document.getElementById('verify_message')
           let url = window.location.origin
@@ -59,7 +58,7 @@
           request.onload = () => {
                if (request.responseText == "0"){
                     verify.style.display = "none"
-                    sign_up.style.display = "block"
+                    window.location.replace(url);
                }
                else if (request.responseText == "1"){
                     verify_message.innerHTML = "Invalid Code"
@@ -156,9 +155,6 @@
                               <button id='verify_otp' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;" onclick="confirm_otp()">Verify</button>
                          </div>
                          <br>
-                    </div>
-                    <div class="u-align-center u-form-group u-form-submit" id="submit_block" style="display: none;">
-                         <a href="/" id='button' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Sign Up</a>
                     </div>
                     <input type="hidden" value="" name="recaptchaResponse">
                     <a href="/login">Have an account? Log in</a>

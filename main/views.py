@@ -156,8 +156,8 @@ def profile(request, query):
         try:
             sys.stderr.write("Here")
             user = User.objects.get(username=query)
-            sys.stderr.write("01")
             user.profile.followers = f_count = Follow.objects.filter(user=user).count()
+            sys.stderr.write("01")
             user.profile.save()
             user = User.objects.get(username=query)
             follow_value = request.user in [

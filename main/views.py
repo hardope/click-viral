@@ -401,6 +401,8 @@ def check_otp(request):
             Profile(user=user).save()
             login(request, user)
 
+            Otp.objects.get(username=username, mail=email).delete()
+
             return HttpResponse("0")
         except:
             try:

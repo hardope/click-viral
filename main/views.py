@@ -391,6 +391,7 @@ def check_otp(request):
                 return HttpResponse("2")
 
             user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email)
+            Profile(user=user).save()
             login(request, user)
 
             return HttpResponse("0")

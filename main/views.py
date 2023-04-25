@@ -155,9 +155,7 @@ def profile(request, query):
     else:
         try:
             user = User.objects.get(username=query)
-            user.profile.followers = f_count = Follow.objects.filter(user=user).count()
-            user.profile.save()
-            user = User.objects.get(username=query)
+            f_count = Follow.objects.filter(user=user).count()
             follow_value = request.user in [
                 i.follow for i in Follow.objects.filter(user=user)
             ]

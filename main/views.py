@@ -155,8 +155,11 @@ def profile(request, query):
     else:
         try:
             user = User.objects.get(username=query)
+            sys.stderr.write(f"{user.profile.image}, {user.profile.gender}\n")
             user.profile.followers = f_count = Follow.objects.filter(user=user).count()
+            sys.stderr.write(f"f_count: {f_count}\n")
             user.profile.save()
+            sys.stderr.write(f"Saved\n")
             user = User.objects.get(username=query)
             follow_value = request.user in [
                 i.follow for i in Follow.objects.filter(user=user)

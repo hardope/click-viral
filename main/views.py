@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Post, Like, Comment, Follow, Otp, Profile
+from .sendmail import send_mail
 import json
 import sys
 import os
@@ -351,8 +352,8 @@ def logout_view(request):
 
 def request_code(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
+        username = request.POST["username"].strip()
+        email = request.POST["email"].strip()
 
         try:
             try:
@@ -373,6 +374,7 @@ def request_code(request):
         new_otp = Otp(username=username, mail=email, otp=otp)
 
         new_otp.save()
+        send_mail(email, f"OTP Verification Code For: {username} ", f"Your OTP is {otp}")
         return HttpResponse("0")
 
 def check_otp(request):

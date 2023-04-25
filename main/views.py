@@ -161,13 +161,14 @@ def profile(request, query):
             follow_value = request.user in [
                 i.follow for i in Follow.objects.filter(user=user)
             ]
+            profile = user.profile
         except:
             return render(request, "nopage.html")
 
         return render(
             request,
             "profile.html",
-            {"user": user, "follow_value": follow_value, "f_count": f_count},
+            {"user": user, "follow_value": follow_value, "f_count": f_count; "profile":profile},
         )
 
 

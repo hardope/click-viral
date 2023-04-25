@@ -364,6 +364,10 @@ def request_code(request):
         except:
             pass
         
+        try:
+            Otp.objects.get(username=username, mail=email).delete()
+        except:
+            pass
         otp = str(random.randint(100000, 999999))
         sys.stderr.write(f"{request}\n")
         new_otp = Otp(username=username, mail=email, otp=otp)

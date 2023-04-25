@@ -154,6 +154,7 @@ def profile(request, query):
         return HttpResponseRedirect(reverse("login"))
     else:
         try:
+            sys.stderr.write("Here")
             user = User.objects.get(username=query)
             sys.stderr.write(f"{user.profile.image}, {user.profile.gender}\n")
             user.profile.followers = f_count = Follow.objects.filter(user=user).count()

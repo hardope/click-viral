@@ -161,10 +161,9 @@ def profile(request, query):
             follow_value = request.user in [
                 i.follow for i in Follow.objects.filter(user=user)
             ]
-            sys.stderr.write(f"{user.profile.image}, {user.profile.gender}\n")
         except:
             return render(request, "nopage.html")
-
+        sys.stderr.write(f"{user.profile.image}, {user.profile.gender}\n")
         return render(
             request,
             "profile.html",

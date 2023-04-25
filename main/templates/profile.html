@@ -45,13 +45,12 @@
         </div>
     </div>
     <center>
-        {{profile.image}}
-        {% if user.profile.image == "empty" or user.preference.image == False %}
+        {% if profile.image == "empty" or user.preference.image == False %}
             <img src="/static/favicon.ico" style="border-radius: 50%; width:20%;">
         {% else %}
             <a href="/media/profile/{{user}}.{{image}}"><img src="/media/profile/{{user}}.{{image}}" style="border-radius: 50%; width:30%;"></a>
         {% endif %}
-        {% if user.profile.about == "" or user.preference.about == False %}
+        {% if profile.about == "" or user.preference.about == False %}
             {% if user.first_name != "" or user.last_name != "" %}
                 <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
             {% endif %}
@@ -80,16 +79,16 @@
                     <p class="not_following" id="follow" value="{{follow_value}}" onclick="follow()">{{f_count}} followers</p>
                 {% endif %}
             {% endif %}
-            <p class="about">{{user.profile.about}}</p>
+            <p class="about">{{profile.about}}</p>
         {% endif %}
-        {% if user.profile.gender != "Null" and user.preference.gender != False %}
-            <p>{{user.profile.gender}}</p>
+        {% if profile.gender != "Null" and user.preference.gender != False %}
+            <p>{{profile.gender}}</p>
         {% endif %}
-        {% if user.profile.birthday != "Null" and user.preference.birthday != False %}
-            <p>Birthday - {{user.profile.birthday}}</p>
+        {% if profile.birthday != "Null" and user.preference.birthday != False %}
+            <p>Birthday - {{profile.birthday}}</p>
         {% endif %}
-        {% if user.profile.location != "Null" and user.preference.location != False %}
-            <p>Lives In {{user.profile.location}}</p>
+        {% if profile.location != "Null" and user.preference.location != False %}
+            <p>Lives In {{profile.location}}</p>
         {% endif %}
     </center>
     <center>

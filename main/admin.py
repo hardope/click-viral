@@ -7,6 +7,7 @@ from .models import Post, Like, Comment, Profile, Preference, Follow, Otp
 
 admin.site.register(Post)
 admin.site.register(Like)
+admin.site.register(Profile)
 admin.site.register(Comment)
 admin.site.register(Follow)
 admin.site.register(Otp)
@@ -17,15 +18,9 @@ class PreferenceInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = "preference"
 
-
-class ProfileInline(admin.StackedInline):
-    model = Profile
-    can_delete = False
-    verbose_name_plural = "profile"
-
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
-    inlines = [PreferenceInline, ProfileInline]
+    inlines = [PreferenceInline]
 
 
 # Re-register UserAdmin

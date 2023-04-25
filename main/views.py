@@ -155,16 +155,17 @@ def profile(request, query):
     else:
         user = User.objects.get(username=query)
         f_count = Follow.objects.filter(user=user).count()
-        user.profile.about = "f_count"
-        user.profile.save()
-        user = User.objects.get(username=query)
+        profile = Profile.objects.get(user=user)
+        profile.followers = f_count
+        profile.save()
+        profile = Profile.objects.get(user=user)
         follow_value = request.user in [
             i.follow for i in Follow.objects.filter(user=user)
         ]
         return render(
             request,
             "profile.html",
-            {"user": user, "follow_value": follow_value, "f_count": f_count},
+            {"user": user, "follow_value": follow_value, "f_count": f_count, "profile":profile}
         )
 
 

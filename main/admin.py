@@ -26,7 +26,7 @@ class PreferenceInline(admin.StackedInline):
 
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
-    inlines = [ProfileInline, PreferenceInline]
+    inlines = [PreferenceInline, ProfileInline]
 
 
 # Re-register UserAdmin

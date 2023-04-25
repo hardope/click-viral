@@ -15,7 +15,7 @@ class Otp(models.Model):
     created_at = models.DateTimeField(default=datetime.now)
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     about = models.CharField(max_length=1000, default="")
     image = models.CharField(max_length=50, default="empty")
     gender = models.CharField(max_length=20, default="Null")

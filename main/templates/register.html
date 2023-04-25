@@ -86,7 +86,7 @@
                details_message.innerHTML = "Please Fill in All fields"
           } else if (password != confirm_password) {
                details_message.innerHTML = "Password Does Not Match Confirmation"
-          } else if (" " in username) {
+          } else if (username.includes(" ")) {
                details_message.innerHTML = "Username cannot contain spaces"
           } else if (validateEmail(email) == false){
                details_message.innerHTML = "Invalid Email"

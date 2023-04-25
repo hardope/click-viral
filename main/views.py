@@ -158,8 +158,10 @@ def profile(request, query):
             user = User.objects.get(username=query)
             try:
                 f_count = Follow.objects.filter(user=user).count()
+                sys.stderr.write(f"Try\n")
             except:
                 f_count = 0
+                sys.stderr.write(f"except\n")
             user.profile.followers = f_count
             sys.stderr.write("01")
             user.profile.save()

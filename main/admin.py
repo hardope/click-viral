@@ -12,17 +12,16 @@ admin.site.register(Follow)
 admin.site.register(Otp)
 
 
-class ProfileInline(admin.StackedInline):
-    model = Profile
-    can_delete = False
-    verbose_name_plural = "profile"
-
-
 class PreferenceInline(admin.StackedInline):
     model = Preference
     can_delete = False
     verbose_name_plural = "preference"
 
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
+    verbose_name_plural = "profile"
 
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):

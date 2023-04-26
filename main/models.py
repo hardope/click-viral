@@ -58,7 +58,7 @@ class Post(models.Model):
         return {
             "id": str(self.id),
             "name": self.user,
-            "article": self.article,
+            "article": parse_post(self.article),
             "media": self.media,
             "likes": count_like(self.id),
             "like_value": like_value,
@@ -160,3 +160,13 @@ def count_comments(id):
 
 def count_objects(model):
     return len([str(i) for i in model])
+
+def parse_post(article):
+    parsed = []
+    paragraphs = article.split("\n")
+    for i in paragraphs:
+        if i == "":
+            paragraphs.remove(i)
+        else:
+            parsed.append({"tag": "p", "text": i})
+    return parsed

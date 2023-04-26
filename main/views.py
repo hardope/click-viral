@@ -318,29 +318,8 @@ def login_view(request):
 
 
 def register(request):
-    if request.method == "POST":
-        username = request.POST.get("username").strip()
-        password = request.POST.get("password")
-        confirm = request.POST.get("confirm")
-
-        if confirm != password:
-            return render(request, "register.html", {"message": "Invalid Credentials"})
-
-        if confirm != password:
-            return render(request, "register.html", {"message": "Invalid Credentials"})
-
-        if " " in username:
-            return render(
-                request, "register.html", {"message": "Username cannot contain spaces"}
-            )
-
-        try:
-            user = User.objects.create_user(username=username, password=password)
-            login(request, user)
-            return HttpResponseRedirect(reverse("feed"))
-
-        except:
-            return render(request, "register.html", {"message": "Username Taken"})
+    if user.is_authenticated == True:
+        return redirect(reverse("feed"))
 
     return render(request, "register.html")
 

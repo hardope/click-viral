@@ -4,7 +4,6 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from main.parse_time import get_time
 import sys
-import re
 
 # Create your models here.
 
@@ -163,20 +162,11 @@ def count_objects(model):
     return len([str(i) for i in model])
 
 def parse_post(article):
-    pattern = r'^(?:https?://)?(?:www\.)?[\w.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?(?:/[\w%.-]+)*$'
     parsed = []
     paragraphs = article.split("\n")
     for i in paragraphs:
         if i == "":
             paragraphs.remove(i)
         else:
-            block = []
-            for j in i.split(" "):
-                if j.startswith("**") and j.endswith("**"):
-                    block.append({"tag": "b", "text": j[2:-2]})
-                elif re.match(pattern, j):
-                    block.append({"tag": "a", "text": j})
-                else:
-                    block.append({"tag": "p", "text": j})
-            parsed.append(block)
+            parsed.append({"tag": "p", "text": i})
     return parsed

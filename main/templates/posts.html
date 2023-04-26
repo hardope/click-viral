@@ -47,15 +47,7 @@
                 <div class="div">
                     <div>
                         {% for i in i.article %}
-                            <p style="display: inline">
-                                {% for j in i %}
-                                    {% if j.tag == "a"}
-                                        <{{j.tag}}>{{j.text}}</{{j.tag}}>
-                                    {% else %}
-                                        <{{j.tag}}>{{j.text}}</{{j.tag}}>
-                                    {% endif %}
-                                {% endfor %}
-                            </p>
+                            <{{i.tag}}>{{i.text}}</{{i.tag}}>
                         {% endfor %}
                     </div>
                 </div>

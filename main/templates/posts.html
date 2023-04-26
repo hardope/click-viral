@@ -49,7 +49,12 @@
                         {% for i in i.article %}
                             <p style="display: inline">
                                 {% for j in i %}
-                                    <{{i.tag}}>{{i.text}}</{{i.tag}}>
+                                    {% if j.tag == "a"}
+                                    
+                                        <{{j.tag}} href="j.text">{{j.text}}</{{j.tag}}>
+                                    {% else %}
+                                        <{{j.tag}}>{{j.text}}</{{j.tag}}>
+                                    {% endif %}
                                 {% endfor %}
                             </p>
                         {% endfor %}

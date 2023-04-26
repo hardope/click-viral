@@ -175,7 +175,7 @@ def parse_post(article):
                 if j.startswith("**") and j.endswith("**"):
                     block.append({"tag": "b", "text": j[2:-2]})
                 elif re.match(pattern, j):
-                    block.append("tag": "a", "text": j)
+                    block.append({"tag": "a", "text": j})
                 else:
                     block.append({"tag": "p", "text": j})
             parsed.append(block)

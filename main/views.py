@@ -318,8 +318,8 @@ def login_view(request):
 
 
 def register(request):
-    if user.is_authenticated == True:
-        return redirect(reverse("feed"))
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("feed"))
 
     return render(request, "register.html")
 

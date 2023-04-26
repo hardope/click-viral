@@ -47,7 +47,11 @@
                 <div class="div">
                     <div>
                         {% for i in i.article %}
-                            <{{i.tag}}>{{i.text}}</{{i.tag}}>
+                            <p style="display: inline">
+                                {% for j in i %}
+                                    <{{i.tag}}>{{i.text}}</{{i.tag}}>
+                                {% endfor %}
+                            </p>
                         {% endfor %}
                     </div>
                 </div>

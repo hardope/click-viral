@@ -171,7 +171,7 @@ def parse_post(article):
             paragraphs.remove(i)
         else:
             block = []
-            for j in i:
+            for j in i.split(" "):
                 if j.startswith("**") and j.endswith("**"):
                     block.append({"tag": "b", "text": j[2:-2]})
                 elif re.match(pattern, j):

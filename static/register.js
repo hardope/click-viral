@@ -42,33 +42,7 @@ function confirm_otp(){
          check_otp(username, password, first_name, last_name, email, otp)
     }
 }
-function request_code(username, email) {
-     let verify = document.getElementById('verify')
-     let details = document.getElementById('details')
-     let details_message = document.getElementById('details_message')
-     let url = window.location.origin
-     let request = new XMLHttpRequest();
-     var formdata = new FormData()
-     formdata.append("username", username)
-     formdata.append("csrftoken", csrftoken)
-     formdata.append("email", email)
-     request.open("POST", url + "/request_code")
-     request.setRequestHeader("X-CSRFToken", csrftoken);
-     request.send(formdata)
-     request.onload = () => {
-          if (request.responseText == "0"){
-               details.style.display = "none"
-               verify.style.display = "block"
-          } else if (request.responseText == "1"){
-               details_message.innerHTML = "Username Is Unavailable"
-          } else if (request.responseText == "2"){
-               details_message.innerHTML = "Email Is In use by another account"
-          }
-          else {
-               alert("An Error occurred")
-          }
-     }
-}
+
 function check_otp(username, password, first_name, last_name, email, otp){
      let verify = document.getElementById('verify')
      let verify_message = document.getElementById('verify_message')

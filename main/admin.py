@@ -18,6 +18,7 @@ class PreferenceInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = "preference"
 
+
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
     inlines = [PreferenceInline]

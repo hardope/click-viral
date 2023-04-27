@@ -7,12 +7,14 @@ import sys
 
 # Create your models here.
 
+
 class Otp(models.Model):
     mail = models.CharField(max_length=100)
     username = models.CharField(max_length=100)
     otp = models.CharField(max_length=7)
     tries = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=datetime.now)
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -160,6 +162,7 @@ def count_comments(id):
 
 def count_objects(model):
     return len([str(i) for i in model])
+
 
 def parse_post(article):
     parsed = []

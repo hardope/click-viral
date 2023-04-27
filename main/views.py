@@ -169,7 +169,12 @@ def profile(request, query):
         return render(
             request,
             "profile.html",
-            {"user": user, "follow_value": follow_value, "f_count": f_count, "profile":profile}
+            {
+                "user": user,
+                "follow_value": follow_value,
+                "f_count": f_count,
+                "profile": profile,
+            },
         )
 
 
@@ -206,6 +211,7 @@ def follow(request, query):
     f_user = User.objects.get(username=query)
     count = Follow.objects.filter(user=f_user).count()
     return HttpResponse(count)
+
 
 def fetch_posts(request):
     posts = Post.objects.all()
@@ -329,6 +335,7 @@ def logout_view(request):
 
     return HttpResponseRedirect(reverse("login"))
 
+
 def request_code(request):
     if request.method == "POST":
         username = request.POST["username"].strip()
@@ -343,7 +350,7 @@ def request_code(request):
                 return HttpResponse("2")
         except:
             pass
-        
+
         try:
             Otp.objects.get(username=username, mail=email).delete()
         except:
@@ -353,8 +360,11 @@ def request_code(request):
         new_otp = Otp(username=username, mail=email, otp=otp)
 
         new_otp.save()
-        send_mail(email, f"OTP Verification Code For: {username} ", f"Your OTP is {otp}")
+        send_mail(
+            email, f"OTP Verification Code For: {username} ", f"Your OTP is {otp}"
+        )
         return HttpResponse("0")
+
 
 def check_otp(request):
     if request.method == "POST":
@@ -370,7 +380,7 @@ def check_otp(request):
 
             if otp.tries > 10:
                 return HttpResponse("2")
-            
+
             created = otp.created_at
             now = datetime.now(timezone.utc)
             diff = now - created
@@ -378,7 +388,13 @@ def check_otp(request):
             if diff.total_seconds() > 43200:
                 return HttpResponse("2")
 
-            user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email)
+            user = User.objects.create_user(
+                username=username,
+                password=password,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+            )
             Profile(user=user).save()
             login(request, user)
 
@@ -393,5 +409,3 @@ def check_otp(request):
             except:
                 pass
             return HttpResponse("1")
-
-        

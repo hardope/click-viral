@@ -361,7 +361,9 @@ def request_code(request):
 
         new_otp.save()
         send_mail(
-            email, f"OTP Verification Code For: {username} ", f"Your OTP is {otp}"
+            email,
+            f"ClickViral OTP Verification Code For: {username}",
+            f"Hello {username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
         )
         return HttpResponse("0")
 

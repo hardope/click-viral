@@ -32,7 +32,7 @@
       {% csrf_token %}
       <center>
             <h1>Edit Post</h1>
-            <textarea name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{post.article}}</textarea>
+            <textarea name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{post.raw_article}}</textarea>
       </center>
       <center>
             <button type="submit" id='button' data-mdb-ripple-color="dark" style="padding: 2px; font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Save Post</button>

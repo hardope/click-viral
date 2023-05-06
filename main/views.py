@@ -308,17 +308,24 @@ def new_post(request):
 
 def login_view(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        username =  request.POST["username"].strip()
+        password = request.POST["password"].strip()
+        email = request.POST["email"].strip()
 
-        user = authenticate(request, username=username, password=password)
+        try:
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
+            assert user is not None
 
-            return HttpResponseRedirect(reverse("feed"))
+            return HttpResponse("0")
 
-        return render(request, "login.html", {"message": "Invalid Credentials"})
+        except:
+            user = authenticate(request, email=email, password=password)
+
+            if user is not None:
+                return HttpResponse("0")
+
+            return HttpResponse("2")
 
     return render(request, "login.html")
 

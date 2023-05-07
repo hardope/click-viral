@@ -11,6 +11,7 @@
 
 {% block body %}
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+     var $ = jQuery.noConflict();
      function login(){
           let username = $.get("#username").val();
           let password = $.get("#password").val();

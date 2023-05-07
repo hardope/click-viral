@@ -7,7 +7,7 @@ import smtplib
 def send_mail(to, subject, body):
     sender = "clickviralng@gmail.com"
     recipient = to
-    password = "hjlcnodeitfseaci"
+    password = "wflwidljzrykjswq"
 
     mail = EmailMessage()
     mail["From"] = sender

@@ -13,9 +13,9 @@
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
      var $ = jQuery.noConflict();
      function login(){
-          let username = $.get("#username").val();
-          let password = $.get("#password").val();
-          let email = $.get("#email").val();
+          let username = $.get("#username").value();
+          let password = $.get("#password").value();
+          let email = $.get("#email").value();
           let details_message = $.get("#details_message")
 
           if (username == "" && email == ""){
@@ -25,7 +25,7 @@
           }
      }
 </script>
-<script src="/static/login.js"></script>
+
 <script>
      var csrftoken = '{{ csrf_token }}';
 </script>

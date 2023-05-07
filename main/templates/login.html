@@ -17,9 +17,9 @@
 
      var $ = jQuery.noConflict();
      function login(){
-          let username = $.get("#username").value();
-          let password = $.get("#password").value();
-          let email = $.get("#email").value();
+          let username = $.get("#username").val();
+          let password = $.get("#password").val();
+          let email = $.get("#email").val();
           let details_message = $.get("#details_message")
 
           if (username == "" && email == ""){

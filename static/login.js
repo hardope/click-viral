@@ -3,11 +3,15 @@ function validateEmail(email) {
     return re.test(email);
 }
 
+function $(name){
+    return document.getElementById(name);
+}
+
 function login(){
-    let username = $.get("#username").val();
-    let password = $.get("#password").val();
-    let email = $.get("#email").val();
-    let details_message = $.get("#details_message")
+    let username = $("username").value();
+    let password = $("password").value();
+    let email = $("email").value();
+    let details_message = $("details_message")
 
     if (username == "" && email == ""){
         details_message.text("Please enter a username or Email address");

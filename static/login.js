@@ -4,7 +4,7 @@ function validateEmail(email) {
 }
 
 function load_login(){
-    let username = $("#username").val;
+    let username = $("#username").val();
     let password = $("#password").val;
     let email = $("#email").val;
     let details_message = $("#details_message")

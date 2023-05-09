@@ -23,7 +23,7 @@ function load_login(){
     formdata.append("username", username)
     formdata.append("email", email)
     formdata.append("password", password)
-    request.open("POST", url + "/request_code")
+    request.open("POST", url + "/login")
     request.setRequestHeader("X-CSRFToken", csrftoken);
     request.send(formdata)
     request.onload = () => {

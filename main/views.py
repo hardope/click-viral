@@ -322,7 +322,8 @@ def login_view(request):
             return HttpResponse("0")
 
         except:
-            user = authenticate(request, email=email, password=password)
+            username = User.objects.get(email=email)
+            authenticate(request, username=username, password=password)
 
             if user is not None:
                 return HttpResponse("0")

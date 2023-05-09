@@ -322,7 +322,7 @@ def login_view(request):
             return HttpResponse("0")
 
         except:
-            username = User.objects.get(email=email)
+            username = User.objects.get(email__exact=email).username
             authenticate(request, username=username, password=password)
 
             if user is not None:

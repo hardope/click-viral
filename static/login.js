@@ -27,6 +27,14 @@ function load_login(){
     request.setRequestHeader("X-CSRFToken", csrftoken);
     request.send(formdata)
     request.onload = () => {
-        console.log(request.responseText)
+        if (request.responseText == "0"){
+            window.location.replace(url)
+        }
+        else if (request.responseText == "1"){
+            details_message.text("Invalid Username or Password")
+        }
+        else if (request.responseText == "2"){
+            details_message.text("Invalid")
+        }
     }
 }

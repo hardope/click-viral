@@ -317,6 +317,8 @@ def login_view(request):
 
             assert user is not None
 
+            login(request, user)
+
             return HttpResponse("0")
 
         except:
@@ -325,7 +327,9 @@ def login_view(request):
             if user is not None:
                 return HttpResponse("0")
 
-            return HttpResponse("2")
+                login(request, user)
+
+            return HttpResponse("1")
 
     return render(request, "login.html")
 

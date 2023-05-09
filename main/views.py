@@ -323,6 +323,7 @@ def login_view(request):
 
         except:
             username = User.objects.get(email__exact=email).username
+            sys.stderr.write(f"\n\nusername: {username}\nemail: {email}\n\n")
             authenticate(request, username=username, password=password)
 
             if user is not None:

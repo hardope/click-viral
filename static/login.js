@@ -17,19 +17,16 @@ function load_login(){
     
     details_message.text("Logging You In...");
     
-    $.ajax({
-        url: window.location.origin + "/login",
-        type: "POST",
-        headers: { 
-            "X-CSRFToken": csrftoken,
-        },
-        data:{ 
-            username: username,
-            password: password,
-            csrftoken: csrftoken 
-        },
-        success: function (data) {
-            console.info(data);
-        }
-      }) 
+    let url = window.location.origin
+    let request = new XMLHttpRequest();
+    var formdata = new FormData()
+    formdata.append("username", username)
+    formdata.append("email", email)
+    formdata.append("password", password)
+    request.open("POST", url + "/request_code")
+    request.setRequestHeader("X-CSRFToken", csrftoken);
+    request.send(formdata)
+    request.onload = () => {
+        console.log(request.responseText)
+    }
 }

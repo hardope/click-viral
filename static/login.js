@@ -14,4 +14,22 @@ function load_login(){
     } else if (password == ""){
         details_message.text("Please enter a password");
     }
+    
+    details_message.text("Logging You In...");
+    
+    $.ajax({
+        url: window.location.origin + "/login",
+        type: "POST",
+        headers: { 
+            "X-CSRFToken": csrftoken,
+        },
+        data:{ 
+            username: username,
+            password: password,
+            csrftoken: csrftoken 
+        },
+        success: function (data) {
+            console.info(data);
+        }
+      }) 
 }

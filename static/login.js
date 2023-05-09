@@ -11,6 +11,8 @@ function load_login(){
 
     if (username == "" && email == ""){
         details_message.text("Please enter a username or Email address");
+    }else if (validateEmail(email) == false){
+        details_message.innerHTML = "Invalid Email"
     } else if (password == ""){
         details_message.text("Please enter a password");
     }

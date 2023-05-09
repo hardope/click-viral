@@ -3,7 +3,7 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-function login(){
+function load_login(){
     let username = document.getElementById("username").value();
     let password = document.getElementById("password").value();
     let email = document.getElementById("email").value();

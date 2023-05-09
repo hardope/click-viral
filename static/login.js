@@ -4,9 +4,9 @@ function validateEmail(email) {
 }
 
 function load_login(){
-    let username = document.getElementById("username").value();
-    let password = document.getElementById("password").value();
-    let email = document.getElementById("email").value();
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let email = document.getElementById("email").value;
     let details_message = document.getElementById("details_message")
 
     if (username == "" && email == ""){

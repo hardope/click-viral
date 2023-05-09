@@ -4,10 +4,12 @@ function validateEmail(email) {
 }
 
 function load_login(){
-    let username = $("username").value;
-    let password = $("password").value;
-    let email = $("email").value;
-    let details_message = $("details_message")
+    let username = $("#username").value;
+    let password = $("#password").value;
+    let email = $("#email").value;
+    let details_message = $("#details_message")
+
+    console.log(username)
 
     if (username == "" && email == ""){
         details_message.text("Please enter a username or Email address");

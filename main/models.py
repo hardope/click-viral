@@ -32,6 +32,7 @@ class Preference(models.Model):
     location = models.BooleanField(default=True)
     gender = models.BooleanField(default=True)
     birthday = models.BooleanField(default=True)
+    login_verification = models.BooleanField(default=False)
 
 
 class Follow(models.Model):

@@ -142,7 +142,7 @@ def edit_post(request, query):
         now = datetime.now(timezone.utc)
         diff = now - created
         post = post.to_dict(request.user.id)
-        if post["name"] != request.user:
+        if post["name"] != request.user.username:
             return redirect("/comment/{pid}")
         if diff.total_seconds() > 1800:
             editable = False
@@ -214,8 +214,14 @@ def follow(request, query):
 
 
 def fetch_posts(request):
-    posts = Post.objects.all()
-    posts = [i.to_dict() for i in posts]
+    user = request.user.id
+    try:
+        posts = Post.objects.all()
+        posts = [i.to_dict(user) for i in posts]
+        posts.reverse()
+
+    except:
+        posts = []
 
     return JsonResponse(posts, safe=False)
 

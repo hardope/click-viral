@@ -60,7 +60,7 @@ class Post(models.Model):
 
         return {
             "id": str(self.id),
-            "name": self.user,
+            "name": self.user.username,
             "article": parse_post(self.article),
             "raw_article": self.article,
             "media": self.media,

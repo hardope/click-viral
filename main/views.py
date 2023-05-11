@@ -29,7 +29,7 @@ def feed(request):
         posts = []
 
     return render(
-        request, "posts.html", {"username": request.user.username, "posts": posts}
+        request, "posts.html"
     )
 
 

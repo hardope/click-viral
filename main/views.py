@@ -28,9 +28,7 @@ def feed(request):
     except:
         posts = []
 
-    return render(
-        request, "posts.html"
-    )
+    return render(request, "posts.html")
 
 
 def comment(request, query):
@@ -314,7 +312,7 @@ def new_post(request):
 
 def login_view(request):
     if request.method == "POST":
-        username =  request.POST["username"].strip()
+        username = request.POST["username"].strip()
         password = request.POST["password"].strip()
         email = request.POST["email"].strip()
 

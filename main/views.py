@@ -286,11 +286,11 @@ def unlike(request, query):
 
 def new_post(request):
     if request.method == "POST":
-        post_article = request.POST.get("post")
+        post_article = request.POST.get("article")
         media = "empty"
         user_id = request.user.id
         try:
-            media_file = request.FILES["media"]
+            media_file = request.FILES.get('media')
             media = str(media_file).split(".")[1]
 
             assert media_file is not None

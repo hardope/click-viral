@@ -7,12 +7,25 @@
 <script>
     var username = '{{request.user}}'
 </script>
+<style>
+    label {
+          padding: 10px;
+          background-color:  rgb(239, 237, 237);
+          border-radius: 10px;
+    }
+    #label_cont{
+          margin: 30px 0px 20px 0px;
+    }
+</style>
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/static/time.js"></script>
 <script src="/static/like.js"></script>
 <script src="/static/posts.js"></script>
 <link rel="stylesheet" href="/static/posts.css">
 <script src="/static/view_likes.js"></script>
+<script src="/static/new_post.js">
+    var csrftoken = '{{ csrf_token }}';
+</script>
 
     <div id="like_viewer">
         <span id="close" onclick="close_likes()">&times;</span>
@@ -31,5 +44,19 @@
 
     <div id="body" style="font-size: 40px !important;">
 
+    </div>
+    <div style="display:none" id="create_post">
+        <center>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Create New Post</h1>
+                <textarea name="post" id="article" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea>
+                <input type="file" id="media" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden>
+                <div id="label_cont">
+                    <label for="media" id="media_label">Upload Media &#128206;</label>
+                </div>
+                <button onclick="new_post()" id='button' data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Create Post</button>
+            </form>
+        </center>
     </div>
 {% endblock %}

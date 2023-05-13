@@ -4,10 +4,11 @@ function validate(){
           label.style.background = "green";
     }
 }
-function new_post(){
-    $('#body').style.display = "none";
-    $('#new_post').style.display = "block";
+function new_post() {
+    $('#body').css('display', 'none');
+    $('#new_post').css('display', 'block');
 }
+
 
 $(document).ready(function() {
     $('#new_post_form').submit(function(e) {

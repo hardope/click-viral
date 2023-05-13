@@ -6,11 +6,11 @@ function validate(){
 }
 function new_post(){
     $('#body').style.display = "none";
-    $('new_post').style.display = "block";
+    $('#new_post').style.display = "block";
 }
 
 $(document).ready(function() {
-    $('#my-form').submit(function(e) {
+    $('#new_post_form').submit(function(e) {
         e.preventDefault(); // prevent default form submission
     
         var formData = new FormData(); // create new FormData object

@@ -306,7 +306,7 @@ def new_post(request):
 
         post.save()
 
-        return HttpResponseRedirect(reverse("feed"))
+        return HttpResponse(json.dumps([]))
     return render(request, "newpost.html")
 
 

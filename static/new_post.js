@@ -6,7 +6,7 @@ function validate(){
 }
 function new_post() {
     $('#body').css('display', 'none');
-    $('#new_post').css('display', 'block');
+    $('#create_post').css('display', 'block');
 }
 
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 console.log(data); // handle successful response
-                $("#new_post").style.display = "none";
+                $("#create_post").style.display = "none";
                 $("#body").style.display = "block";
             },
             error: function(xhr, status, error) {

@@ -1,4 +1,5 @@
 /viral/
+media/posts/*
 main/migrations/
 main/__pycache__
 commit.py

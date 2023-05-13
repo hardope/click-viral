@@ -28,7 +28,7 @@ $(document).ready(function() {
     
         // send AJAX request to Django app
         $.ajax({
-            url: window.location.url + '/new_post',
+            url: window.location.origin + '/new_post',
             type: 'POST',
             data: formData,
             processData: false,

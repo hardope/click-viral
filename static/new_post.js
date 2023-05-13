@@ -38,8 +38,8 @@ $(document).ready(function() {
             },
             success: function(data) {
                 console.log(data); // handle successful response
-                $("#create_post").style.display = "none";
-                $("#body").style.display = "block";
+                $("#create_post").css('display', 'none');
+                $("#body").css('display', 'block');
             },
             error: function(xhr, status, error) {
                 console.log(xhr.responseText); // handle error response

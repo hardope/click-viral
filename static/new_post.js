@@ -1,7 +1,7 @@
 function validate(){
     if($("#media").value != "") {
           let label = $("#media_label")
-          label.style.background = "green";
+          label.css('background-color', 'green');
     }
 }
 function new_post() {

@@ -301,6 +301,8 @@ def new_post(request):
                 for chunk in media_file.chunks():
                     file.write(chunk)
 
+            sys.stderr.write(f"\n\nHERE\n\n")
+
         except:
             post = Post(media=media, user_id=user_id, article=post_article)
 

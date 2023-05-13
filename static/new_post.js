@@ -23,8 +23,6 @@ $(document).ready(function() {
         // add file data to FormData object
         var media = $('#media')[0].files[0];
         formData.append('media', media);
-
-        console.log(article);
     
         // send AJAX request to Django app
         $.ajax({

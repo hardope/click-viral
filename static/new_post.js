@@ -53,7 +53,7 @@ function add_post(id) {
             container += '<a href="/comment/' + post.id + '"><p class="comment">' + post.comments + ' 💬</p></a><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
             var postElement = nameContainer + article + media + container;
-            $('#body').prepend(postElement)
+            $('#new_spot').append(postElement)
             }
     }
 }
@@ -85,8 +85,7 @@ $(document).ready(function() {
                 "X-CSRFToken": csrftoken
             },
             success: function(data) {
-                // handle succ
-                essful response
+                // handle successful response
                 add_post(data)
                 $("#create_post").hide();
                 $("#main").show();

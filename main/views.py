@@ -283,9 +283,11 @@ def unlike(request, query):
 
     return HttpResponse("")
 
+
 def get_post(request, query):
     post = Post.objects.get(id=query).to_dict(request.user.id)
     return JsonResponse([post], safe=False)
+
 
 def new_post(request):
     if request.method == "POST":
@@ -293,7 +295,7 @@ def new_post(request):
         media = "empty"
         user_id = request.user.id
         try:
-            media_file = request.FILES.get('media')
+            media_file = request.FILES.get("media")
             media = str(media_file).split(".")[1]
             assert media_file is not None
             post = Post(media=media, user_id=user_id, article=post_article)

@@ -9,7 +9,7 @@ function new_post() {
     $('#main').hide();
     $('#create_post').show();
 }
-function new_post() {
+function close_new() {
     $('#main').show();
     $('#create_post').hide();
 }

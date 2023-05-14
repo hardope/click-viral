@@ -294,26 +294,22 @@ def new_post(request):
         media = "empty"
         user_id = request.user.id
         try:
-            sys.stderr.write(f"\n\nTrying\n\n")
             media_file = request.FILES.get('media')
             media = str(media_file).split(".")[1]
-            sys.stderr.write(f"\n\nName\n\n")
             assert media_file is not None
-            sys.stderr.write(f"\n\n{media_file}\n\n")
             post = Post(media=media, user_id=user_id, article=post_article)
-            sys.stderr.write(f"\n\nSaving File\n\n")
             with open(f"{root}/media/posts/{post.id}.{media}", "wb+") as file:
                 for chunk in media_file.chunks():
                     file.write(chunk)
 
-            sys.stderr.write(f"\n\nDone\n\n")
-
         except:
             post = Post(media=media, user_id=user_id, article=post_article)
 
+        id = post.id
+
         post.save()
 
-        return HttpResponse(json.dumps([]))
+        return HttpResponse(f"{id}")
     return render(request, "newpost.html")
 
 

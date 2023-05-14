@@ -50,9 +50,9 @@ function add_post(id) {
                 container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' 🖤</p>';
             }
             container += '<a href="/comment/' + post.id + '"><p class="comment">' + post.comments + ' 💬</p></a><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
-
-            var postElement = nameContainer + article + media + container;
-            $('#new_spot').append(postElement)
+            
+            var postElement = '<div id="' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
+            $('#body').append(postElement)
             }
     }
 }

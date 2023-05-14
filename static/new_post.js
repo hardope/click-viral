@@ -85,10 +85,11 @@ $(document).ready(function() {
                 "X-CSRFToken": csrftoken
             },
             success: function(data) {
-                // handle successful response
+                // handle succ
+                essful response
+                add_post(data)
                 $("#create_post").hide();
                 $("#main").show();
-                add_post(data)
             },
             error: function(xhr, status, error) {
                 console.log("Unable To upload Your FIle, Please Check Your Internet Connection"); // handle error response

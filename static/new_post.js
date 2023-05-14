@@ -11,6 +11,7 @@ function new_post() {
 }
 
 function add_post(id) {
+    console.log("Adding Post")
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_post/" + id)

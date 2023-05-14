@@ -52,7 +52,7 @@ function add_post(id) {
             container += '<a href="/comment/' + post.id + '"><p class="comment">' + post.comments + ' 💬</p></a><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
             
             var postElement = '<div id="' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-            $('#body').append(postElement)
+            $('#body').prepend(postElement)
             }
     }
 }

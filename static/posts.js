@@ -40,7 +40,7 @@ $(document).ready(function(){
             }
             container += '<a href="/comment/' + post.id + '"><p class="comment">' + post.comments + ' 💬</p></a><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
-            postElement += nameContainer + article + media + container;
+            postElement += (nameContainer + article + media + container);
             $('#body').append(postElement)
             }
     }

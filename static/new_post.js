@@ -9,6 +9,10 @@ function new_post() {
     $('#main').hide();
     $('#create_post').show();
 }
+function new_post() {
+    $('#main').show();
+    $('#create_post').hide();
+}
 
 function add_post(id) {
     let url = window.location.origin

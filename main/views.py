@@ -284,9 +284,8 @@ def unlike(request, query):
     return HttpResponse("")
 
 def get_post(request, query):
-    post = Post.objects.get(id=query)
+    post = Post.objects.get(id=query).to_dict(request.user.id)
     return JsonResponse([post], safe=False)
-
 
 def new_post(request):
     if request.method == "POST":

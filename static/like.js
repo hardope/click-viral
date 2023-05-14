@@ -1,6 +1,8 @@
 /* Get the count of likes on input */
 
 function get_int(input){
+    console.log("INTEGER")
+    console.log(input.slice(0,-1))
     return parseInt(input.slice(0,-1));
 }
 
@@ -8,6 +10,7 @@ function get_int(input){
 function like(input){
     let box = document.getElementById(input)
 
+    console.log(box.getAttribute('value'))
     if (box.getAttribute('value') == "true" || box.getAttribute('value') == "True") {
         box.innerHTML = (get_int(box.textContent) - 1) + " 🖤"
         box.setAttribute('value', "false")

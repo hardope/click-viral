@@ -45,9 +45,9 @@
     </div>
     <div style="display:none; margin-top: 40px;" id="create_post">
         <center>
+            <h1>Create New Post <button onclick="close_new()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
             <form method="post" id="new_post_form" enctype="multipart/form-data">
                 {% csrf_token %}
-                <h1>Create New Post <button onclick="close_new()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
                 <div id="upload_message"></div>
                 <textarea name="post" id="article" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea>
                 <input type="file" id="media" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden>

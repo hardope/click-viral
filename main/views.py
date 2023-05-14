@@ -283,6 +283,10 @@ def unlike(request, query):
 
     return HttpResponse("")
 
+def get_post(request, query):
+    post = POST.objects.get(id=query)
+    return JsonResponse([post], safe=False)
+
 
 def new_post(request):
     if request.method == "POST":

@@ -34,21 +34,21 @@
 
         </div>
     </div>
+    <div id="main">
+        <div style="margin-top: 40px; margin-bottom: 20px;">
+            <button onclick="new_post()" style="border-radius: 10px; margin-left: 20%; height: 40px; border-color: rgb(224, 227, 229);">Create Post</button>
+        </div>
 
-    <div style="margin-top: 40px; margin-bottom: 20px;">
+        <div id="body" style="font-size: 40px !important;">
 
-        <button onclick="new_post()" style="border-radius: 10px; margin-left: 20%; height: 40px; border-color: rgb(224, 227, 229);">Create Post</button>
-
-    </div>
-
-    <div id="body" style="font-size: 40px !important;">
-
+        </div>
     </div>
     <div style="display:none" id="create_post">
         <center>
             <form method="post" id="new_post_form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h1>Create New Post</h1>
+                <div id="upload_message"></div>
                 <textarea name="post" id="article" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea>
                 <input type="file" id="media" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden>
                 <div id="label_cont">

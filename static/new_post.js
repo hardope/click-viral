@@ -77,7 +77,7 @@ $(document).ready(function() {
         formData.append('media', media);
     
         // send AJAX request to Django app
-        $("#upload_message").html("Uploading Your File Please wait...")
+        $("#upload_message").html("Uploading Your Post Please wait...")
         $.ajax({
             url: window.location.origin + '/new_post',
             type: 'POST',
@@ -90,12 +90,12 @@ $(document).ready(function() {
             success: function(data) {
                 // handle successful response
                 add_post(data)
-                $("#create_post").reset()
+                $("#new_post_form").reset();
                 $("#create_post").hide();
                 $("#main").show();
             },
             error: function(xhr, status, error) {
-                console.log("Unable To upload Your FIle, Please Check Your Internet Connection"); // handle error response
+                console.log("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response
             }
         });
     });

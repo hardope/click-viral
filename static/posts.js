@@ -48,6 +48,7 @@ $(document).ready(function(){
 function edit_post(id){
     $("#main").hide()
     $('#edit_post').show()
+    console.log("Loading post...")
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_post/" + id)
@@ -55,6 +56,7 @@ function edit_post(id){
     request.onload = () => {
         if (request.status === 200) {
             var post = JSON.parse(request.response)[0];
+            console.log(post)
             // check if the post has media and display it in the DOM
             if (post.media !== "empty") {
                 if (post.media === "mp4") {

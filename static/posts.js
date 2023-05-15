@@ -44,3 +44,57 @@ $(document).ready(function(){
             }
     }
 })
+
+function edit_post(id){
+    $("#main").hide()
+    $('#edit_post').show()
+    let url = window.location.origin
+    let request = new XMLHttpRequest();
+    request.open("GET", url + "/get_post/" + id)
+    request.send()
+    request.onload = () => {
+        if (request.status === 200) {
+            var post = JSON.parse(request.response)[0];
+            // check if the post has media and display it in the DOM
+            if (post.media !== "empty") {
+                if (post.media === "mp4") {
+                    $('#post-media').html(`<video src="/media/posts/${post.id}.mp4" controls loop preload="auto"></video>`);
+                } else {
+                    $('#post-media').html(`<a href="/media/posts/${post.id}.${post.media}"><img src="/media/posts/${post.id}.${post.media}"></a>`);
+                }
+                $('#post-media').show();
+            } else {
+                $('#post-media').hide();
+            }
+
+            // check if the post is editable and display the appropriate form
+            if (post.editable) {
+                $('#edit-form textarea').val(post.raw_article);
+                $('#edit-form').show();
+            } else {
+                $('#edit-form textarea').val(post.raw_article);
+                $('#edit-form textarea').attr('readonly', true);
+                $('#edit-form h1').html('<b>Editing Period Has Elapsed</b>');
+                $('#edit-form').show();
+            }
+
+            // display the delete post button and prompt
+            $('#delete-btn').show();
+            $('#delete-btn').click(function() {
+                $('#confirm').show();
+            });
+            $('#confirm .btn-yes').click(function() {
+                let request = new XMLHttpRequest();
+                request.open("GET", url + "/delete_post/" + id)
+                request.send()
+            });
+            $('#confirm .btn-no').click(function() {
+                $('#confirm').hide();
+            });
+        } else{
+            $("#edit_post").hide();
+            $("#main").show();
+            alert("An error occurred. Please try again")
+        }
+    }
+}

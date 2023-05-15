@@ -90,6 +90,7 @@ $(document).ready(function() {
             success: function(data) {
                 // handle successful response
                 add_post(data)
+                $("#create_post").reset()
                 $("#create_post").hide();
                 $("#main").show();
             },

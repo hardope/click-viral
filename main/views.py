@@ -286,6 +286,11 @@ def unlike(request, query):
 
 def get_post(request, query):
     post = Post.objects.get(id=query).to_dict(request.user.id)
+    created = post.created_at
+    now = datetime.now(timezone.utc)
+    diff = now - created
+    if diff.total_seconds() > 1800:
+        post.editable = False
     return JsonResponse([post], safe=False)
 
 

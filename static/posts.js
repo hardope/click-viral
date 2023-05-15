@@ -60,13 +60,13 @@ function edit_post(id){
             // check if the post has media and display it in the DOM
             if (post.media !== "empty") {
                 if (post.media === "mp4") {
-                    $('#post-media').html(`<video src="/media/posts/${post.id}.mp4" controls loop preload="auto"></video>`);
+                    $('#post_media').html(`<video src="/media/posts/${post.id}.mp4" controls loop preload="auto"></video>`);
                 } else {
-                    $('#post-media').html(`<a href="/media/posts/${post.id}.${post.media}"><img src="/media/posts/${post.id}.${post.media}"></a>`);
+                    $('#post_media').html(`<a href="/media/posts/${post.id}.${post.media}"><img src="/media/posts/${post.id}.${post.media}"></a>`);
                 }
-                $('#post-media').show();
+                $('#post_media').show();
             } else {
-                $('#post-media').hide();
+                $('#post_media').hide();
             }
 
             // check if the post is editable and display the appropriate form

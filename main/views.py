@@ -294,7 +294,7 @@ def get_post(request, query):
     diff = now - created
     post = Post.objects.get(id=query).to_dict(request.user.id)
     if diff.total_seconds() > 1800:
-        post.editable = False
+        post['editable'] = False
     return JsonResponse([post], safe=False)
 
 

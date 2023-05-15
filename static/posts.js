@@ -71,13 +71,11 @@ function edit_post(id){
 
             // check if the post is editable and display the appropriate form
             if (post.editable) {
-                $('#edit-form textarea').val(post.raw_article);
-                $('#edit-form').show();
+                $('#edit_article').val(post.raw_article);
             } else {
                 $('#edit-form textarea').val(post.raw_article);
                 $('#edit-form textarea').attr('readonly', true);
                 $('#edit-form h1').html('<b>Editing Period Has Elapsed</b>');
-                $('#edit-form').show();
             }
 
             // display the delete post button and prompt

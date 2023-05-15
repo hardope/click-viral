@@ -285,6 +285,7 @@ def unlike(request, query):
 
 
 def get_post(request, query):
+    editable = True
     try:
         post = Post.objects.get(id=query)
     except:
@@ -294,7 +295,8 @@ def get_post(request, query):
     diff = now - created
     post = Post.objects.get(id=query).to_dict(request.user.id)
     if diff.total_seconds() > 1800:
-        post['editable'] = False
+        editable = False
+    post['editable'] = editable
     return JsonResponse([post], safe=False)
 
 

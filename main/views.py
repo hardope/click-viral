@@ -127,7 +127,7 @@ def edit_post(request, query):
         post.save()
         pid = query
 
-        return redirect(f"/comment/{pid}")
+        return JsonResponse(json.dumps(post.raw_data))
 
     else:
         pid = query

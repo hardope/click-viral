@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/static/posts.css">
 <script src="/static/view_likes.js"></script>
 <script src="/static/new_post.js"></script>
-
+<center>
     <div id="like_viewer">
         <span id="close" onclick="close_likes()">&times;</span>
         <div id="viewer_body">
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div style="display:none; margin-top: 40px;" id="create_post">
-        <center>
+
             <h1>Create New Post <button onclick="close_new()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
             <form method="post" id="new_post_form" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -56,15 +56,34 @@
                 </div>
                 <button onclick="new_post()" id='button' data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Create Post</button>
             </form>
-        </center>
+
     </div>
     <div id="edit_post" style="display:none; margin-top: 40px">
-        <center>
-            <h1 id="edit_message">Edit Post</h1>
-            <div id="post_media"></div>
-            <textarea id="edit_article" name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{post.raw_article}}</textarea>
-            <div id="post"></div>
-            <div id="edit-post"></div>
-        </center>
-    </div>
-{% endblock %}
+
+        <h1 id="edit_message">Edit Post</h1>
+        <div id="post_media"></div>
+        <textarea id="edit_article" name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{post.raw_article}}</textarea>
+
+        <button type="submit" id='button' data-mdb-ripple-color="dark" style="padding: 2px; font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Save Post</button>
+    <div>
+
+            <button style="padding: 2px 2px 2px 2px; padding-bottom: 5px; width: 150px; height: 35px; background-color: red; border: none; border-radius: 10px; margin-bottom: 40px;">Delete Post</button></center>
+            <div style="display: none;" id="confirm">
+                <h2><b>Are You Sure</b></h2>
+                <div style="display: inline-flex; margin-bottom: 30px">
+                    <div>
+                        <a href="/delete/{{post.id}}">
+                            <button style="width: 100px; height: 35px; background-color: red; border: none; border-radius: 10px">
+                                Yes
+                            </button>
+                        </a>
+                    </div>
+                    <div>
+                        <button onclick="close_opt()" style="width: 100px; height: 35px; background-color: lightblue; border: none; border-radius: 10px; margin-left: 30px">
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </center>
+</div>

@@ -48,7 +48,6 @@ $(document).ready(function(){
 function edit_post(id){
     $("#main").hide()
     $('#edit_post').show()
-    console.log("Loading post...")
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_post/" + id)
@@ -72,6 +71,27 @@ function edit_post(id){
             // check if the post is editable and display the appropriate form
             if (post.editable) {
                 $('#edit_article').val(post.raw_article);
+                $('#submit_post').show();
+                $('#submit_post').click( function() {
+                    $.ajax({
+                        url: window.location.origin + '/edit_post/' + id,
+                        type: 'POST',
+                        data: {post:$('#edit_article').val()},
+                        processData: false,
+                        contentType: false,
+                        headers: {
+                            "X-CSRFToken": csrftoken
+                        },
+                        success: function(data) {
+                            // handle successful response
+                            coonsole.log(data);
+                            $("#main").show();
+                        },
+                        error: function(xhr, status, error) {
+                            console.log("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response
+                        }
+                    });
+                });
             } else {
                 $('#edit_article').val(post.raw_article);
                 $('#edit_article').attr('readonly', true);

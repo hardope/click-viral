@@ -10,7 +10,9 @@ function new_post() {
     $('#create_post').show();
 }
 function close_all() {
-    $('.block').hide();
+    $('.block').each( function (this) {
+        this.hide()
+    });
     $('#main').show();
 }
 

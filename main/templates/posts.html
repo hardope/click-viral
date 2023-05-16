@@ -34,7 +34,7 @@
 
         </div>
     </div>
-    <div id="main">
+    <div id="main" class="block">
         <div style="margin-top: 40px; margin-bottom: 20px;">
             <button onclick="new_post()" style="border-radius: 10px; margin-left: 20%; height: 40px; border-color: rgb(224, 227, 229);">Create Post</button>
         </div>
@@ -44,7 +44,7 @@
         </div>
     </div>
     <center>
-    <div style="display:none; margin-top: 40px;" id="create_post">
+    <div style="display:none; margin-top: 40px;" id="create_post" class="block">
 
             <h1>Create New Post <button onclick="close_all()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
             <form method="post" id="new_post_form" enctype="multipart/form-data">
@@ -61,14 +61,14 @@
     </div>
     </center>
     <center>
-    <div id="edit_post" style="display:none; margin-top: 40px">
+    <div id="edit_post" class="block" style="display:none; margin-top: 40px">
 
-        <h1 id="edit_message">Edit Post </h1><button onclick="close_new()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button>
+        <h1 id="edit_message">Edit Post </h1><button onclick="close_all()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button>
         <div id="post_media"></div>
         <textarea id="edit_article" name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{post.raw_article}}</textarea>
-<br>
+        <br>
         <button id='button' data-mdb-ripple-color="dark" style="padding: 2px; font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Save Post</button>
-    <div>
+        <div>
             <button style="padding: 2px 2px 2px 2px; padding-bottom: 5px; width: 150px; height: 35px; background-color: red; border: none; border-radius: 10px; margin-bottom: 40px;">Delete Post</button></center>
             <div style="display: none;" id="confirm">
                 <h2><b>Are You Sure</b></h2>
@@ -87,6 +87,7 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
     </center>
-</div>
 {% endblock %}

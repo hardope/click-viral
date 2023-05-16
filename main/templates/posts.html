@@ -46,7 +46,7 @@
     <center>
     <div style="display:none; margin-top: 40px;" id="create_post">
 
-            <h1>Create New Post <button onclick="close_new()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
+            <h1>Create New Post <button onclick="close_all()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
             <form method="post" id="new_post_form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div id="upload_message"></div>
@@ -63,7 +63,7 @@
     <center>
     <div id="edit_post" style="display:none; margin-top: 40px">
 
-        <h1 id="edit_message">Edit Post</h1>
+        <h1 id="edit_message">Edit Post <button onclick="close_new()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
         <div id="post_media"></div>
         <textarea id="edit_article" name="post" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;">{{post.raw_article}}</textarea>
 <br>

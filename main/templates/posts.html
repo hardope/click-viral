@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/static/posts.css">
 <script src="/static/view_likes.js"></script>
 <script src="/static/new_post.js"></script>
-<center>
+
     <div id="like_viewer">
         <span id="close" onclick="close_likes()">&times;</span>
         <div id="viewer_body">
@@ -43,6 +43,7 @@
 
         </div>
     </div>
+    <center>
     <div style="display:none; margin-top: 40px;" id="create_post">
 
             <h1>Create New Post <button onclick="close_new()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
@@ -58,6 +59,8 @@
             </form>
 
     </div>
+    </center>
+    <center>
     <div id="edit_post" style="display:none; margin-top: 40px">
 
         <h1 id="edit_message">Edit Post</h1>
@@ -66,7 +69,6 @@
 
         <button type="submit" id='button' data-mdb-ripple-color="dark" style="padding: 2px; font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Save Post</button>
     <div>
-
             <button style="padding: 2px 2px 2px 2px; padding-bottom: 5px; width: 150px; height: 35px; background-color: red; border: none; border-radius: 10px; margin-bottom: 40px;">Delete Post</button></center>
             <div style="display: none;" id="confirm">
                 <h2><b>Are You Sure</b></h2>

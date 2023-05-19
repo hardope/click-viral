@@ -294,7 +294,7 @@ def get_post(request, query):
     now = datetime.now(timezone.utc)
     diff = now - created
     post = Post.objects.get(id=query).to_dict(request.user.id)
-    sys.stdout.write(f"Here")
+    sys.stderr.write(f"\n\nHere\n\n")
     
     if diff.total_seconds() > 1800:
         editable = False

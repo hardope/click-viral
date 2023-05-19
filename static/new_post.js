@@ -32,7 +32,7 @@ function add_post(id) {
             }
             nameContainer += '</div></div>';
 
-            var article = '<div class="div"><div>';
+            var article = '<div class="div" id="article_' + post.id + '"><div>';
             for (var j = 0; j < post.article.length; j++) {
                 var element = post.article[j];
                 article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';

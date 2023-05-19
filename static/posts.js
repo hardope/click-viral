@@ -71,6 +71,8 @@ function edit_post(id){
             // check if the post is editable and display the appropriate form
             if (post.editable) {
                 $('#edit_article').val(post.raw_article);
+                $('#edit_article').attr('readonly', false);
+                $('#edit_message').html('<b>Edit Post</b>');
                 $('#submit_post').show();
                 $('#submit_post').click( function() {
                     $.ajax({

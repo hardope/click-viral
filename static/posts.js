@@ -119,6 +119,7 @@ function edit_post(id){
                 request.open("GET", url + "/delete/" + id)
                 request.send()
                 $('#post_' + id).remove();
+                $('#confirm').hide();
                 close_all();
             });
             $('#confirm #btn-no').click(function() {

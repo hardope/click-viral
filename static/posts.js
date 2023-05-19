@@ -87,11 +87,10 @@ function edit_post(id){
                         },
                         success: function(data) {
                             // handle successful response
-                            console.log(data);
                             new_article = data.article;
                             var article = '';
                             for (var j = 0; j < new_article; j++) {
-                                var element = post.article[j];
+                                var element = new_article[j];
                                 article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
                             }
                             article += '</div></div>';

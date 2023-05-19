@@ -294,8 +294,7 @@ def get_post(request, query):
     now = datetime.now(timezone.utc)
     diff = now - created
     post = Post.objects.get(id=query).to_dict(request.user.id)
-    for i, j in post.items():    
-        sys.stdout.write(f"{i}: {j}\n")
+    sys.stdout.write(post.to_json())
     if post.name != request.user:
         return HttpResponse("Permission Denied", status=403)
     if diff.total_seconds() > 1800:

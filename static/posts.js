@@ -15,7 +15,7 @@ $(document).ready(function(){
             }
             nameContainer += '</div></div>';
 
-            var article = '<div class="div"><div>';
+            var article = '<div class="div" id="article_' + id + '"><div>';
             for (var j = 0; j < post.article.length; j++) {
                 var element = post.article[j];
                 article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
@@ -87,7 +87,13 @@ function edit_post(id){
                         },
                         success: function(data) {
                             // handle successful response
-                            console.log(data);
+                            new_article = data.article;
+                            var article = '<div class="div"><div>';
+                            for (var j = 0; j < new_article; j++) {
+                                var element = post.article[j];
+                                article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
+                            }
+                            article += '</div></div>';
                             close_all();
                         },
                         error: function(xhr, status, error) {

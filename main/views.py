@@ -294,8 +294,8 @@ def get_post(request, query):
     now = datetime.now(timezone.utc)
     diff = now - created
     post = Post.objects.get(id=query).to_dict(request.user.id)
-    sys.stderr.write(f"\n\n{post['name']}\n\n")
-    
+    if post['name'] != request.user:
+        return HttpResponse("Permission Denied", status=403)
     if diff.total_seconds() > 1800:
         editable = False
     post["editable"] = editable

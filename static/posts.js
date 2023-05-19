@@ -88,6 +88,7 @@ function edit_post(id){
                         success: function(data) {
                             // handle successful response
                             var new_article = data.article;
+                            console.log(new_article);
                             var article = '';
                             for (var j = 0; j < new_article.length; j++) {
                                 var element = new_article[j];

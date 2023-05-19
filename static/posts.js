@@ -106,13 +106,13 @@ function edit_post(id){
             $('#delete-btn').click(function() {
                 $('#confirm').show();
             });
-            $('#confirm .btn-yes').click(function() {
+            $('#confirm #btn-yes').click(function() {
                 let request = new XMLHttpRequest();
                 request.open("GET", url + "/delete" + id)
                 request.send()
                 close_all();
             });
-            $('#confirm .btn-no').click(function() {
+            $('#confirm #btn-no').click(function() {
                 $('#confirm').hide();
             });
         } else{

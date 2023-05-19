@@ -94,7 +94,7 @@ function edit_post(id){
                                 article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
                             }
                             article += '</div></div>';
-                            $('#article_' + data.id).html(article);
+                            $('#article_' + id).html(article);
                             close_all();
                         },
                         error: function(xhr, status, error) {

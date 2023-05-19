@@ -74,10 +74,12 @@ function edit_post(id){
                 $('#edit_message').html('<b>Edit Post</b>');
                 $('#submit_post').show();
                 $('#submit_post').click( function() {
+                    var formData = new FormData();
+                    formData.append("post", $('#edit_article').val())
                     $.ajax({
                         url: window.location.origin + '/edit_post/' + id,
                         type: 'POST',
-                        data: {post:$('#edit_article').val()},
+                        data: formData,
                         processData: false,
                         contentType: false,
                         headers: {

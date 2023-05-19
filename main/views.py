@@ -24,6 +24,7 @@ def feed(request):
 
 
 def comment(request, query):
+    # redirect if user isnt logged in
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
 
@@ -102,12 +103,15 @@ def comment(request, query):
 
 
 def edit_post(request, query):
+    # redirect if user isnt logged in
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
 
+    # Handle post request to edit a post
     if request.method == "POST":
         article = request.POST.get("post").strip()
 
+        # Find post from main post or comment
         try:
             post = Post.objects.get(id=query)
         except:

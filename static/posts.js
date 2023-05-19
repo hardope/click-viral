@@ -87,7 +87,7 @@ function edit_post(id){
                         },
                         success: function(data) {
                             // handle successful response
-                            coonsole.log(data);
+                            console.log(data);
                             $("#main").show();
                         },
                         error: function(xhr, status, error) {

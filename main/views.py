@@ -16,17 +16,9 @@ root = "/home/clickviral/viral"
 
 
 def feed(request):
+    # redirect if user isnt logged in
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
-
-    user = request.user.id
-    try:
-        posts = Post.objects.all()
-        posts = [i.to_dict(user) for i in posts]
-        posts.reverse()
-
-    except:
-        posts = []
 
     return render(request, "posts.html")
 

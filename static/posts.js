@@ -55,7 +55,6 @@ function edit_post(id){
     request.onload = () => {
         if (request.status === 200) {
             var post = JSON.parse(request.response)[0];
-            console.log(post)
             // check if the post has media and display it in the DOM
             if (post.media !== "empty") {
                 if (post.media === "mp4") {

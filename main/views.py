@@ -125,9 +125,8 @@ def edit_post(request, query):
         post.edited_at = datetime.now()
         post.edited = True
         post.save()
-        pid = query
 
-        return JsonResponse(json.dumps(post.raw_data))
+        return JsonResponse(json.dumps(post))
 
     else:
         pid = query

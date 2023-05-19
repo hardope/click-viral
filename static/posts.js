@@ -91,7 +91,7 @@ function edit_post(id){
                             $("#main").show();
                         },
                         error: function(xhr, status, error) {
-                            console.log("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response
+                            console.log(error); // handle error response
                         }
                     });
                 });

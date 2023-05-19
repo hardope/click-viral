@@ -88,7 +88,7 @@ function edit_post(id){
                         success: function(data) {
                             // handle successful response
                             console.log(data);
-                            $("#main").show();
+                            close_all();
                         },
                         error: function(xhr, status, error) {
                             console.log(error); // handle error response
@@ -103,7 +103,6 @@ function edit_post(id){
             }
 
             // display the delete post button and prompt
-            $('#delete-btn').show();
             $('#delete-btn').click(function() {
                 $('#confirm').show();
             });
@@ -111,6 +110,7 @@ function edit_post(id){
                 let request = new XMLHttpRequest();
                 request.open("GET", url + "/delete" + id)
                 request.send()
+                close_all();
             });
             $('#confirm .btn-no').click(function() {
                 $('#confirm').hide();

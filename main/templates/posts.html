@@ -75,19 +75,15 @@
             <button id='submit_post' data-mdb-ripple-color="dark" style="padding: 2px; font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Save Post</button>
         </div>
         <div>
-            <button style="padding: 2px 2px 2px 2px; padding-bottom: 5px; width: 150px; height: 35px; background-color: red; border: none; border-radius: 10px; margin-bottom: 40px;">Delete Post</button></center>
+            <button id="delete-btn" style="padding: 2px 2px 2px 2px; padding-bottom: 5px; width: 150px; height: 35px; background-color: red; border: none; border-radius: 10px; margin-bottom: 40px;">Delete Post</button></center>
             <div style="display: none;" id="confirm">
                 <h2><b>Are You Sure</b></h2>
                 <div style="display: inline-flex; margin-bottom: 30px">
                     <div>
-                        <a href="/delete/{{post.id}}">
-                            <button style="width: 100px; height: 35px; background-color: red; border: none; border-radius: 10px">
-                                Yes
-                            </button>
-                        </a>
-                    </div>
-                    <div>
-                        <button onclick="close_opt()" style="width: 100px; height: 35px; background-color: lightblue; border: none; border-radius: 10px; margin-left: 30px">
+                        <button id="btn-yes" style="width: 100px; height: 35px; background-color: red; border: none; border-radius: 10px">
+                            Yes
+                        </button>
+                        <button id="btn-no" style="width: 100px; height: 35px; background-color: lightblue; border: none; border-radius: 10px; margin-left: 30px">
                             No
                         </button>
                     </div>

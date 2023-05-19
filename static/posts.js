@@ -110,7 +110,7 @@ function edit_post(id){
                 let request = new XMLHttpRequest();
                 request.open("GET", url + "/delete/" + id)
                 request.send()
-                $('#post_' + id).hide();
+                $('#post_' + id).remove();
                 close_all();
             });
             $('#confirm #btn-no').click(function() {

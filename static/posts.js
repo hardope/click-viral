@@ -108,7 +108,7 @@ function edit_post(id){
             });
             $('#confirm #btn-yes').click(function() {
                 let request = new XMLHttpRequest();
-                request.open("GET", url + "/delete" + id)
+                request.open("GET", url + "/delete/" + id)
                 request.send()
                 close_all();
             });

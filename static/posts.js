@@ -99,6 +99,7 @@ function edit_post(id){
                 $('#edit_article').val(post.raw_article);
                 $('#edit_article').attr('readonly', true);
                 $('#edit_message').html('<b>Editing Period Has Elapsed</b>');
+                $('#submit_post').hide();
             }
 
             // display the delete post button and prompt

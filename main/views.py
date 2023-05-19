@@ -161,15 +161,22 @@ def delete(request, query):
         post = Post.objects.get(id=query)
     except:
         post = Comment.objects.get(id=query)
+
+    if post.to_dict(request.user.id)['name'] == request.user.username:
+        pass
+    else:
+        return HttpResponse("...")
+
     if post.media != "empty":
         os.remove(f"{root}/media/posts/{post.id}.{post.media}")
     else:
         pass
+
     try:
         post = Post.objects.get(id=query).delete()
     except:
         post = Comment.objects.get(id=query).delete()
-    return redirect("/")
+    return HttpResponse("...")
 
 
 def follow(request, query):

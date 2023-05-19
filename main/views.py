@@ -126,7 +126,7 @@ def edit_post(request, query):
         post.edited = True
         post.save()
 
-        return JsonResponse(json.dumps(post.to_dict(request.user.id), safe=False))
+        return JsonResponse(json.dumps(post.to_dict(request.user.id)), safe=False)
 
     else:
         pid = query

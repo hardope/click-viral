@@ -87,15 +87,14 @@ function edit_post(id){
                         },
                         success: function(data) {
                             // handle successful response
+                            console.log(data);
                             new_article = data.article;
-                            console.log(new_article);
                             var article = '';
                             for (var j = 0; j < new_article; j++) {
                                 var element = post.article[j];
                                 article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
                             }
                             article += '</div></div>';
-                            console.log(article);
                             $('#article_' + id).html(article);
                             close_all();
                         },

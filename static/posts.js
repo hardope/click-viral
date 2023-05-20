@@ -44,7 +44,7 @@ function view_comment(id){
             container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
             
             var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-            $('#body').append(postElement)
+            $('#comment_block').append(postElement)
         },
         error: function(xhr, status, error) {
             console.log(error); // handle error response

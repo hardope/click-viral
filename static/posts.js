@@ -2,6 +2,21 @@ let url = window.location.origin
 
 function view_comment(id){
     console.log(id);
+    $.ajax({
+        url: window.location.origin + '/comment/' + id,
+        type: 'GET',
+        data: {},
+        processData: false,
+        contentType: false,
+        success: function(data) {
+            // handle successful response
+            data = JSON.parse(data);
+            console.log(data)
+        },
+        error: function(xhr, status, error) {
+            console.log(error); // handle error response
+        }
+    });
 }
 
 $(document).ready(function(){
@@ -51,7 +66,6 @@ $(document).ready(function(){
 })
 
 function delete_post(id){
-    console.log(id);
     let request = new XMLHttpRequest();
     request.open("GET", url + "/delete/" + id)
     request.send()

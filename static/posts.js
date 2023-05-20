@@ -42,7 +42,7 @@ $(document).ready(function(){
             } else {
                 container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' 🖤</p>';
             }
-            container += '<button class="comment" onclick(view_comment"'+ post.id  + '")' + '>' + post.comments + ' 💬</button><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
+            container += '<p class="comment" onclick(view_comment"'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
             
             var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
             $('#body').append(postElement)

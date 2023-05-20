@@ -55,6 +55,36 @@ function delete_post(id){
     $('#confirm').hide();
     close_all();
 }
+function upload_edited(id){
+    var formData = new FormData();
+    formData.append("post", $('#edit_article').val())
+    $.ajax({
+        url: window.location.origin + '/edit_post/' + id,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            "X-CSRFToken": csrftoken
+        },
+        success: function(data) {
+            // handle successful response
+            data = JSON.parse(data);
+            let new_article = data.article;
+            var article = '';
+            for (var j = 0; j < new_article.length; j++) {
+                var element = new_article[j];
+                article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
+            }
+            article += '</div></div>';
+            $('#article_' + id).html(article);
+            close_all();
+        },
+        error: function(xhr, status, error) {
+            console.log(error); // handle error response
+        }
+    });
+}
 
 function edit_post(id){
     $("#main").hide()
@@ -84,36 +114,7 @@ function edit_post(id){
                 $('#edit_message').html('<b>Edit Post</b>');
                 $('#submit_post').show();
                 $('#submit_post').off('onclick');
-                $('#submit_post').click( function() {
-                    var formData = new FormData();
-                    formData.append("post", $('#edit_article').val())
-                    $.ajax({
-                        url: window.location.origin + '/edit_post/' + id,
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        headers: {
-                            "X-CSRFToken": csrftoken
-                        },
-                        success: function(data) {
-                            // handle successful response
-                            data = JSON.parse(data);
-                            let new_article = data.article;
-                            var article = '';
-                            for (var j = 0; j < new_article.length; j++) {
-                                var element = new_article[j];
-                                article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
-                            }
-                            article += '</div></div>';
-                            $('#article_' + id).html(article);
-                            close_all();
-                        },
-                        error: function(xhr, status, error) {
-                            console.log(error); // handle error response
-                        }
-                    });
-                });
+                $('#submit_post').attr('onclick', 'upload_edited("' + id + '")');
             } else {
                 $('#edit_article').val(post.raw_article);
                 $('#edit_article').attr('readonly', true);

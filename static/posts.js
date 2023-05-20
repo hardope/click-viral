@@ -10,8 +10,9 @@ function view_comment(id){
         contentType: false,
         success: function(data) {
             // handle successful response
+            console.log(data);
             data = JSON.parse(data);
-            console.log(data)
+            console.log(data);
         },
         error: function(xhr, status, error) {
             console.log(error); // handle error response

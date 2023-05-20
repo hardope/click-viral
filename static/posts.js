@@ -83,6 +83,7 @@ function edit_post(id){
                 $('#edit_article').attr('readonly', false);
                 $('#edit_message').html('<b>Edit Post</b>');
                 $('#submit_post').show();
+                $('#submit_post').off('onclick');
                 $('#submit_post').click( function() {
                     var formData = new FormData();
                     formData.append("post", $('#edit_article').val())

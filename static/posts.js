@@ -46,6 +46,7 @@ $(document).ready(function(){
 })
 
 function delete_post(id){
+    console.log(id);
     let request = new XMLHttpRequest();
     request.open("GET", url + "/delete/" + id)
     request.send()
@@ -123,7 +124,7 @@ function edit_post(id){
             $('#delete-btn').click(function() {
                 $('#confirm').show();
             });
-            $('#confirm #btn-yes').click(delete_post(id));
+            $('#confirm #btn-yes').attr('onclick', 'delete_post(' + id + ')');
             $('#confirm #btn-no').click(function() {
                 $('#confirm').hide();
             });

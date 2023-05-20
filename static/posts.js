@@ -45,6 +45,15 @@ $(document).ready(function(){
     }
 })
 
+function delete_post(id){
+    let request = new XMLHttpRequest();
+    request.open("GET", url + "/delete/" + id)
+    request.send()
+    $('#post_' + id).remove();
+    $('#confirm').hide();
+    close_all();
+}
+
 function edit_post(id){
     $("#main").hide()
     $('#edit_post').show()
@@ -114,15 +123,7 @@ function edit_post(id){
             $('#delete-btn').click(function() {
                 $('#confirm').show();
             });
-            $('#confirm #btn-yes').click(function() {
-                console.log(id);
-                let request = new XMLHttpRequest();
-                request.open("GET", url + "/delete/" + id)
-                request.send()
-                $('#post_' + id).remove();
-                $('#confirm').hide();
-                close_all();
-            });
+            $('#confirm #btn-yes').click(delete_post(id));
             $('#confirm #btn-no').click(function() {
                 $('#confirm').hide();
             });

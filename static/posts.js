@@ -115,6 +115,7 @@ function edit_post(id){
                 $('#confirm').show();
             });
             $('#confirm #btn-yes').click(function() {
+                console.log(id);
                 let request = new XMLHttpRequest();
                 request.open("GET", url + "/delete/" + id)
                 request.send()

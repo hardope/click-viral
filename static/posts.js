@@ -10,7 +10,41 @@ function view_comment(id){
         contentType: false,
         success: function(data) {
             // handle successful response
-            console.log(data);
+            var post = data.post;
+            var nameContainer = '<div class="name_container"><a class="a" href="/profile/' + post.name + '" style="display: inline-flex"><img src="/static/favicon.ico" style="width: 50px; border-radius: 25px; margin-top: 20px; margin-left: 0px"><div style="margin-left: 10px; margin-top: 30px;">' + post.name + '</div></a><div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">' + post.created_at;
+            if (post.name == username) {
+                nameContainer += '<button ' + 'onclick=edit_post("' + post.id + '")' + ' style="background-color: lightblue;border: none; margin-left: 90%; width: 40px; height:40px; border-radius: 20px; margin-bottom: 10px;" type="submit">✏️</button>';
+            } else if (post.edited == true) {
+                nameContainer += '<button style="background-color: lightblue;border: none; margin-left: 80%; width: 100px; height:40px; border-radius: 15px; margin-bottom: 10px;" type="submit">Edited</button>';
+            }
+            nameContainer += '</div></div>';
+
+            var article = '<div class="div" id="article_' + post.id + '"><div>';
+            for (var j = 0; j < post.article.length; j++) {
+                var element = post.article[j];
+                article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
+            }
+            article += '</div></div>';
+
+            var media = '';
+            if (post.media != "empty") {
+                if (post.media == "mp4") {
+                    media += '<video src="/media/posts/' + post.id + '.mp4" controls loop preload="auto"></video>';
+                } else {
+                    media += '<a href="/media/posts/' + post.id + '.' + post.media + '"><img src="/media/posts/' + post.id + '.' + post.media + '"></a>';
+                }
+            }
+
+            var container = '<div class="container">';
+            if (post.like_value == "True") {
+                container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' ❤️</p>';
+            } else {
+                container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' 🖤</p>';
+            }
+            container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
+            
+            var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
+            $('#body').append(postElement)
         },
         error: function(xhr, status, error) {
             console.log(error); // handle error response

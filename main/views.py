@@ -153,7 +153,7 @@ def profile(request, query):
 
 
 def delete(request, query):
-    sys.stderr.write(f"\nquery\n")
+    sys.stderr.write(f"\n{query}\n")
     try:
         post = Post.objects.get(id=query)
     except:

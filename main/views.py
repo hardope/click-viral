@@ -99,7 +99,7 @@ def comment(request, query):
             i.to_dict(request.user.id) for i in comments1
         ]
 
-        return render(request, "comment.html", {"post": post, "comments": comments})
+        return JsonResponse({"post": post, "comments": comments})
 
 
 def edit_post(request, query):

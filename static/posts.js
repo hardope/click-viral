@@ -124,8 +124,8 @@ function edit_post(id){
             $('#delete-btn').click(function() {
                 $('#confirm').show();
             });
-            $('#confirm #btn-yes').attr('onclick', 'delete_post(' + id + ')');
             $('#confirm #btn-yes').off('onclick')
+            $('#confirm #btn-yes').attr('onclick', 'delete_post(' + id + ')');
             $('#confirm #btn-no').click(function() {
                 $('#confirm').hide();
             });

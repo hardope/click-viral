@@ -1,5 +1,6 @@
+let url = window.location.origin
+
 $(document).ready(function(){
-    let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/fetch_posts")
     request.send()
@@ -58,7 +59,6 @@ function delete_post(id){
 function edit_post(id){
     $("#main").hide()
     $('#edit_post').show()
-    let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_post/" + id)
     request.send()

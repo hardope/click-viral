@@ -3,7 +3,9 @@ let url = window.location.origin
 let c_blocks = localStorage.getItem("comment_blocks");
 
 function view_comment(id){
-    console.log(c_blocks);
+    if (c_blocks != []){
+        c_blocks = Array()
+    }
     c_blocks.push(id);
     console.log(c_blocks);
     localStorage.setItem("comment_blocks", c_blocks);

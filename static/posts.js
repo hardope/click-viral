@@ -68,7 +68,15 @@ function view_comment(id){
                     }
                 }
 
-                var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media) + '</div>'
+                var container = '<div class="container">';
+                if (post.like_value == "True") {
+                    container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' ❤️</p>';
+                } else {
+                    container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' 🖤</p>';
+                }
+                container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
+
+                var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
                 $('#comment_block').append(postElement)
             }
         },

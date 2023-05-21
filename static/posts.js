@@ -1,25 +1,8 @@
 let url = window.location.origin
-console.log(localStorage.getItem("comment_blocks"))
-let c_blocks = fetch_c_blocks()
-
-function fetch_c_blocks (){
-    var blocks = localStorage.getItem("comment_blocks");
-    ids = "";
-    var parsed = [];
-    for (var i = 0; i < blocks.length; i++){
-        if (i != ','){
-            ids+=i;
-        } else{
-            parsed.push(ids);
-            ids = "";
-        }
-    }
-    return parsed
-}
+let c_blocks = []
 
 function view_comment(id){
     c_blocks.push(id);
-    localStorage.setItem("comment_blocks", c_blocks.toString());
     console.log(c_blocks);
     $('#main').hide();
     $('#comment_block').show();
@@ -113,7 +96,6 @@ function view_comment(id){
 }
 
 $(document).ready(function(){
-    localStorage.setItem("comment_blocks", "");
     let request = new XMLHttpRequest();
     request.open("GET", url + "/fetch_posts")
     request.send()

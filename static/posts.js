@@ -66,7 +66,7 @@ function view_comment(id){
                 var formData = new FormData(); // create new FormData object
             
                 // add text data to FormData object
-                var comment = $('#new_comment_form_' + post.id + ' #comment').val();
+                var comment = $('#new_comment_form_' + post.id + ' textarea').val();
                 console.log(comment);
                 formData.append('comment', comment);
             

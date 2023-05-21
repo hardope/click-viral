@@ -1,16 +1,25 @@
 let url = window.location.origin
 let c_blocks = []
 
+function close_comment() {
+    last = c_blocks[-1]
+    $('#comment_block_'+id).remove()
+    last.pop()
+    if (c_blocks.length > 0){
+        close_comment()
+    }
+}
+
 function view_comment(id){
     c_blocks.push(id);
     console.log(c_blocks);
     $('#main').hide();
     $('#comment_block').show();
     if (c_blocks.length > 1){
-        last = c_blocks[0];
+        last = c_blocks[-2];
         $('#comment_block_' + last).hide();
     }
-    new_block = '<div id="comment_block_' + id + '"><button onclick="close_comment("' + id + '")" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></div>';
+    new_block = '<div id="comment_block_' + id + '"><button onclick="close_comment()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></div>';
     $('#comment_block').append(new_block);
     $.ajax({
         url: window.location.origin + '/comment/' + id,

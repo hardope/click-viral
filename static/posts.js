@@ -3,7 +3,7 @@ let c_blocks = []
 
 function close_comment() {
     last = c_blocks[-1]
-    $('#comment_block_'+id).remove()
+    $('#comment_block_'+ last).remove()
     last.pop()
     if (c_blocks.length > 0){
         $('#comment_block_' + c_blocks[-1]).show();

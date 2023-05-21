@@ -10,7 +10,7 @@ function view_comment(id){
         last = c_blocks[0];
         $('#comment_block_' + last).hide();
     }
-    new_block = '<div id="comment_block_' + id + '"></div>';
+    new_block = '<div id="comment_block_' + id + '"><button onclick="close_comment("' + id + '")" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></div>';
     $('#comment_block').append(new_block);
     $.ajax({
         url: window.location.origin + '/comment/' + id,

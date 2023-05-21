@@ -66,8 +66,8 @@ function view_comment(id){
                 var formData = new FormData(); // create new FormData object
             
                 // add text data to FormData object
-                var article = $('#new_comment_form_' + post.id + ' #comment').val();
-                formData.append('comment', article);
+                var comment = $('#new_comment_form_' + post.id + ' #comment').val();
+                formData.append('comment', comment);
             
                 // add file data to FormData object
                 var media = $('#new_comment_form_' + post.id + ' #media')[0].files[0];

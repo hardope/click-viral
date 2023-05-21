@@ -1,9 +1,10 @@
 let url = window.location.origin
-let c_blocks = [];
+let c_blocks = Array();
 
 function view_comment(id){
     console.log(c_blocks);
     c_blocks.push(id);
+    console.log(c_blocks);
     $('#main').hide();
     $('#comment_block').show();
     if (c_blocks.length > 0){

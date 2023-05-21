@@ -6,7 +6,7 @@ function view_comment(id){
     $('#main').hide();
     $('#comment_block').show();
     if (comment_blocks.length > 0){
-        last = comment_blocks.pop();
+        last = comment_blocks.pop(0);
         $('#comment_block_' + last).hide();
     }
     new_block = '<div id="comment_block_' + id + '"></div>';

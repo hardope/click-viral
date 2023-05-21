@@ -5,7 +5,7 @@ function close_comment() {
     $('#comment_block_' + c_blocks[c_blocks.length - 1]).remove();
     c_blocks.splice(c_blocks.length - 1);
     if (c_blocks.length > 0){
-        $('#comment_block_' + c_blocks[-1]).show();
+        $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
     } else {
         close_all();
     }

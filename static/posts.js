@@ -23,8 +23,8 @@ function view_comment(id){
     console.log(c_blocks);
     $('#main').hide();
     $('#comment_block').show();
-    if (c_blocks.length > 0){
-        last = c_blocks.pop();
+    if (c_blocks.length > 1){
+        last = c_blocks[-1];
         $('#comment_block_' + last).hide();
     }
     new_block = '<div id="comment_block_' + id + '"></div>';

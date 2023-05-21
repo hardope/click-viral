@@ -98,7 +98,7 @@ function view_comment(id){
 }
 
 $(document).ready(function(){
-    localStorage.setItem("comment_blocks", Array());
+    localStorage.setItem("comment_blocks", JSON.stringify(Array()));
     let request = new XMLHttpRequest();
     request.open("GET", url + "/fetch_posts")
     request.send()

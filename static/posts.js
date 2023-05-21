@@ -1,9 +1,14 @@
 let url = window.location.origin
+comment_blocks = [];
 
 function view_comment(id){
-    console.log(id);
+    comment_blocks.append(id);
     $('#main').hide();
     $('#comment_block').show();
+    if (comment_blocks.length > 0){
+        last = comment_blocks.pop();
+        $('#comment_block_' + last).hide();
+    }
     new_block = '<div id="comment_block_' + id + '"></div>';
     $('#comment_block').append(new_block);
     $.ajax({

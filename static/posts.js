@@ -4,6 +4,8 @@ function view_comment(id){
     console.log(id);
     $('#main').hide();
     $('#comment_block').show();
+    new_block = '<div id="comment_block_' + id + '"></div>';
+    $('#comment_block').append(new_block);
     $.ajax({
         url: window.location.origin + '/comment/' + id,
         type: 'GET',
@@ -38,10 +40,10 @@ function view_comment(id){
             }
 
             var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media) + '</div>'
-            $('#comment_block').append(postElement)
+            $('#comment_block_' + id).append(postElement)
 
             var upload_comment = '<form><center><h1>New Comment</h1><textarea name="comment" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="media" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="media" id="media_label">Upload Media &#128206;</label></div><button  type="submit" id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></form>'
-            $('#comment_block').append(upload_comment)
+            $('#comment_block_' + id).append(upload_comment)
 
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];
@@ -78,7 +80,7 @@ function view_comment(id){
                 container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
                 var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-                $('#comment_block').append(postElement)
+                $('#comment_block_' + id).append(postElement)
             }
         },
         error: function(xhr, status, error) {

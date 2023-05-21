@@ -2,10 +2,7 @@ let url = window.location.origin
 let c_blocks = []
 
 function close_comment() {
-    console.log(c_blocks)
-    last = c_blocks[-1]
-    $('#comment_block_'+ last).remove()
-    c_blocks.splice(-1)
+    console.log(c_blocks[-1])
     if (c_blocks.length > 0){
         $('#comment_block_' + c_blocks[-1]).show();
     } else {

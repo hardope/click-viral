@@ -70,10 +70,6 @@ function view_comment(id){
                 console.log(comment);
                 formData.append('comment', comment);
             
-                // add file data to FormData object
-                var media = $('#new_comment_form_' + post.id + ' input')[0].files[0];
-                formData.append('media', media);
-            
                 // send AJAX request to Django app
                 $('#new_comment_form_' + post.id + ' #message').html("Uploading Your Post Please wait...")
                 $.ajax({
@@ -87,7 +83,7 @@ function view_comment(id){
                     },
                     success: function(data) {
                         // handle successful response
-                        $('#form')[0].reset();
+                        $('#new_comment_form_' + post.id).reset();
                     },
                     error: function(xhr, status, error) {
                         alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response

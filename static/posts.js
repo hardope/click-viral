@@ -1,5 +1,5 @@
 let url = window.location.origin
-
+console.log(localStorage.getItem("comment_blocks"))
 let c_blocks = JSON.parse(localStorage.getItem("comment_blocks"));
 
 function view_comment(id){

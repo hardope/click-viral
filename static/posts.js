@@ -1,10 +1,11 @@
 let url = window.location.origin
-let c_blocks = Array();
+
+let c_blocks = localStorage.getItem("comment_blocks");
 
 function view_comment(id){
-    console.log(c_blocks);
     c_blocks.push(id);
     console.log(c_blocks);
+    localStorage.setItem("comment_blocks", c_blocks);
     $('#main').hide();
     $('#comment_block').show();
     if (c_blocks.length > 0){
@@ -97,6 +98,7 @@ function view_comment(id){
 }
 
 $(document).ready(function(){
+    localStorage.setItem("comment_blocks", []);
     let request = new XMLHttpRequest();
     request.open("GET", url + "/fetch_posts")
     request.send()

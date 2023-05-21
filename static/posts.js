@@ -1,5 +1,5 @@
 let url = window.location.origin
-comment_blocks = [];
+let comment_blocks = [];
 
 function view_comment(id){
     comment_blocks.append(id);

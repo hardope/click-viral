@@ -87,7 +87,7 @@ function view_comment(id){
                     },
                     success: function(data) {
                         // handle successful response
-                        resetForm();
+                        $('#form')[0].reset();
                     },
                     error: function(xhr, status, error) {
                         alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response

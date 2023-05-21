@@ -67,6 +67,7 @@ function view_comment(id){
             
                 // add text data to FormData object
                 var comment = $('#new_comment_form_' + post.id + ' #comment').val();
+                console.log(comment);
                 formData.append('comment', comment);
             
                 // add file data to FormData object

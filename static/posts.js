@@ -6,7 +6,9 @@ function close_comment() {
     $('#comment_block_'+id).remove()
     last.pop()
     if (c_blocks.length > 0){
-        close_comment()
+        $('#comment_block_' + c_blocks[-1]).show();
+    } else {
+        close_all();
     }
 }
 

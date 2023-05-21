@@ -12,6 +12,7 @@ function new_post() {
 function close_all() {
     $('#create_post').hide();
     $('#edit_post').hide();
+    $('#comment_block').hide();
     $('#main').show();
 }
 

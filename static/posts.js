@@ -14,7 +14,7 @@ function view_comment(id){
     $('#main').hide();
     $('#comment_block').show();
     if (c_blocks.length > 0){
-        last = c_blocks[-1];
+        last = c_blocks[c_blocks.length - 1];
         $('#comment_block_' + last).hide();
     }
     c_blocks.push(id);

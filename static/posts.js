@@ -3,7 +3,8 @@ let url = window.location.origin
 let c_blocks = localStorage.getItem("comment_blocks");
 
 function view_comment(id){
-    c_blocks.push(id);
+    console.log(localStorage.getItem("comment_blocks"))
+    c_blocks.append(id);
     console.log(c_blocks);
     localStorage.setItem("comment_blocks", c_blocks);
     $('#main').hide();

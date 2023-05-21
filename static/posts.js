@@ -3,7 +3,7 @@ let url = window.location.origin
 function view_comment(id){
     console.log(id);
     $('#main').hide();
-    $('comment_block').show();
+    $('#comment_block').show();
     $.ajax({
         url: window.location.origin + '/comment/' + id,
         type: 'GET',

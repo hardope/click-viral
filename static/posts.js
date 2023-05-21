@@ -2,6 +2,7 @@ let url = window.location.origin
 let comment_blocks = [];
 
 function view_comment(id){
+    let comment_blocks = [];
     comment_blocks.append(id);
     $('#main').hide();
     $('#comment_block').show();

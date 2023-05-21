@@ -1,13 +1,12 @@
 let url = window.location.origin
-let comment_blocks = [];
+let c_blocks = [];
 
 function view_comment(id){
-    let comment_blocks = [];
-    comment_blocks.append(id);
+    c_blocks.append(id);
     $('#main').hide();
     $('#comment_block').show();
-    if (comment_blocks.length > 0){
-        last = comment_blocks.pop(0);
+    if (c_blocks.length > 0){
+        last = c_blocks.pop(0);
         $('#comment_block_' + last).hide();
     }
     new_block = '<div id="comment_block_' + id + '"></div>';

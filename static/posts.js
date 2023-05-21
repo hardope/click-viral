@@ -1,14 +1,11 @@
 let url = window.location.origin
 
-let c_blocks = localStorage.getItem("comment_blocks");
+let c_blocks = JSON.parse(localStorage.getItem("comment_blocks"));
 
 function view_comment(id){
-    if (c_blocks != []){
-        c_blocks = Array()
-    }
     c_blocks.push(id);
+    localStorage.setItem("comment_blocks", JSON.stringify(c_blocks));
     console.log(c_blocks);
-    localStorage.setItem("comment_blocks", c_blocks);
     $('#main').hide();
     $('#comment_block').show();
     if (c_blocks.length > 0){

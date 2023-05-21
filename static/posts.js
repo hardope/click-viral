@@ -2,6 +2,7 @@ let url = window.location.origin
 let c_blocks = []
 
 function close_comment() {
+    console.log(c_blocks)
     last = c_blocks[-1]
     $('#comment_block_'+ last).remove()
     c_blocks.splice(-1)

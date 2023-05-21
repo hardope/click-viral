@@ -2,7 +2,7 @@ let url = window.location.origin
 let c_blocks = [];
 
 function view_comment(id){
-    c_blocks.append(id);
+    console.log(c_blocks)
     $('#main').hide();
     $('#comment_block').show();
     if (c_blocks.length > 0){

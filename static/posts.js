@@ -62,33 +62,8 @@ function view_comment(id){
 
             $('#new_comment_form_' + post.id).submit(function(e) {
                 e.preventDefault(); // prevent default form submission
-            
-                var formData = new FormData(); // create new FormData object
-            
-                // add text data to FormData object
-                var comment = $('#new_comment_form_' + post.id + ' textarea').val();
-                console.log(comment);
-                formData.append('comment', comment);
-            
-                // send AJAX request to Django app
-                $('#new_comment_form_' + post.id + ' #message').html("Uploading Your Post Please wait...")
-                $.ajax({
-                    url: window.location.origin + '/comment/' + post.id,
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRFToken": csrftoken
-                    },
-                    success: function(data) {
-                        // handle successful response
-                        $('#new_comment_form_' + post.id).reset();
-                    },
-                    error: function(xhr, status, error) {
-                        alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response
-                    }
-                });
+
+                console.log($('#new_comment_form_' + post.id + ' textarea').val());
             });
 
             for (var i = 0; i < data.comments.length; i++) {

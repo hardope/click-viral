@@ -63,7 +63,7 @@ function view_comment(id){
             $('#new_comment_form_' + post.id).submit(function(e) {
                 e.preventDefault(); // prevent default form submission
 
-                console.log($('#new_comment_form_' + post.id + ' textarea').val());
+                console.log($('#new_comment_form_' + post.id + ' #message').val());
             });
 
             for (var i = 0; i < data.comments.length; i++) {

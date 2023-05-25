@@ -1,8 +1,4 @@
 function validate(event){
-    event = event || window.event; // IE
-    var target = event.target || event.srcElement;
-    console.log(target.id)
-    console.log(element)
     if($("#media").value != "") {
           let label = $("#media_label")
           label.css('background-color', 'green');
@@ -20,7 +16,7 @@ function close_all() {
     $('#main').show();
 }
 
-function add_post(id) {
+function add_post(id, box) {
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_post/" + id)
@@ -62,7 +58,7 @@ function add_post(id) {
             container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
             
             var postElement = '<div id="' + "post_" + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-            $('#body').prepend(postElement)
+            $(box).prepend(postElement)
             }
     }
 }
@@ -95,7 +91,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 // handle successful response
-                add_post(data)
+                add_post(data, "#body")
                 $("#article").val('');
                 $("#media").val('');
                 $("#create_post").hide();

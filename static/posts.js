@@ -12,9 +12,39 @@ function close_comment() {
 }
 
 function submit_comment (id){
+    var formData = new FormData(); // create new FormData object
+    
+    // add text data to FormData object
     var article = $('#comment_article_' + id).val();
-    console.log(article);
-    $('#comment_article_' + id).val('');
+    formData.append('article', article);
+
+    // add file data to FormData object
+    var media = $('#comment_media_' + id)[0].files[0];
+    formData.append('media', media);
+
+    // send AJAX request to Django app
+    $("#upload_message").html("Uploading Your Post Please wait...")
+    $.ajax({
+        url: window.location.origin + '/comment/' + id,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            "X-CSRFToken": csrftoken
+        },
+        success: function(data) {
+            // handle successful response
+            add_post(data, "#comment_block_" + id)
+            $("#article").val('');
+            $("#media").val('');
+            $("#create_post").hide();
+            $("#main").show();
+        },
+        error: function(xhr, status, error) {
+            alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response
+        }
+    });
 }
 
 function view_comment(id){
@@ -63,8 +93,10 @@ function view_comment(id){
             var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media) + '</div>'
             $('#comment_block_' + id).append(postElement)
 
-            var upload_comment = '<div id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea id="comment_article_' + post.id + '" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="comment_media_' + post.id + '" onchange=validate(this.id) name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="media" id="media_label">Upload Media &#128206;</label></div><button onclick=submit_comment("' + post.id + '") id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></div>'
+            var upload_comment = '<div id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea id="comment_article_' + post.id + '" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="comment_media_' + post.id + '" name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="media" id="media_label">Upload Media &#128206;</label></div><button onclick=submit_comment("' + post.id + '") id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></div>'
             $('#comment_block_' + id).append(upload_comment)
+
+            var comments_posts = '<div id="' + post.id + '"></div>'
 
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];
@@ -101,7 +133,8 @@ function view_comment(id){
                 container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
                 var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-                $('#comment_block_' + id).append(postElement)
+                comments_posts.append(postElement)
+                $('#comment_block_' + id).append(comments_posts)
             }
         },
         error: function(xhr, status, error) {

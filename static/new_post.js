@@ -1,4 +1,4 @@
-function validate(this){
+function validate(element){
     if (this.value != ""){
         this.css('background-color', 'green');
     }

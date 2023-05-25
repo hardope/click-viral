@@ -1,6 +1,6 @@
 function validate(element){
     if (element.value != ""){
-        this.css('background-color', 'green');
+        element.css('background-color', 'green');
     }
     if($("#media").value != "") {
           let label = $("#media_label")

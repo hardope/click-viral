@@ -1,5 +1,5 @@
 function validate(element){
-    if (this.value != ""){
+    if (element.value != ""){
         this.css('background-color', 'green');
     }
     if($("#media").value != "") {

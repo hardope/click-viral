@@ -1,7 +1,7 @@
 function validate(event){
     event = event || window.event; // IE
     var target = event.target || event.srcElement;
-    
+    console.log(target.id)
     console.log(element)
     if($("#media").value != "") {
           let label = $("#media_label")

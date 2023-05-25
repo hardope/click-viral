@@ -12,7 +12,6 @@ function close_comment() {
 }
 
 function submit_comment (id){
-    console.log('submit comment');
     var article = $('#comment_article_' + id).val();
     console.log(article);
     $('#comment_article_' + id).val('');

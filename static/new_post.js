@@ -1,4 +1,5 @@
 function validate(this){
+    console.log(this)
     console.log(element)
     if($("#media").value != "") {
           let label = $("#media_label")

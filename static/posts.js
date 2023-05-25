@@ -11,6 +11,12 @@ function close_comment() {
     }
 }
 
+function submit_comment (id){
+    var article = $('#comment_article_' + id).val;
+    $('#comment_article_' + id).val('');
+    console.log(article);
+}
+
 function view_comment(id){
     $('#main').hide();
     $('#comment_block').show();
@@ -57,14 +63,8 @@ function view_comment(id){
             var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media) + '</div>'
             $('#comment_block_' + id).append(postElement)
 
-            var upload_comment = '<form id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea name="comment" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="media" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="media" id="media_label">Upload Media &#128206;</label></div><button  type="submit" id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></form>'
+            var upload_comment = '<div id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea id="comment_article_' + post.id + '" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="comment_media_' + post.id + '" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="media" id="media_label">Upload Media &#128206;</label></div><button onclick="submit_comment(' + post.id + ')" id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></div>'
             $('#comment_block_' + id).append(upload_comment)
-
-            $('#new_comment_form_' + post.id).submit(function(e) {
-                e.preventDefault(); // prevent default form submission
-
-                console.log($('#new_comment_form_' + post.id + ' #message').val());
-            });
 
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];

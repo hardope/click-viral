@@ -29,7 +29,7 @@ def comment(request, query):
         return HttpResponseRedirect(reverse("login"))
 
     if request.method == "POST":
-        comment_article = request.POST.get("comment").strip()
+        comment_article = request.POST.get("article").strip()
         media = "empty"
         user_id = request.user.id
         try:

@@ -133,7 +133,7 @@ function view_comment(id){
                 container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
                 var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-                comments_posts.append(postElement)
+                comments_posts+=(postElement)
                 $('#comment_block_' + id).append(comments_posts)
             }
         },

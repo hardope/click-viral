@@ -15,7 +15,6 @@ function submit_comment (id){
     var article = $('#comment_article_' + id).val();
     console.log(article);
     $('#comment_article_' + id).val('');
-    console.log(id)
 }
 
 function view_comment(id){

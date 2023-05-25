@@ -84,7 +84,7 @@ def comment(request, query):
 
         new_comment.save()
 
-        return HttpResponseRedirect(f"{query}")
+        return JsonResponse(new_comment.to_dict(request.user.id), safe=False)
 
     else:
         try:

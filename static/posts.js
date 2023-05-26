@@ -196,7 +196,11 @@ function delete_post(id){
     request.send()
     $('#post_' + id).remove();
     $('#confirm').hide();
-    close_all();
+    if (c_blocks.length > 0){
+        $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
+    } else {
+        close_all();
+    }
 }
 function upload_edited(id){
     var formData = new FormData();
@@ -221,7 +225,11 @@ function upload_edited(id){
             }
             article += '</div></div>';
             $('#article_' + id).html(article);
-            close_all();
+            if (c_blocks.length > 0){
+                $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
+            } else {
+                close_all();
+            }
         },
         error: function(xhr, status, error) {
             console.log(error); // handle error response
@@ -276,7 +284,11 @@ function edit_post(id){
             });
         } else{
             $("#edit_post").hide();
-            $("#main").show();
+            if (c_blocks.length > 0){
+                $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
+            } else {
+                close_all();
+            }
             alert("An error occurred. Please try again")
         }
     }

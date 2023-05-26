@@ -13,7 +13,7 @@ function validate_c_media (event) {
 }
 
 function new_post() {
-    $('#main').hide();
+    close_all();
     $('#create_post').show();
 }
 function close_all() {

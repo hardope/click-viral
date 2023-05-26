@@ -1,8 +1,13 @@
-function validate(event){
-    console.log(event)
+function validate(){
     if($("#media").value != "") {
           let label = $("#media_label")
           label.css('background-color', 'green');
+    }
+}
+function validate_c_media (event) {
+    if(event.value != "") {
+        let label = $("#comment_media_" + event.id)
+        label.css('background-color', 'green');
     }
 }
 

@@ -94,6 +94,8 @@ function view_comment(id){
 
             var comments_posts = '<div id="comment_posts_' + post.id + '"></div>'
 
+            console.log(data.comments.length)
+
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];
                 var nameContainer = '<div class="name_container"><a class="a" href="/profile/' + post.name + '" style="display: inline-flex"><img src="/static/favicon.ico" style="width: 50px; border-radius: 25px; margin-top: 20px; margin-left: 0px"><div style="margin-left: 10px; margin-top: 30px;">' + post.name + '</div></a><div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">' + post.created_at;

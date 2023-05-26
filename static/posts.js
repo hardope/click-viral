@@ -92,8 +92,6 @@ function view_comment(id){
             var upload_comment = '<div id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea id="comment_article_' + post.id + '" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="comment_media_' + post.id + '" name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="media" id="media_label">Upload Media &#128206;</label></div><button onclick=submit_comment("' + post.id + '") id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></div>'
             $('#comment_block_' + id).append(upload_comment)
 
-            var comments_posts = '<div id="comment_posts_' + id + '"></div>'
-
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];
                 var nameContainer = '<div class="name_container"><a class="a" href="/profile/' + post.name + '" style="display: inline-flex"><img src="/static/favicon.ico" style="width: 50px; border-radius: 25px; margin-top: 20px; margin-left: 0px"><div style="margin-left: 10px; margin-top: 30px;">' + post.name + '</div></a><div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">' + post.created_at;
@@ -129,8 +127,8 @@ function view_comment(id){
                 container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
                 var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-                comments_posts+=(postElement)
-                $('#comment_block_' + id).append(comments_posts)
+
+                $('#comment_block_' + id).append(postElement)
             }
         },
         error: function(xhr, status, error) {

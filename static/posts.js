@@ -35,7 +35,7 @@ function submit_comment (id){
         },
         success: function(data) {
             // handle successful response
-            add_post(id, "#comment_block_" + id)
+            add_post(data.id, "#comment_block_" + id)
         },
         error: function(xhr, status, error) {
             alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response

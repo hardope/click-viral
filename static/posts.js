@@ -239,6 +239,7 @@ function upload_edited(id){
 
 function edit_post(id){
     close_all();
+    $('#main').hide();
     $('#edit_post').show()
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_post/" + id)
@@ -285,6 +286,7 @@ function edit_post(id){
         } else{
             $("#edit_post").hide();
             if (c_blocks.length > 0){
+                close_all();
                 $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
             } else {
                 close_all();

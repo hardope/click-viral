@@ -291,13 +291,6 @@ function edit_post(id){
                 $('#confirm').hide();
             });
         } else{
-            $("#edit_post").hide();
-            if (c_blocks.length > 0){
-                close_all();
-                $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
-            } else {
-                close_all();
-            }
             alert("An error occurred. Please try again")
         }
     }

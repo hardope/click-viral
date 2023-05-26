@@ -226,7 +226,9 @@ function upload_edited(id){
             article += '</div></div>';
             $('#article_' + id).html(article);
             if (c_blocks.length > 0){
-                close_all();
+                $('.block').hide();
+                $('#create_post').hide();
+                $('#edit_post').hide();
                 $('#comment_block').show();
                 $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
             } else {

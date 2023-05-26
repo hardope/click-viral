@@ -5,8 +5,8 @@ function validate(){
     }
 }
 function validate_c_media (event) {
-    console.log(event.id)
     if(event.value != "") {
+        console.log(event.id.split("_")[2])
         let label = $("#media_label_" + event.id.split("_")[2])
         label.css('background-color', 'green');
     }

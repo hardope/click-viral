@@ -5,6 +5,7 @@ function validate(){
     }
 }
 function validate_c_media (event) {
+    console.log(event.id)
     if(event.value != "") {
         let label = $("#comment_media_" + event.id)
         label.css('background-color', 'green');

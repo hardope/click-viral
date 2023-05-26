@@ -94,7 +94,7 @@ function view_comment(id){
 
             var comments_posts = '<div id="comment_posts_' + post.id + '"></div>'
 
-            console.log(data.comments.length)
+            $('#comment_block_' + id).append(comments_posts)
 
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];
@@ -131,8 +131,8 @@ function view_comment(id){
                 container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
                 var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-                comments_posts+=(postElement)
-                $('#comment_block_' + id).append(comments_posts)
+                $("comment_posts_" + post.id).append(postElement)
+                
             }
         },
         error: function(xhr, status, error) {

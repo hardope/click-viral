@@ -35,11 +35,7 @@ function submit_comment (id){
         },
         success: function(data) {
             // handle successful response
-            add_post(data, "#comment_block_" + id)
-            $("#article").val('');
-            $("#media").val('');
-            $("#create_post").hide();
-            $("#main").show();
+            add_post(id, "#comment_block_" + id)
         },
         error: function(xhr, status, error) {
             alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response

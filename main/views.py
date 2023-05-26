@@ -84,7 +84,7 @@ def comment(request, query):
 
         new_comment.save()
 
-        return JsonResponse(new_comment.to_dict(request.user.id), safe=False)
+        return JsonResponse(new_comment.to_dict(request.user.id).id, safe=False)
 
     else:
         try:

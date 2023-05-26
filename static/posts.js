@@ -22,8 +22,6 @@ function submit_comment (id){
     var media = $('#comment_media_' + id)[0].files[0];
     formData.append('media', media);
 
-    console.log($('#comment_media_' + id)[0].files)
-
     // send AJAX request to Django app
     $("#upload_message").html("Uploading Your Post Please wait...")
     $.ajax({
@@ -91,7 +89,7 @@ function view_comment(id){
             var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media) + '</div>'
             $('#comment_block_' + id).append(postElement)
 
-            var upload_comment = '<div id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea id="comment_article_' + post.id + '" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="comment_media_' + post.id + '" name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="comment_media_' + post.id + '" id="media_label">Upload Media &#128206;</label></div><button onclick=submit_comment("' + post.id + '") id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></div>'
+            var upload_comment = '<div id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea id="comment_article_' + post.id + '" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="comment_media_' + post.id + '" name="media" onchange="validate(this)" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="comment_media_' + post.id + '" id="media_label">Upload Media &#128206;</label></div><button onclick=submit_comment("' + post.id + '") id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></div>'
             $('#comment_block_' + id).append(upload_comment)
 
             var new_comments = '<div id="new_comments_' + id + '"></div>'

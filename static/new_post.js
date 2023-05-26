@@ -1,4 +1,5 @@
 function validate(event){
+    console.log(event)
     if($("#media").value != "") {
           let label = $("#media_label")
           label.css('background-color', 'green');

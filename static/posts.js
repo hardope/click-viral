@@ -93,6 +93,7 @@ function view_comment(id){
             $('#comment_block_' + id).append(upload_comment)
 
             var new_comments = '<div id="new_comments_' + id + '"></div>'
+            $('#comment_block_' + id).append(new_comments)
 
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];

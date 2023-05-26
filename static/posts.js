@@ -44,6 +44,7 @@ function submit_comment (id){
 }
 
 function view_comment(id){
+    console.log("Here")
     $('#main').hide();
     $('#comment_block').show();
     if (c_blocks.length > 0){

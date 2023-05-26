@@ -22,7 +22,7 @@ function submit_comment (id){
     var media = $('#comment_media_' + id)[0].files[0];
     formData.append('media', media);
 
-    console.log(formData)
+    console.log(media)
 
     // send AJAX request to Django app
     $("#upload_message").html("Uploading Your Post Please wait...")

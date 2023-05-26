@@ -23,7 +23,7 @@ function submit_comment (id){
     formData.append('media', media);
 
     // send AJAX request to Django app
-    $("#upload_message").html("Uploading Your Post Please wait...")
+    $("#new_comment_form_" + id + " #message").html("Uploading Your Post Please wait...")
     $.ajax({
         url: window.location.origin + '/comment/' + id,
         type: 'POST',
@@ -36,6 +36,10 @@ function submit_comment (id){
         success: function(data) {
             // handle successful response
             add_post(data.id, "#new_comments_" + id)
+            $("#new_comment_form_" + id + " #message").html("")
+            var article = $('#comment_article_' + id).val('');
+            var media = $('#comment_media_' + id).val('')
+
         },
         error: function(xhr, status, error) {
             alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response

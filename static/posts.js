@@ -233,6 +233,13 @@ function upload_edited(id){
         },
         error: function(xhr, status, error) {
             console.log(error); // handle error response
+            $("#edit_post").hide();
+            if (c_blocks.length > 0){
+                close_all();
+                $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
+            } else {
+                close_all();
+            }
         }
     });
 }

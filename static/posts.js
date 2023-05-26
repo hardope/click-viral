@@ -196,11 +196,7 @@ function delete_post(id){
     request.send()
     $('#post_' + id).remove();
     $('#confirm').hide();
-    if (c_blocks.length > 0){
-        $('#comment_block_' + c_blocks[c_blocks.length - 1]).show();
-    } else {
-        close_all();
-    }
+    close_all();
 }
 function upload_edited(id){
     var formData = new FormData();

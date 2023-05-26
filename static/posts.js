@@ -35,7 +35,7 @@ function submit_comment (id){
         },
         success: function(data) {
             // handle successful response
-            add_post(data.id, "#comment_posts_" + id)
+            add_post(data.id, "#new_comments_" + id)
         },
         error: function(xhr, status, error) {
             alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response
@@ -91,6 +91,8 @@ function view_comment(id){
 
             var upload_comment = '<div id="new_comment_form_' + post.id + '"><center><h1>New Comment</h1><center><b id="message"></b></center><textarea id="comment_article_' + post.id + '" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea><input type="file" id="comment_media_' + post.id + '" name="media" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="media" id="media_label">Upload Media &#128206;</label></div><button onclick=submit_comment("' + post.id + '") id="button" data-mdb-ripple-color="dark" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Comment</button></center></div>'
             $('#comment_block_' + id).append(upload_comment)
+
+            var new_comments = '<div id="new_comments_' + id + '"></div>'
 
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];

@@ -94,8 +94,6 @@ function view_comment(id){
 
             var comments_posts = '<div id="comment_posts_' + post.id + '"></div>'
 
-            $('#comment_block_' + id).append(comments_posts)
-
             for (var i = 0; i < data.comments.length; i++) {
                 var post = data.comments[i];
                 var nameContainer = '<div class="name_container"><a class="a" href="/profile/' + post.name + '" style="display: inline-flex"><img src="/static/favicon.ico" style="width: 50px; border-radius: 25px; margin-top: 20px; margin-left: 0px"><div style="margin-left: 10px; margin-top: 30px;">' + post.name + '</div></a><div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">' + post.created_at;
@@ -131,8 +129,8 @@ function view_comment(id){
                 container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
 
                 var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
-                $("#comment_posts_" + post.id).append(postElement)
-                
+                comments_posts+=(postElement)
+                $('#comment_block_' + id).append(comments_posts)
             }
         },
         error: function(xhr, status, error) {

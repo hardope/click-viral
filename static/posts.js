@@ -238,7 +238,7 @@ function upload_edited(id){
 }
 
 function edit_post(id){
-    $("#main").hide()
+    close_all();
     $('#edit_post').show()
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_post/" + id)

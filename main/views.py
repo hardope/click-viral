@@ -98,7 +98,16 @@ def comment(request, query):
         comments = [i.to_dict(request.user.id) for i in comments] + [
             i.to_dict(request.user.id) for i in comments1
         ]
-        comments = list(set(comments))
+
+        all_comments = []
+
+        for i in comments:
+            if i in all_comments:
+                pass
+            else:
+                all_comments.append(i)
+
+        comments = all_comments
 
         return JsonResponse({"post": post, "comments": comments})
 

@@ -21,6 +21,15 @@
     background-color: lightblue;
     border: none;
 }
+.edited_button{
+    background-color: lightblue;
+    border: none;
+    margin-left: 80%;
+    width: 100px;
+    height:40px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
 img{
     margin-top: -10px;
     width: 100vw;

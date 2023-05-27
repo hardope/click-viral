@@ -4,6 +4,13 @@
     border-top: solid;
     border-color: rgb(194, 194, 194);
     border-width: 3px;
+    display: inline-flex;
+}
+.profile_pic{
+    width: 50px;
+    border-radius: 25px;
+    margin-left: 0px;
+    margin-top: 20px;
 }
 img{
     margin-top: -10px;

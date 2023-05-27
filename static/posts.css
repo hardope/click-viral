@@ -78,6 +78,12 @@
     display:none;
     margin-top: 40px;
 }
+#new_post_button{
+    border-radius: 10px;
+    margin-left: 20%;
+    height: 40px;
+    border-color: rgb(224, 227, 229);
+}
 textarea{
     width:500px;
     padding: 10px;

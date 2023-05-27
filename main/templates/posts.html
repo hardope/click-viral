@@ -44,7 +44,7 @@
         </div>
     </div>
     <center>
-    <div style="display:none; margin-top: 40px;" id="create_post" class="block">
+    <div id="create_post" class="block">
 
             <h1>Create New Post <button onclick="close_all()" class="cancel_button">Cancel</button></h1>
             <form method="post" id="new_post_form" enctype="multipart/form-data">
@@ -61,7 +61,7 @@
     </div>
     </center>
     <center>
-    <div id="edit_post" class="block" style="display:none; margin-top: 40px">
+    <div id="edit_post" class="block">
 
         <div style="display: inline-flex">
             <b id="edit_message">Edit Post </b>
@@ -72,7 +72,7 @@
             <div id="post_media"></div>
             <textarea id="edit_article" name="post" maxlength="1000">{{post.raw_article}}</textarea>
             <br>
-            <button id='submit_post' data-mdb-ripple-color="dark" class="submit_button">Save Post</button>
+            <button id='submit_post' class="submit_button">Save Post</button>
         </div>
         <div>
             <button id="delete-btn">Delete Post</button>

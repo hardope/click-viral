@@ -124,6 +124,7 @@ def edit_post(request, query):
 
         return JsonResponse(json.dumps(post.to_dict(request.user.id)), safe=False)
 
+
 def profile(request, query):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
@@ -159,7 +160,7 @@ def delete(request, query):
     except:
         post = Comment.objects.get(id=query)
 
-    if post.to_dict(request.user.id)['name'] == request.user.username:
+    if post.to_dict(request.user.id)["name"] == request.user.username:
         pass
     else:
         return HttpResponse("...")
@@ -280,7 +281,7 @@ def get_post(request, query):
     now = datetime.now(timezone.utc)
     diff = now - created
     post = post.to_dict(request.user.id)
-    if post['name'] != request.user.username:
+    if post["name"] != request.user.username:
         return HttpResponse("Permission Denied", status=403)
     if diff.total_seconds() > 1800:
         editable = False

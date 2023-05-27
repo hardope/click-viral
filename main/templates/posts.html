@@ -50,7 +50,7 @@
             <form method="post" id="new_post_form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div id="upload_message"></div>
-                <textarea name="post" id="article" maxlength="1000" style="width:500px; padding: 10px; height: 200px; border-radius: 10px;"></textarea>
+                <textarea name="post" id="article" maxlength="1000"></textarea>
                 <input type="file" id="media" onchange="validate()" name="media" accept="image/*,video/mp4" value="" hidden>
                 <div id="label_cont">
                     <label for="media" id="media_label">Upload Media &#128206;</label>

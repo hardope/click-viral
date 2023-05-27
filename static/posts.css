@@ -49,6 +49,12 @@
     width: 200px;
     height: 50px;
 }
+textarea{
+    width:500px;
+    padding: 10px;
+    height: 200px;
+    border-radius: 10px;
+}
 img{
     margin-top: -10px;
     width: 100vw;

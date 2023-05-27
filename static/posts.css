@@ -11,6 +11,16 @@
     margin-left: 0px;
     margin-top: 20px;
 }
+.edit_button{
+    width: 40px;
+    height:40px;
+    border-radius: 20px;
+    margin-left: 90%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: lightblue;
+    border: none;
+}
 img{
     margin-top: -10px;
     width: 100vw;

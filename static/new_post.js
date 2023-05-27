@@ -38,7 +38,7 @@ function add_post(id, box) {
             if (post.name == username) {
                 nameContainer += '<button ' + 'onclick=edit_post("' + post.id + '")' + ' class="edit_button" type="submit">✏️</button>';
             } else if (post.edited == true) {
-                nameContainer += '<button style="background-color: lightblue;border: none; margin-left: 80%; width: 100px; height:40px; border-radius: 15px; margin-bottom: 10px;" type="submit">Edited</button>';
+                nameContainer += '<button class="edited_button" type="submit">Edited</button>';
             }
             nameContainer += '</div></div>';
 

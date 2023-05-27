@@ -46,7 +46,7 @@
     <center>
     <div style="display:none; margin-top: 40px;" id="create_post" class="block">
 
-            <h1>Create New Post <button onclick="close_all()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button></h1>
+            <h1>Create New Post <button onclick="close_all()" class="cancel_button">Cancel</button></h1>
             <form method="post" id="new_post_form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div id="upload_message"></div>
@@ -65,7 +65,7 @@
 
         <div style="display: inline-flex">
             <b id="edit_message">Edit Post </b>
-            <button onclick="close_all()" style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px; margin-left:60px;">Cancel</button>
+            <button onclick="close_all()" class="cancel_button">Cancel</button>
         </div>
         <br>
         <div>

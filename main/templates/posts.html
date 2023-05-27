@@ -5,28 +5,15 @@
 
 {% block body %}
 <script>
-    var username = '{{request.user}}'
-</script>
-<style>
-    label {
-          padding: 10px;
-          background-color:  rgb(239, 237, 237);
-          border-radius: 10px;
-    }
-    #label_cont{
-          margin: 30px 0px 20px 0px;
-    }
-</style>
-<script>
+    var username = '{{request.user}}';
     var csrftoken = '{{ csrf_token }}';
 </script>
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/static/time.js"></script>
 <script src="/static/like.js"></script>
 <script src="/static/posts.js"></script>
-<link rel="stylesheet" href="/static/posts.css">
 <script src="/static/view_likes.js"></script>
-<script src="/static/new_post.js"></script>
+<link rel="stylesheet" href="/static/posts.css">
 
     <div id="like_viewer">
         <span id="close" onclick="close_likes()">&times;</span>

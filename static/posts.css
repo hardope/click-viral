@@ -1,4 +1,8 @@
-#create_post #edit_post{
+#create_post{
+    display:none;
+    margin-top: 40px;
+}
+#edit_post{
     display:none;
     margin-top: 40px;
 }

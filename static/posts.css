@@ -1,3 +1,7 @@
+#create_post #edit_post{
+    display:none;
+    margin-top: 40px;
+}
 .name_container{
     max-width: 750px;
     width: 100vw;
@@ -74,10 +78,7 @@
     border-radius: 10px;
     margin-left: 30px;
 }
-#create_post #edit_post{
-    display:none;
-    margin-top: 40px;
-}
+
 #new_post_button{
     border-radius: 10px;
     margin-left: 20%;

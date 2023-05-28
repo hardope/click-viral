@@ -154,7 +154,7 @@ def profile(request, query):
 
 def edit_profile(request):
     if request.method == 'POST':
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if request.POST.get('username') == request.user.username:
                 if request.POST.get('action') == "upload":
                     username = request.POST.get('username')

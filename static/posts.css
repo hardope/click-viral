@@ -11,11 +11,6 @@ label {
     background-color:  rgb(239, 237, 237);
     border-radius: 10px;
 }
-#image_file_label{
-    padding: 10px;
-    background-color:  rgb(239, 237, 237);
-    border-radius: 10px;
-}
 #label_cont{
     margin: 30px 0px 20px 0px;
 }

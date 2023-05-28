@@ -5,11 +5,8 @@ from . import views
 urlpatterns = [
     # Main Views
     path("", views.feed, name="feed"),
-    path("new_post", views.new_post, name="new_post"),
-    path("comment/<query>", views.comment, name="comment"),
-    path("edit_post/<query>", views.edit_post, name="edit_post"),
-    path("delete/<query>", views.delete, name="delete"),
     path("profile/<query>", views.profile, name="profile"),
+
     # Json Views
     path("request_code", views.request_code, name="request_code"),
     path("check_otp", views.check_otp, name="check_otp"),
@@ -20,6 +17,12 @@ urlpatterns = [
     path("get_post/<query>", views.get_post, name="get_post"),
     path("view_likes/<query>", views.view_likes, name="view_likes"),
     path("follow/<query>", views.follow, name="follow"),
+    path("new_post", views.new_post, name="new_post"),
+    path("comment/<query>", views.comment, name="comment"),
+    path("edit_post/<query>", views.edit_post, name="edit_post"),
+    path("delete/<query>", views.delete, name="delete"),
+    path("edit_profile", views.edit_profile, name="edit_profile"),
+
     # Auth Views
     path("login", views.login_view, name="login"),
     path("register", views.register, name="register"),

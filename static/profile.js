@@ -14,10 +14,12 @@ function upload_image() {
     var formData = new FormData();
 
     formData.append('image', $('#image_file')[0].files[0]);
+    formData.append('username', username);
+    formData.append('action', 'upload');
 
     $("#edit_profile_message").html("Uploading Your Profile photo...")
     $.ajax({
-        url: window.location.origin + '/me/' + username,
+        url: window.location.origin + '/edit_profile',
         type: 'POST',
         data: formData,
         processData: false,

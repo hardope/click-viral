@@ -152,6 +152,30 @@ def profile(request, query):
             },
         )
 
+def edit_profile(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated():
+            if request.POST.get('username') == request.user.username:
+                if request.POST.get('action') == "upload":
+                    username = request.POST.get('username')
+                    profile = Profile.objects.get(user=request.user)
+                    try:
+                        os.remove(f"{root}/media/profile/{username}.{profile.image}")
+                    except:
+                        pass
+                    profile.image = str(request.FILES.get('image')).split(".")[1]
+                    profile.save()
+                    with open(f"{root}/media/profile/{username}.{profile.image}", "wb+") as file:
+                        for chunk in request.FILES.get('image').chunks():
+                            file.write(chunk)
+                    return JsonResponse({"image": f"{username}.{profile.image}"})
+                else:
+                    return JsonResponse({"image": "empty"})
+            else:
+                return HttpResponse("...")
+        else:
+            return HttpResponse("...")
+
 
 def delete(request, query):
     sys.stderr.write(f"\n{query}\n")

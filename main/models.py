@@ -32,6 +32,7 @@ class Preference(models.Model):
     location = models.BooleanField(default=True)
     gender = models.BooleanField(default=True)
     birthday = models.BooleanField(default=True)
+    birthyear = models.IntegerField(default=1900)
     login_verification = models.BooleanField(default=False)
 
 

@@ -12,7 +12,14 @@ label {
     border-radius: 10px;
 }
 #cancel_edit_profile{
-    margin-left: -60px;
+    font-size: 60px;
+    color: black;
+    border: 0ch;
+    margin-bottom: 2%;
+    border-radius: 10px 10px 10px 10px;
+    width: 200px;
+    height: 50px;
+    margin-left:60px;
 }
 #label_cont{
     margin: 30px 0px 20px 0px;

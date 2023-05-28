@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <link rel="icon" href="/static/icon.png" type="image/x-icon">
-<div id="notify">
-  <div>
-    <span id="close" onclick="close_notify()" style="margin-top: -30px;">&times;</span>
-    <h3 id="notify_header"></h3>
-  </div>
-  <div id="notify_body">
 
-  </div>
-</div>
 <script>
 document.addEventListener('click', close_likes())
 document.addEventListener('click', closeNav())
@@ -32,7 +24,15 @@ function up(){
   window.scrollTo(0, 0);
 }
 </script>
+<div id="notify">
+  <div>
+    <span id="close" onclick="close_notify()" style="margin-top: -30px;">&times;</span>
+    <h3 id="notify_header"></h3>
+  </div>
+  <div id="notify_body">
 
+  </div>
+</div>
 <html style="font-size: 16px;" lang="en">
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -46,7 +46,6 @@ function up(){
     <meta charset="utf-8">
     <title>Click Chat</title>
     <link rel="stylesheet" href="/static/nicepage.css" media="screen">
-<link rel="stylesheet" href="/static/index.css" media="screen">
     <script class="u-script" type="text/javascript" src="/static/jquery.js" "="" defer=""></script>
     <script class="u-script" type="text/javascript" src="/static/nicepage.js" "="" defer=""></script>
     <meta name="keywords" content="chat, Social Media, messenger, Instant Messenger">

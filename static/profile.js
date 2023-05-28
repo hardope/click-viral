@@ -10,7 +10,7 @@ function toggle_edit(num){
 }
 
 function upload_image() {
-    if ($('#upload_image').files.length < 1) {
+    if ($('#image_file')[0].files.length < 1) {
         alert("Please Select An Image");
         return;
     }

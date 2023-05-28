@@ -34,8 +34,8 @@ function upload_image() {
             // handle successful response
             console.log(data);
             $("#edit_profile_message").html("Profile photo uploaded successfully")
-            $("#profile_image").attr("src", "/media/profile/" + data.image);
-            $("#main_image").attr("src", "/media/profile/" + data.image);
+            $("#profile_image").attr("src", "/media/profile/" + data.image + `?v=${Math.random()}`);
+            $("#main_image").attr("src", "/media/profile/" + data.image + `?v=${Math.random()}`);
         },
         error: function(xhr, status, error) {
             alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response

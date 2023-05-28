@@ -10,7 +10,10 @@ function toggle_edit(num){
 }
 
 function upload_image() {
-    console.log('uploading image')
+    if ($('#upload_image').files.length < 1) {
+        alert("Please Select An Image");
+        return;
+    }
     var formData = new FormData();
 
     formData.append('image', $('#image_file')[0].files[0]);
@@ -32,6 +35,7 @@ function upload_image() {
             console.log(data);
             $("#edit_profile_message").html("Profile photo uploaded successfully")
             $("#profile_image").attr("src", "/media/profile/" + data.image);
+            $("#main_image").attr("src", "/media/proflie/" + data.image);
         },
         error: function(xhr, status, error) {
             alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response

@@ -106,7 +106,7 @@ function save_birthday(){
     }
 
     var birthdate = new Date($("#profile_birthday").val());
-    birthdate = birthdate.split(" ");
+    birthdate = birthdate.splice(" ");
     var day = birthdate[1];
     var month = birthdate[2];
     var year = birthdate[3];

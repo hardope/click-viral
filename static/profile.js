@@ -102,16 +102,16 @@ function save_gender(){
 
 function save_birthday(){
     if ($("#profile_birthday").val() == ""){
-        console.log("ENpty")
         return;
     }
 
     var birthdate = new Date($("#profile_birthday").val());
-    var day = birthdate.getDate();
-    var month = birthdate.getMonth() + 1;
-    var year = birthdate.getFullYear();
+    birthdate = birthdate.split(" ");
+    var day = birthdate[1];
+    var month = birthdate[2];
+    var year = birthdate[3];
 
     console.log([day, month, year])
 
-    send_request(birthdate, "birthdate");
+    //send_request(birthdate, "birthdate");
 }

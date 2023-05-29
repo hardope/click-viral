@@ -23,8 +23,8 @@ class Profile(models.Model):
     gender = models.CharField(max_length=20, default="Null")
     location = models.CharField(max_length=20, default="Null")
     birthday = models.CharField(max_length=100, default="Null")
-    birthyear = models.IntegerField(default=1900)
     followers = models.IntegerField(default=0)
+    birthyear = models.IntegerField(default=1900)
 
 
 class Preference(models.Model):

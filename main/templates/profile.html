@@ -65,7 +65,7 @@
                 <p class="about" id="main_about">{{profile.about}}</p>
             {% endif %}
             {% if profile.gender != "Null" and user.preference.gender != False %}
-                <p>{{profile.gender}}</p>
+                <p id="profile_gender">{{profile.gender}}</p>
             {% endif %}
             {% if profile.birthday != "Null" and user.preference.birthday != False %}
                 <p>Birthday - {{profile.birthday}}</p>

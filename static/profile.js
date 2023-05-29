@@ -129,7 +129,7 @@ function save_birthday(){
             $("#edit_profile_message").html("Profile Updated successfully")
             $("#main_birthday").html(data.birthday);
             toggle_edit(0);
-        }
+        },
         error: function(xhr, status, error) {
             alert("Unable To Update Your Profile, Please Check Your Internet Connection"); // handle error response
         }

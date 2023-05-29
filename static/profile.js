@@ -32,7 +32,6 @@ function upload_image() {
         },
         success: function(data) {
             // handle successful response
-            console.log(data);
             $("#edit_profile_message").html("Profile photo uploaded successfully")
             $("#profile_image").attr("src", "/media/profile/" + data.image + `?v=${Math.random()}`);
             $("#main_image").attr("src", "/media/profile/" + data.image + `?v=${Math.random()}`);
@@ -41,4 +40,46 @@ function upload_image() {
             alert("Unable To upload Your post, Please Check Your Internet Connection"); // handle error response
         }
     });
+}
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+function send_request(data, action) {
+    if (action == "email") {
+        if (!validateEmail(data)) {
+            alert("Please Enter A Valid Email Address");
+            return;
+        }
+    }
+    $("#edit_profile_message").html("Updating Your Profile...")
+    $.ajax({
+        url: window.location.origin + '/edit_profile',
+        type: 'POST',
+        data: {
+            username: username,
+            data: data,
+            action: action
+        },
+        headers: {
+            "X-CSRFToken": csrftoken
+        },
+        success: function(data) {
+            // handle successful response
+            $("#edit_profile_message").html("Profile Updated successfully")
+            $("#profile_" + action).html(data.data);
+            $("#main_" + action).html(data.data);
+            toggle_edit(0);
+        },
+        error: function(xhr, status, error) {
+            alert("Unable To Update Your Profile, Please Check Your Internet Connection"); // handle error response
+        }
+    });
+}
+
+function save_about(){
+    var about = $("#profile_about").val();
+
+    send_request(about, "about");
 }

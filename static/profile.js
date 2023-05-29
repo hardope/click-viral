@@ -84,3 +84,9 @@ function save_about(){
 
     send_request(about, "about");
 }
+
+function save_location(){
+    var location = $("#profile_location").val();
+
+    send_request(location, "location");
+}

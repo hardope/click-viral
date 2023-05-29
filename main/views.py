@@ -173,7 +173,7 @@ def edit_profile(request):
                     profile = Profile.objects.get(user=request.user)
                     profile.about = request.POST.get('data')
                     profile.save()
-                    return JsonResponse({"about": profile.about})
+                    return JsonResponse({"data": profile.about})
                 elif request.POST.get('action') == "birthday":
                     profile = Profile.objects.get(user=request.user)
                     profile.birthday = request.POST.get('data').split("-")[0]
@@ -184,7 +184,7 @@ def edit_profile(request):
                     profile = Profile.objects.get(user=request.user)
                     profile.gender = request.POST.get('data')
                     profile.save()
-                    return JsonResponse({"gender": profile.gender})
+                    return JsonResponse({"data": profile.gender})
                 else:
                     return JsonResponse({"image": "empty"})
             else:

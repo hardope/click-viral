@@ -47,7 +47,7 @@
                         <p class="not_following" id="follow" value="{{follow_value}}" onclick="follow()">{{f_count}} followers</p>
                     {% endif %}
                 {% endif %}
-                <p class="about" id="about_user">No Information</p>
+                <p class="about" id="main_about">No Information</p>
             {% else %}
                 {% if user.first_name != "" or user.last_name != "" %}
                     <h1 style="font-size: 30px !important">{{user.first_name}} {{user.last_name}}</h1>
@@ -62,7 +62,7 @@
                         <p class="not_following" id="follow" value="{{follow_value}}" onclick="follow()">{{f_count}} followers</p>
                     {% endif %}
                 {% endif %}
-                <p class="about" id="about_user">{{profile.about}}</p>
+                <p class="about" id="main_about">{{profile.about}}</p>
             {% endif %}
             {% if profile.gender != "Null" and user.preference.gender != False %}
                 <p>{{profile.gender}}</p>

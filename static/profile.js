@@ -90,3 +90,12 @@ function save_location(){
 
     send_request(location, "location");
 }
+
+function save_gender(){
+    var radioValue = $("input[name='gender']:checked").val();
+    if(!radioValue){
+        return;
+    } else {
+        send_request(radioValue, "gender");
+    }
+}

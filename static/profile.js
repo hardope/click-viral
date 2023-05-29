@@ -118,7 +118,7 @@ function save_birthday(){
         data: {
             username: username,
             action: "birthday",
-            birthday: day + month,
+            birthday: day + " " + month,
             birthyear: year,
         },
         headers: {

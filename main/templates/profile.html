@@ -124,7 +124,9 @@
                 </div>
             </div>
             <h1><b>About</b></h1>
-            <textarea id="profile_about" maxlength="1000" placeholder="About"></textarea>
+            <div>
+                <textarea id="profile_about" maxlength="1000" placeholder="About"></textarea>
+            </div>
             <button onclick="save_about()" class="submit_button">Save</button>
             <h1><b>Gender</b></h1>
             <div>
@@ -132,11 +134,13 @@
                 <label for="male">Male</label>
                 <input type="radio" name="gender" value="Female" id="female">
                 <label for="female">Female</label>
+            </div>
+            <div>
                 <button onclick="save_gender()" class="submit_button">Save</button>
             </div>
             <h1><b>Birthday</b></h1>
             <input type="date" id="profile_birthday">
-            <button onclick="save_birthday()" class="submit_button">Save</button>
+            <div><button onclick="save_birthday()" class="submit_button">Save</button></div>
             <h1><b>Location</b></h1>
             <center>
                 <textarea id="profile_location" maxlength="200"></textarea>

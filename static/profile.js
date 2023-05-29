@@ -112,7 +112,22 @@ function save_birthday(){
     var month = birthdate[2];
     var year = birthdate[3];
 
-    console.log([day, month, year])
-
-    //send_request(birthdate, "birthdate");
+    $.ajax({
+        url: window.location.origin + '/edit_profile',
+        type: 'POST',
+        data: {
+            username: username,
+            action: "birthday",
+            birthday: day + month,
+            birthyear: year,
+        },
+        headers: {
+            "X-CSRFToken": csrftoken
+        },
+        success: function(data) {
+            // handle successful response
+            $("#edit_profile_message").html("Profile Updated successfully")
+            $("#main_birthday").html(data.birthday);
+            toggle_edit(0);
+        }
 }

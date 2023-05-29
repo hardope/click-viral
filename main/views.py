@@ -169,18 +169,18 @@ def edit_profile(request):
                         for chunk in request.FILES.get('image').chunks():
                             file.write(chunk)
                     return JsonResponse({"image": f"{username}.{profile.image}"})
-                elif request.action == "about":
+                elif request.POST.get('action') == "about":
                     profile = Profile.objects.get(user=request.user)
                     profile.about = request.POST.get('about')
                     profile.save()
                     return JsonResponse({"about": profile.about})
-                elif request.action == "birthday":
+                elif request.POST.get('action') == "birthday":
                     profile = Profile.objects.get(user=request.user)
                     profile.birthday = request.POST.get('birthday')
                     profile.birthyear = request.POST.get('birthyear')
                     profile.save()
                     return JsonResponse({"birthday": profile.birthday, "birthyear": profile.birthyear})
-                elif request.action == "gender":
+                elif request.POST.get('action') == "gender":
                     profile = Profile.objects.get(user=request.user)
                     profile.gender = request.POST.get('gender')
                     profile.save()

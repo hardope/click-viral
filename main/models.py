@@ -24,7 +24,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=20, default="Null")
     birthday = models.CharField(max_length=100, default="Null")
     followers = models.IntegerField(default=0)
-    birthyear = models.IntegerField(default=1900)
+    birthyear = models.CharField(max_length=5, default="")
 
 
 class Preference(models.Model):

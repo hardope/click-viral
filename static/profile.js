@@ -53,6 +53,7 @@ function send_request(data, action) {
             return;
         }
     }
+    console.log(data)
     $("#edit_profile_message").html("Updating Your Profile...")
     $.ajax({
         url: window.location.origin + '/edit_profile',

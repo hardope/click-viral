@@ -71,7 +71,7 @@
                 <p>Birthday - {{profile.birthday}}</p>
             {% endif %}
             {% if profile.location != "Null" and user.preference.location != False %}
-                <b>Lives In <p id="main_location">{{profile.location}}</p></b>
+                <b><img src="/static/location-pin.svg"><p id="main_location">{{profile.location}}</p></b>
             {% endif %}
         </center>
         <center>

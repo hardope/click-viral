@@ -176,7 +176,7 @@ def edit_profile(request):
                     return JsonResponse({"data": profile.about})
                 elif request.POST.get('action') == "birthday":
                     profile = Profile.objects.get(user=request.user)
-                    profile.birthday = request.POST.get('data').split("-")[0]
+                    profile.birthday = request.POST.get('birthday').split("-")[0]
                     profile.birthyear = request.POST.get('birthyear').split("-")[1]
                     profile.save()
                     return JsonResponse({"birthday": profile.birthday, "birthyear": profile.birthyear})

@@ -99,3 +99,18 @@ function save_gender(){
         send_request(radioValue, "gender");
     }
 }
+
+function save_birthday(){
+    if ($("#profile_birthday").val() == ""){
+        return;
+    }
+
+    var birthdate = $("#profile_birthday").val();
+    var day = birthdate.getDate();
+    var month = birthdate.getMonth() + 1;
+    var year = birthdate.getFullYear();
+
+    console.log([day, month, year])
+
+    send_request(birthdate, "birthdate");
+}

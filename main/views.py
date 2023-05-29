@@ -185,6 +185,11 @@ def edit_profile(request):
                     profile.gender = request.POST.get('data')
                     profile.save()
                     return JsonResponse({"data": profile.gender})
+                elif request.POST.get('action') == "location":
+                    profile = Profile.objects.get(user=request.user)
+                    profile.location = request.POST.get('data')
+                    profile.save()
+                    return JsonResponse({"data": profile.location})
                 else:
                     return JsonResponse({"image": "empty"})
             else:

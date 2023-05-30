@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
 # Register your models here.
-from .models import Post, Like, Comment, Profile, Preference, Follow, Otp
+from .models import Post, Like, Comment, Profile, Preference, Follow, Otp, Chat
 
 admin.site.register(Post)
 admin.site.register(Like)
@@ -11,6 +11,7 @@ admin.site.register(Profile)
 admin.site.register(Comment)
 admin.site.register(Follow)
 admin.site.register(Otp)
+admin.site.register(Chat)
 
 
 class PreferenceInline(admin.StackedInline):

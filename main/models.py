@@ -129,6 +129,23 @@ class Like(models.Model):
     def name_user(self):
         return User.objects.get(id=self.user_id).username
 
+class Chat(models.Model):
+    id = models.UUIDField(default = uuid.uuid4)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipient")
+    message = models.TextField(default="")
+    media = models.CharField(max_length=10, default="text")
+    created_at = models.DateTimeField(default=datetime.now)
+
+    def to_dict(self):
+        return {
+            "id": str(self.id),
+            "sender": self.sender.username,
+            "recipient": self.recipient.username,
+            "message": self.message,
+            "media": self.media,
+            "created_at": f"{get_time(self.created_at)}",
+        }
 
 def count_like(id):
     count = 0

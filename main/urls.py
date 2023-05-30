@@ -22,6 +22,8 @@ urlpatterns = [
     path("edit_post/<query>", views.edit_post, name="edit_post"),
     path("delete/<query>", views.delete, name="delete"),
     path("edit_profile", views.edit_profile, name="edit_profile"),
+    path("chat", views.chat, name="chat"),
+    path("get_chat/<query>", views.get_chat, name="get_chat"),
 
     # Auth Views
     path("login", views.login_view, name="login"),

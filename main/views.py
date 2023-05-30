@@ -253,6 +253,40 @@ def fetch_posts(request):
 
     return JsonResponse(posts, safe=False)
 
+def chat(self, query):
+    if not self.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+    else:
+        try:
+            user = User.objects.get(username=query)
+        except:
+            return render(request, "nopage.html")
+        return render(
+            request,
+            "chat.html",
+            {
+                "tab": user.username,
+            },
+        )
+
+def get_chat(request):
+    if not self.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+    else:
+        chats = [Chat.objects.filter(sender=self.user).user.username] + [Chat.objects.filter(recipient=query).user.username]
+        chats = list(set(chats))
+
+        return JsonResponse(chats, safe=False)
+
+def get_messages(request, query):
+    if not self.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+    else:
+        chats = Chat.objects.filter(sender=self.user, recipient=query) + Chat.objects.filter(sender=query, recipient=self.user)
+        chats = [i.to_dict() for i in chats]
+        chats.reverse()
+
+        return JsonResponse(chats, safe=False)
 
 def view_likes(request, query):
     try:

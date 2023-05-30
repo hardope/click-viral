@@ -6,7 +6,9 @@
 <link rel="stylesheet" href="/static/chat.css">
 <script src="/static/chat_time.js"></script>
 <script>
-    var tabs = {{tabs}};
+    var tabs = [{{tabs}}];
+
+    console.log(tabs);
 </script>
     <center>
         <a href="/profile/{{recipient}}">

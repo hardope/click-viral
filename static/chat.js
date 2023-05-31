@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    console.log(tabs)
+    console.log(tabs[0]);
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_chats")
@@ -14,7 +14,6 @@ $(document).ready(function(){
             </div><br>`
             $('#list').append(tabs);
         }
-        console.log(tab[0]);
         if (tabs.length > 0) {
             open_chat(tabs[0]);
         }

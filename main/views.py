@@ -253,7 +253,7 @@ def fetch_posts(request):
 
     return JsonResponse(posts, safe=False)
 
-def chat(self, query):
+def chat(request, query):
     if not self.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:

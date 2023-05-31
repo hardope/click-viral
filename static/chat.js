@@ -7,12 +7,12 @@ $(document).ready(function(){
     request.onload = () => {
         var chats = JSON.parse(request.response);
         for (let chat of chats){
-            var tabs = 
+            var users = 
             `<div style="display: inline-flex;">
                 <img src="/static/favicon.ico" class="profile_pic">
                 <h2 class="recipient_name" onclick="open_chat(this.textContent)">${chat}</h2>
             </div><br>`
-            $('#list').append(tabs);
+            $('#list').append(users);
         }
         if (tabs.length > 0) {
             open_chat(tabs[0]);

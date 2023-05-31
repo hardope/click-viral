@@ -9,9 +9,13 @@ $(document).ready(function(){
             var tabs = 
             `<div style="display: inline-flex;">
                 <img src="/static/favicon.ico" class="profile_pic">
-                <h2 class="recipient_name" onclick="open_chat(this)">${chat}</h2>
+                <h2 class="recipient_name" onclick="open_chat(this.textContent)">${chat}</h2>
             </div><br>`
             $('#list').append(tabs);
+        }
+        if (tabs.length > 0) {
+            $('#list').hide();
+            $('#tabs').show();
         }
     }
 
@@ -20,7 +24,7 @@ $(document).ready(function(){
 function open_chat(element){
     $('#list').hide();
     $('#tabs').show();
-    username = element.textContent;
+    username = element;
 
     var tab = `<div class="tabs" id="tab_${username}">
     <div style="display: inline-flex">

@@ -276,7 +276,7 @@ def get_chats(request):
 
         chats = Chat.objects.filter(sender=request.user)
         chats1 = Chat.objects.filter(recipient=request.user)
-        chats = [i.to_dict().recipient for i in chats] + [i.to_dict().sender for i in chats1]
+        chats = [i.to_dict()['recipient'] for i in chats] + [i.to_dict()['sender'] for i in chats1]
         chats = list(set(chats))
 
         return JsonResponse(chats, safe=False)

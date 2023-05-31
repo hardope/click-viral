@@ -14,7 +14,7 @@ $(document).ready(function(){
 });
 
 function open_chat(element){
-    username = element.html();
+    username = element.textContent;
 
     var tab = `<div class="tabs" id="tab_${username}">
     <div style="display: inline-flex">

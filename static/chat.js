@@ -54,9 +54,9 @@ function open_chat(element){
 
 }
 
-function close_chat(element){
-    console.log(tabs)
-    tabs.remove(element);
+function close_chat(){
+    console.log(tabs);
+    tabs.pop();
     $('.tabs').hide();
     $('#tabs').hide();
     $('#list').show();

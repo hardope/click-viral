@@ -44,7 +44,7 @@ class Follow(models.Model):
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = models.ForeignKey(User, on_deletprimary_key=True,e=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     article = models.TextField(default="")
     media = models.CharField(max_length=100, default="empty")
     likes = models.IntegerField(default=0)
@@ -130,7 +130,7 @@ class Like(models.Model):
         return User.objects.get(id=self.user_id).username
 
 class Chat(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.UUIDField(primary_key=True, default = uuid.uuid4)
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
     recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipient")
     message = models.TextField(default="")

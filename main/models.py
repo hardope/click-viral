@@ -43,7 +43,7 @@ class Follow(models.Model):
 
 
 class Post(models.Model):
-    id = models.UUIDField( default=uuid.uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.ForeignKey(User, on_deletprimary_key=True,e=models.CASCADE)
     article = models.TextField(default="")
     media = models.CharField(max_length=100, default="empty")

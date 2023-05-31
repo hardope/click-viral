@@ -275,7 +275,7 @@ def get_chats(request):
     else:
 
         chats = [Chat.objects.filter(sender=request.user)] + [Chat.objects.filter(recipient=request.user)]
-        sys.stdout.write(f"\n{chats}\n")
+        sys.stderr.write(f"\n{chats}\n")
         chats = ["James", "Jarvis"]
         chats = list(set(chats))
 

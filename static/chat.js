@@ -61,16 +61,16 @@ function close_chat(){
     $('#list').show();
 }
 
-function load_chat(username){
+function load_chat(user){
     let url = window.location.origin
 
     let request = new XMLHttpRequest();
-    request.open("GET", url + "/get_chats/{{recipient}}");
+    request.open("GET", url + "/get_chats/" + user);
     request.send();
     request.onload = () => {
         console.log(request.response)
         if (request.status === 200) {
-            let body = document.querySelector('#body');
+            let body = document.querySelector('#tab_' + user + ' #body');
             for (let obj of JSON.parse(request.response)) {
                 if (obj[1] === username ) {
                         var tag = document.createElement('p');

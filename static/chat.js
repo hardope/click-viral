@@ -14,8 +14,7 @@ $(document).ready(function(){
             $('#list').append(tabs);
         }
         if (tabs.length > 0) {
-            //$('#list').hide();
-            $('#tabs').show();
+            open_chat(tabs[0]);
         }
     }
 
@@ -24,12 +23,11 @@ $(document).ready(function(){
 function open_chat(element){
     $('#list').hide();
     $('#tabs').show();
-    username = element;
 
-    var tab = `<div class="tabs" id="tab_${username}">
+    var tab = `<div class="tabs" id="tab_${element}">
     <div style="display: inline-flex">
         <img src="/static/favicon.ico" class="profile_pic">
-        <h2 class="recipient_name">${username}</h2>
+        <h2 class="recipient_name">${element}</h2>
         <button class="cancel_button">Close</button>
     </div>
     <div id="body" class="imessage">

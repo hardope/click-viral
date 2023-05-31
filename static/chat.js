@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 
 function load_chat(username){
-    let username = "{{username}}"
+    let username = ""
     var list;
     var newlist;
     let url = window.location.origin

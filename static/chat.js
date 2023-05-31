@@ -14,7 +14,7 @@ $(document).ready(function(){
             $('#list').append(tabs);
         }
         if (tabs.length > 0) {
-            $('#list').hide();
+            //$('#list').hide();
             $('#tabs').show();
         }
     }

@@ -5,14 +5,36 @@ $(document).ready(function(){
     request.send()
     request.onload = () => {
         var chats = JSON.parse(request.response);
-        console.log(chats);
         for (let chat of chats){
-            var tabs = '<div style="display: inline-flex;"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name">' + chat + '</h2></div><br>'
+            var tabs = '<div style="display: inline-flex;"><a href="/profile/' + chat + '"><img src="/static/favicon.ico" class="profile_pic"></a><h2 class="recipient_name" onclick="open_chat(this)">' + chat + '</h2></div><br>'
             $('#list').append(tabs);
         }
     }
 
 });
+
+function open_chat(element){
+    username = element.html();
+
+    var tab = `<div class="tabs" id="tab_${username}">
+    <div style="display: inline-flex">
+        <img src="/static/favicon.ico" class="profile_pic">
+        <h2 class="recipient_name">${username}</h2>
+    </div>
+    <div><button class="cancel_button">Close</button></div>
+    <div id="body" class="imessage">
+
+    </div>
+        <form id="form">
+            <div class="div">
+                <input type="text" id="message" autocomplete="off" autofocus>
+                <button type="submit" id="send_message">Send</button>
+            </div>
+        </form>
+    </div>
+</div>`
+
+}
 
 
 function load_chat(username){
@@ -93,8 +115,8 @@ function refresh() {
         }
     }
 }
-setInterval(refresh, 1000);
-document.querySelector('#submit').disabled = true;
+//setInterval(refresh, 1000);
+//document.querySelector('#submit').disabled = true;
 
 document.querySelector('#message').onkeyup = () => {
     if (document.querySelector('#message').value.length > 0){

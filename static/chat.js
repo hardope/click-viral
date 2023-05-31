@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    console.log(tabs[0]);
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_chats")
@@ -27,12 +26,17 @@ $(document).ready(function(){
 function open_chat(element){
     $('#list').hide();
     $('#tabs').show();
+    if (element in tabs){
+        $(`#tab_${element}`).show();
+        return;
+    }
 
+    tabs.push(element);
     var tab = `<div class="tabs" id="tab_${element}">
     <div style="display: inline-flex">
         <img src="/static/favicon.ico" class="profile_pic">
         <h2 class="recipient_name">${element}</h2>
-        <button class="cancel_button">Close</button>
+        <button class="cancel_button" onclick="close_chat(this.tectContent)">Close</button>
     </div>
     <div id="body" class="imessage">
 
@@ -50,6 +54,13 @@ function open_chat(element){
 
 }
 
+function close_chat(element){
+    console.log(tabs)
+    tabs.remove(element);
+    $('.tabs').hide();
+    $('#tabs').hide();
+    $('#list').show();
+}
 
 function load_chat(username){
     var list;

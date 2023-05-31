@@ -14,6 +14,8 @@ $(document).ready(function(){
 });
 
 function open_chat(element){
+    $('#list').hide();
+    $('#tabs').show();
     username = element.textContent;
 
     var tab = `<div class="tabs" id="tab_${username}">
@@ -33,6 +35,8 @@ function open_chat(element){
         </form>
     </div>
 </div>`
+
+    $('#tabs').append(tab);
 
 }
 

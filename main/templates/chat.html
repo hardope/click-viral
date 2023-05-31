@@ -10,14 +10,12 @@
     console.log(tabs);
 </script>
 <link rel="stylesheet" href="/static/chat.css">
-    <center>
-        <a href="/profile/{{recipient}}">
-            <div style="display: inline-flex">
-                    <img src="/static/favicon.ico" style="border-radius: 50%; width:60px; height: 60px; overflow: hidden;">
-                    <h2 style="margin-left: 30px;">{{ recipient }}</h2>
-            </div>
-        </a>
-    </center>
+    <a href="/profile/{{recipient}}">
+        <div style="display: inline-flex">
+                <img src="/static/favicon.ico" style="border-radius: 50%; width:60px; height: 60px; overflow: hidden;">
+                <h2 style="margin-left: 30px;">{{ tab[0] }}</h2>
+        </div>
+    </a>
     <div id="body" class="imessage">
 
     </div>

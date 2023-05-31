@@ -101,16 +101,17 @@ document.querySelector('#form').onsubmit = () => {
 }
 
 $(document).ready(function(){
-    $.ajax({
-        url: window.location.origin + "/get_chats",
-        type: "GET",
-        success: function(response){
-            var chats = JSON.parse(response);
-            for (let chat of chats){
-                var tabs = '<div style="display: inline-flex"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name">' + chat + '</h2></div>'
-                $('#list').append(tabs);
-            }
+    let url = window.location.origin
+    let request = new XMLHttpRequest();
+    request.open("GET", url + "/get_post/" + id)
+    request.send()
+    request.onload = () => {
+        var chats = JSON.parse(request.response);
+        console.log(chats);
+        for (let chat of chats){
+            var tabs = '<div style="display: inline-flex"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name">' + chat + '</h2></div>'
+            $('#list').append(tabs);
         }
-    });
+    }
 
 });

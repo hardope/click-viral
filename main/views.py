@@ -274,7 +274,9 @@ def get_chats(request):
         return HttpResponseRedirect(reverse("login"))
     else:
 
-        chats = [Chat.objects.filter(sender=request.user).recipient.username] + [Chat.objects.filter(recipient=query).sender.username]
+        chats = [Chat.objects.filter(sender=request.user)] + [Chat.objects.filter(recipient=query)]
+        sys.stdout.write(f"\n{chats}\n")
+        chats = ["James", "Jarvis"]
         chats = list(set(chats))
 
         return JsonResponse(chats, safe=False)

@@ -51,6 +51,7 @@ function open_chat(element){
 </div>`
 
     $('#tabs').append(tab);
+    load_chat(element);
 
 }
 

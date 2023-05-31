@@ -273,6 +273,7 @@ def get_chats(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
+
         chats = [Chat.objects.filter(sender=self.user).user.username] + [Chat.objects.filter(recipient=query).user.username]
         chats = list(set(chats))
 

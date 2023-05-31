@@ -101,6 +101,7 @@ document.querySelector('#form').onsubmit = () => {
 }
 
 $(document).ready(function(){
+    console.log("ready");
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_chats")

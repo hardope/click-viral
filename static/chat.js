@@ -62,18 +62,15 @@ function close_chat(){
 }
 
 function load_chat(username){
-    var list;
-    var newlist;
     let url = window.location.origin
 
     let request = new XMLHttpRequest();
-    request.open("GET", url + "/api/{{recipient}}");
+    request.open("GET", url + "/get_chats/{{recipient}}");
     request.send();
     request.onload = () => {
+        console.log(request.response)
         if (request.status === 200) {
             let body = document.querySelector('#body');
-            list = JSON.parse(request.response);
-            newlist = list;
             for (let obj of JSON.parse(request.response)) {
                 if (obj[1] === username ) {
                         var tag = document.createElement('p');

@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
+https://github.com/kokole12/BloodBridge_v2from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse

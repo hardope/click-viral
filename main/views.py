@@ -269,7 +269,7 @@ def chat(request, query):
             },
         )
 
-def get_chat(request):
+def get_chats(request):
     if not self.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:

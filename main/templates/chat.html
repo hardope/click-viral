@@ -10,14 +10,14 @@
     console.log(tabs);
 </script>
 <link rel="stylesheet" href="/static/chat.css">
-<div id="tabs">
+<div id="tabs" style="display: none;">
     <div class="tabs">
         <div style="display: inline-flex">
             <img src="/static/favicon.ico" class="profile_pic">
             <h2 class="recipient_name">{{ tab }}</h2>
         </div>
         <div id="body" class="imessage">
-
+    
         </div>
             <form id="form">
                 <div class="div">
@@ -27,5 +27,8 @@
             </form>
         </div>
     </div>
+</div>
+<div id="list">
+
 </div>
 {% endblock %}

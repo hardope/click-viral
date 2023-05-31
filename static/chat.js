@@ -36,7 +36,7 @@ function open_chat(element){
     <div style="display: inline-flex">
         <img src="/static/favicon.ico" class="profile_pic">
         <h2 class="recipient_name">${element}</h2>
-        <button class="cancel_button" onclick="close_chat(this.tectContent)">Close</button>
+        <button class="cancel_button" onclick="close_chat()">Close</button>
     </div>
     <div id="body" class="imessage">
 

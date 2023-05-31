@@ -454,7 +454,7 @@ def request_code(request):
         try:
             try:
                 user = User.objects.get(username=username)
-                assert username != "users"
+                assert username == "users"
                 return HttpResponse("1")
             except:
                 user = User.objects.get(email=email)

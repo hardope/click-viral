@@ -14,6 +14,7 @@ $(document).ready(function(){
             </div><br>`
             $('#list').append(tabs);
         }
+        console.log(tab[0]);
         if (tabs.length > 0) {
             open_chat(tabs[0]);
         }

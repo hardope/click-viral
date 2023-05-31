@@ -1,12 +1,12 @@
 #message {
-  margin-bottom: 30px;
-  padding: 10px;
-  border: none;
-  margin-left: 40px;
-  background-color: rgb(221, 221, 221);
-  border-radius: 15px;
-  width: 500px;
-  height: 50px
+  margin-bottom: 30px !important;
+  padding: 10px !important;
+  border: none !important;
+  margin-left: 40px !important;
+  background-color: rgb(221, 221, 221) !important;
+  border-radius: 15px !important;
+  width: 500px !important;
+  height: 50px !important;
 }
 #send_message {
   border: none;

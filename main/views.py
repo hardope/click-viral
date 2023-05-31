@@ -270,7 +270,7 @@ def chat(request, query):
         )
 
 def get_chats(request):
-    if not self.user.is_authenticated:
+    if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
         chats = [Chat.objects.filter(sender=self.user).user.username] + [Chat.objects.filter(recipient=query).user.username]
@@ -279,7 +279,7 @@ def get_chats(request):
         return JsonResponse(chats, safe=False)
 
 def get_messages(request, query):
-    if not self.user.is_authenticated:
+    if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
         chats = Chat.objects.filter(sender=self.user, recipient=query) + Chat.objects.filter(sender=query, recipient=self.user)

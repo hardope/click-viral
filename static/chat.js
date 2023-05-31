@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    console.log(tabs)
     let url = window.location.origin
     let request = new XMLHttpRequest();
     request.open("GET", url + "/get_chats")

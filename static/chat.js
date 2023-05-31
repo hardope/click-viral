@@ -1,3 +1,21 @@
+$(document).ready(function(){
+    console.log("ready");
+    let url = window.location.origin
+    let request = new XMLHttpRequest();
+    request.open("GET", url + "/get_chats")
+    request.send()
+    request.onload = () => {
+        var chats = JSON.parse(request.response);
+        console.log(chats);
+        for (let chat of chats){
+            var tabs = '<div style="display: inline-flex"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name">' + chat + '</h2></div>'
+            $('#list').append(tabs);
+        }
+    }
+
+});
+
+
 function load_chat(username){
     let username = "{{username}}"
     var list;
@@ -99,20 +117,3 @@ document.querySelector('#form').onsubmit = () => {
     document.querySelector('#submit').disabled = true;
     return false
 }
-
-$(document).ready(function(){
-    console.log("ready");
-    let url = window.location.origin
-    let request = new XMLHttpRequest();
-    request.open("GET", url + "/get_chats")
-    request.send()
-    request.onload = () => {
-        var chats = JSON.parse(request.response);
-        console.log(chats);
-        for (let chat of chats){
-            var tabs = '<div style="display: inline-flex"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name">' + chat + '</h2></div>'
-            $('#list').append(tabs);
-        }
-    }
-
-});

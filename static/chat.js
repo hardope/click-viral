@@ -6,7 +6,11 @@ $(document).ready(function(){
     request.onload = () => {
         var chats = JSON.parse(request.response);
         for (let chat of chats){
-            var tabs = '<div style="display: inline-flex;"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name" onclick="open_chat(this)">' + chat + '</h2></div><br>'
+            var tabs = 
+            `<div style="display: inline-flex;">
+                <img src="/static/favicon.ico" class="profile_pic">
+                <h2 class="recipient_name" onclick="open_chat(this)">${chat}</h2>
+            </div><br>`
             $('#list').append(tabs);
         }
     }
@@ -22,8 +26,8 @@ function open_chat(element){
     <div style="display: inline-flex">
         <img src="/static/favicon.ico" class="profile_pic">
         <h2 class="recipient_name">${username}</h2>
+        <button class="cancel_button">Close</button>
     </div>
-    <div><button class="cancel_button">Close</button></div>
     <div id="body" class="imessage">
 
     </div>

@@ -274,7 +274,7 @@ def get_chats(request):
         return HttpResponseRedirect(reverse("login"))
     else:
 
-        chats = [Chat.objects.filter(sender=request.user)] + [Chat.objects.filter(recipient=request.user)]
+        chats = [Chat.objects.filter(sender=request.user).to_dict()] + [Chat.objects.filter(recipient=request.user).to_dict()]
         sys.stderr.write(f"\n{chats}\n")
         chats = ["James", "Jarvis"]
         chats = list(set(chats))

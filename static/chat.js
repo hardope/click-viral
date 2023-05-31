@@ -103,7 +103,7 @@ document.querySelector('#form').onsubmit = () => {
 $(document).ready(function(){
     let url = window.location.origin
     let request = new XMLHttpRequest();
-    request.open("GET", url + "/get_post/" + id)
+    request.open("GET", url + "/get_chats")
     request.send()
     request.onload = () => {
         var chats = JSON.parse(request.response);

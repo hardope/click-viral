@@ -7,7 +7,7 @@ $(document).ready(function(){
         var chats = JSON.parse(request.response);
         console.log(chats);
         for (let chat of chats){
-            var tabs = '<div style="display: inline-flex"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name">' + chat + '</h2></div>'
+            var tabs = '<div><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name">' + chat + '</h2></div>'
             $('#list').append(tabs);
         }
     }

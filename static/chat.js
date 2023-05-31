@@ -6,7 +6,7 @@ $(document).ready(function(){
     request.onload = () => {
         var chats = JSON.parse(request.response);
         for (let chat of chats){
-            var tabs = '<div style="display: inline-flex;"><a href="/profile/' + chat + '"><img src="/static/favicon.ico" class="profile_pic"></a><h2 class="recipient_name" onclick="open_chat(this)">' + chat + '</h2></div><br>'
+            var tabs = '<div style="display: inline-flex;"><img src="/static/favicon.ico" class="profile_pic"><h2 class="recipient_name" onclick="open_chat(this)">' + chat + '</h2></div><br>'
             $('#list').append(tabs);
         }
     }

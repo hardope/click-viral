@@ -111,5 +111,6 @@ $(document).ready(function(){
                 $('#list').append(tabs);
             }
         }
+    });
 
 });

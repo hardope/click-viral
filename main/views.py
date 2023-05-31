@@ -257,6 +257,14 @@ def chat(request, query):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
+        if query == "users":
+            return render(
+            request,
+                "chat.html",
+                {
+                    "tab": "users",
+                },
+            )
         try:
             user = User.objects.get(username=query)
         except:
@@ -446,6 +454,7 @@ def request_code(request):
         try:
             try:
                 user = User.objects.get(username=username)
+                assert username != "users"
                 return HttpResponse("1")
             except:
                 user = User.objects.get(email=email)

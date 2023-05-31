@@ -14,6 +14,9 @@ $(document).ready(function(){
             </div><br>`
             $('#list').append(users);
         }
+        if (tabs[0] == "users"){
+            tabs = [];
+        }
         if (tabs.length > 0) {
             open_chat(tabs[0]);
         }

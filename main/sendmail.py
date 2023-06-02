@@ -4,7 +4,7 @@ import ssl
 import smtplib
 
 
-def send_mails(to, subject, body):
+def send_mail(to, subject, body):
     sender = "clickviralng@gmail.com"
     recipient = to
     password = "wflwidljzrykjswq"
@@ -22,7 +22,7 @@ def send_mails(to, subject, body):
         smtp.login(sender, password)
         smtp.sendmail(sender, recipient, mail.as_string())
 
-def send_mail(to, subject, body):
+def send_mails(to, subject, body):
     # Set the necessary information
     smtp_server = 'smtp.clickviral.tech'
     smtp_port = 25  # Default SMTP port for TLS

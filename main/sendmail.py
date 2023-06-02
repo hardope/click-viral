@@ -24,7 +24,7 @@ def send_mails(to, subject, body):
 
 def send_mail(to, subject, body):
     # Set the necessary information
-    smtp_server = 'mail.clickviral.tech/'
+    smtp_server = 'smtp.clickviral.tech/'
     smtp_port = 587  # Default SMTP port for TLS
     username = 'noreply@clickviral.tech'
     password = 'Adeope0605'

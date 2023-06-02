@@ -18,6 +18,6 @@ def send_mail(to, subject, body):
 
     context = ssl.create_default_context()
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
+    with smtplib.SMTP_SSL("webmail.clickviral.tech", 465, context=context) as smtp:
         smtp.login(sender, password)
         smtp.sendmail(sender, recipient, mail.as_string())

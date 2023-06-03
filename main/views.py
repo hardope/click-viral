@@ -295,9 +295,8 @@ def get_messages(request, query):
         return HttpResponseRedirect(reverse("login"))
     else:
         user = User.objects.get(username=query)
-        chats = Chat.objects.filter(Q(sender=request.user, recipient=user) | Q(recipient=request.user, sender=user))
+        chats = Chat.objects.filter(Q(sender=request.user, recipient=user) | Q(recipient=request.user, sender=user)).order_by('created_at')
         chats = [i.to_dict() for i in chats]
-        chats.reverse()
 
         return JsonResponse(chats, safe=False)
 

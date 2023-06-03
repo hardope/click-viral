@@ -294,7 +294,7 @@ def get_messages(request, query):
         return HttpResponseRedirect(reverse("login"))
     else:
         user = User.objects.get(username=query)
-        chats = Chat.objects.filter(sender=request.user, recipient=user) + Chat.objects.filter(sender=user, recipient=self.user)
+        chats = Chat.objects.filter(sender=request.user, recipient=user) + Chat.objects.filter(sender=user, recipient=request.user)
         chats = [i.to_dict() for i in chats]
         chats.reverse()
 

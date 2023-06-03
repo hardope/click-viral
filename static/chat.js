@@ -65,7 +65,7 @@ function load_chat(user){
     let url = window.location.origin
 
     let request = new XMLHttpRequest();
-    request.open("GET", url + "/get_chats/" + user);
+    request.open("GET", url + "/get_messages/" + user);
     request.send();
     request.onload = () => {
         console.log(request.response)

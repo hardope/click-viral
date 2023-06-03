@@ -72,24 +72,24 @@ function load_chat(user){
         if (request.status === 200) {
             let body = document.querySelector('#tab_' + user + ' #body');
             for (let obj of JSON.parse(request.response)) {
-                if (obj[1] === username ) {
+                if (obj.sender === username ) {
                         var tag = document.createElement('p');
-                        tag.textContent = obj[3]
+                        tag.textContent = obj.message
                         tag.setAttribute('class', 'from-me margin-b_none')
                         tag.setAttribute('style', 'font-size: 20px;')
                         body.appendChild(tag);
                         var date = document.createElement('small')
-                        date.textContent = get_time(obj[4])
+                        date.textContent = obj.created_at
                         date.setAttribute('style', 'text-align: right; font-size: 15px !important')
                         body.appendChild(date)
                 } else {
                         var tag = document.createElement('p');
-                        tag.textContent = obj[3]
+                        tag.textContent = obj.message
                         tag.setAttribute('class', 'from-them')
                         tag.setAttribute('style', 'font-size: 20px;')
                         body.appendChild(tag);
                         var date = document.createElement('small')
-                        date.textContent = get_time(obj[4])
+                        date.textContent = obj.created_at
                         date.setAttribute('style', 'text-align: left; font-size: 15px !important')
                         body.appendChild(date)
                 }

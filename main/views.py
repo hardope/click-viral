@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.db.models import Q
 from django.contrib.auth.models import User
 from .models import Post, Like, Comment, Follow, Otp, Profile, Chat
 from .sendmail import send_mail

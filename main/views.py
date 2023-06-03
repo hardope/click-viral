@@ -293,7 +293,8 @@ def get_messages(request, query):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
-        chats = Chat.objects.filter(sender=request.user, recipient=query) + Chat.objects.filter(sender=query, recipient=self.user)
+        user = User.objects.get(username=query)
+        chats = Chat.objects.filter(sender=request.user, recipient=user) + Chat.objects.filter(sender=username, recipient=self.user)
         chats = [i.to_dict() for i in chats]
         chats.reverse()
 

@@ -123,6 +123,7 @@ function load_chat(user){
 }
 
 function send_message(user){
+    $(`#tab_${user} #send_message`).prop("disabled",true);
     let message = $(`#tab_${user} #message`).val();
     if (message == ''){
         return;
@@ -141,6 +142,7 @@ function send_message(user){
         },
         success: function(data) {
             $(`#tab_${user} #message`).val('');
+            $(`#tab_${user} #send_message`).prop("disabled",false);
         },
         error: function(xhr, status, error) {
             alert("Error, Please Check Your Internet Connection"); // handle error response

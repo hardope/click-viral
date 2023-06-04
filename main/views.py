@@ -295,7 +295,7 @@ def get_messages(request, query):
         return HttpResponseRedirect(reverse("login"))
     else:
         username, count = query.split("-")
-        user = User.objects.get(username=query)
+        user = User.objects.get(username=username)
         chats = Chat.objects.filter(Q(sender=request.user, recipient=user) | Q(recipient=request.user, sender=user)).order_by('created_at')
         chats = [i.to_dict() for i in chats]
         if count != "0":

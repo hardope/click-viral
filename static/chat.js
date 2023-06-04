@@ -94,8 +94,8 @@ function close_chat(){
     $('#list').show();
 }
 
-function load_chat(user){
-    let url = window.location.origin
+function load_chat(user) {
+    let url = window.location.origin;
 
     let request = new XMLHttpRequest();
     request.open("GET", `${url}/get_messages/${user}-0`);
@@ -104,17 +104,21 @@ function load_chat(user){
         chat_counts[user] = JSON.parse(request.response).length;
         if (request.status === 200) {
             let body = $('#tab_' + user + ' #body');
+            let existingMessages = body.find('.from-me, .from-them'); // Select existing messages
+
             for (let obj of JSON.parse(request.response)) {
-                if (obj.sender === username ) {
-                    var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
-                    body.append(tag);
-                    var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
-                    body.append(date)
-                } else {
-                    var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
-                    body.append(tag);
-                    var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
-                    body.append(date)
+                if (existingMessages.filter(function () { return $(this).text() === obj.message; }).length === 0) {
+                    if (obj.sender === username) {
+                        var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`;
+                        body.append(tag);
+                        var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`;
+                        body.append(date);
+                    } else {
+                        var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`;
+                        body.append(tag);
+                        var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`;
+                        body.append(date);
+                    }
                 }
             }
             window.scrollTo(0, 10000);

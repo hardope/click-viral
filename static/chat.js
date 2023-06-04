@@ -20,7 +20,7 @@ $(document).ready(function(){
             open_chat(tabs[0], "force");
         }
     }
-    setInterval(refresh(), 1000)
+    //setInterval(refresh(), 1000)
 
 });
 
@@ -66,73 +66,61 @@ function load_chat(user){
     let url = window.location.origin
 
     let request = new XMLHttpRequest();
-    request.open("GET", url + "/get_messages/" + user);
+    request.open("GET", `${url}/get_messages/${user}-0`);
     request.send();
     request.onload = () => {
         chat_counts[user] = JSON.parse(request.response).length;
-        console.log(chat_counts)
         if (request.status === 200) {
             let body = document.querySelector('#tab_' + user + ' #body');
             for (let obj of JSON.parse(request.response)) {
                 if (obj.sender === username ) {
-                        var tag = document.createElement('p');
-                        tag.textContent = obj.message
-                        tag.setAttribute('class', 'from-me margin-b_none')
-                        tag.setAttribute('style', 'font-size: 20px;')
-                        body.appendChild(tag);
-                        var date = document.createElement('small')
-                        date.textContent = obj.created_at
-                        date.setAttribute('style', 'text-align: right; font-size: 15px !important')
-                        body.appendChild(date)
+                    var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
+                    body.appendChild(tag);
                 } else {
-                        var tag = document.createElement('p');
-                        tag.textContent = obj.message
-                        tag.setAttribute('class', 'from-them')
-                        tag.setAttribute('style', 'font-size: 20px;')
+                        var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
                         body.appendChild(tag);
-                        var date = document.createElement('small')
-                        date.textContent = obj.created_at
-                        date.setAttribute('style', 'text-align: left; font-size: 15px !important')
-                        body.appendChild(date)
                 }
+                var date = `<small style="text-align: right; font-size: 15px !important"></small>`
+                body.appendChild(date)
             }
             window.scrollTo(0, 10000);
         }
     }
 }
 function refresh() {
-    let request = new XMLHttpRequest();
-    request.open("GET", url + "/api/{{recipient}}");
-    request.send();
-    request.onload = () => {
-        if (request.status === 200) {
-            newlist = JSON.parse(request.response);
-            if (newlist.length > list.length){
-                var count = newlist.length - list.length;
-                for (let i = list.length -1; i < newlist.length-1; i++){
-                    if (newlist[i+1][1] === username ) {
-                        var tag = document.createElement('p');
-                        tag.textContent = newlist[i+1][3];
-                        tag.setAttribute('class', 'from-me')
-                        tag.setAttribute('style', 'font-size: 20px;')
-                        body.appendChild(tag);
-                        var date = document.createElement('small')
-                        date.textContent = get_time(newlist[i+1][4]);
-                        date.setAttribute('style', 'text-align: right; font-size: 15px !important')
-                        body.appendChild(date)
-                    } else{
-                        var tag = document.createElement('p');
-                        tag.textContent = newlist[i+1][3];
-                        tag.setAttribute('class', 'from-them')
-                        tag.setAttribute('style', 'font-size: 20px;')
-                        body.appendChild(tag);
-                        var date = document.createElement('small')
-                        date.textContent = get_time(newlist[i+1][4]);
-                        date.setAttribute('style', 'text-align: left; font-size: 15px !important')
-                        body.appendChild(date)
+    for (let user in tabs) {
+        let url = window.location.origin
+
+        let request = new XMLHttpRequest();
+        request.open("GET", url + "/get_messages/" + user);
+        request.send();
+        request.onload = () => {
+            chat_counts[user] = JSON.parse(request.response).length;
+            if (request.status === 200) {
+                let body = document.querySelector('#tab_' + user + ' #body');
+                for (let obj of JSON.parse(request.response)) {
+                    if (obj.sender === username ) {
+                            var tag = document.createElement('p');
+                            tag.textContent = obj.message
+                            tag.setAttribute('class', 'from-me margin-b_none')
+                            tag.setAttribute('style', 'font-size: 20px;')
+                            body.appendChild(tag);
+                            var date = document.createElement('small')
+                            date.textContent = obj.created_at
+                            date.setAttribute('style', 'text-align: right; font-size: 15px !important')
+                            body.appendChild(date)
+                    } else {
+                            var tag = document.createElement('p');
+                            tag.textContent = obj.message
+                            tag.setAttribute('class', 'from-them')
+                            tag.setAttribute('style', 'font-size: 20px;')
+                            body.appendChild(tag);
+                            var date = document.createElement('small')
+                            date.textContent = obj.created_at
+                            date.setAttribute('style', 'text-align: left; font-size: 15px !important')
+                            body.appendChild(date)
                     }
                 }
-                list = newlist;
                 window.scrollTo(0, 10000);
             }
         }

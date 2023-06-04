@@ -35,7 +35,6 @@ $(document).ready(function(){
                 request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
                 request.send();
                 request.onload = () => {
-                    console.log(chat_counts[user]);
                     if (request.status === 200) {
                         let body = $('#tab_' + user + ' #body');
                         for (let obj of JSON.parse(request.response)) {
@@ -51,8 +50,8 @@ $(document).ready(function(){
                                 var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
                                 body.append(date)
                             }
+                            window.scrollTo(0, 10000);
                         }
-                        window.scrollTo(0, 10000);
                     }
                 }
             }

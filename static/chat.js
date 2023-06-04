@@ -20,24 +20,28 @@ $(document).ready(function(){
             open_chat(tabs[0], "force");
         }
     }
-    setInterval(function() {
-        if (tabs.length === 0 || Object.keys(chat_counts).length === 0 || tabs[0] === "users") {
-            return;
-        } else {
-            for (let user of tabs) {
-                let url = window.location.origin;
-                if (chat_counts[user] === undefined) {
-                    return;
-                }
-    
-                let request = new XMLHttpRequest();
-                request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
-                request.send();
-                request.onload = () => {
-                    if (request.status === 200) {
-                        let body = $('#tab_' + user + ' #body');
-                        let messages = JSON.parse(request.response);
-                        for (let obj of messages) {
+    // Define an object to store the appended message IDs for each user
+let appendedMessageIds = {};
+
+setInterval(function() {
+    if (tabs.length === 0 || Object.keys(chat_counts).length === 0 || tabs[0] === "users") {
+        return;
+    } else {
+        for (let user of tabs) {
+            let url = window.location.origin;
+            if (chat_counts[user] === undefined) {
+                return;
+            }
+
+            let request = new XMLHttpRequest();
+            request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
+            request.send();
+            request.onload = () => {
+                if (request.status === 200) {
+                    let body = $('#tab_' + user + ' #body');
+                    let messages = JSON.parse(request.response);
+                    for (let obj of messages) {
+                        if (!appendedMessageIds[user] || !appendedMessageIds[user].includes(obj.id)) {
                             if (obj.sender === username) {
                                 var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`;
                                 body.append(tag);
@@ -49,14 +53,17 @@ $(document).ready(function(){
                                 var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`;
                                 body.append(date);
                             }
+                            appendedMessageIds[user] = appendedMessageIds[user] || [];
+                            appendedMessageIds[user].push(obj.id);
                             window.scrollTo(0, document.body.scrollHeight);
                         }
-                        chat_counts[user] += messages.length;
                     }
-                };
-            }
+                    chat_counts[user] += messages.length;
+                }
+            };
         }
-    }, 1000);
+    }
+}, 1000);
 
 });
 

@@ -76,12 +76,14 @@ function load_chat(user){
                 if (obj.sender === username ) {
                     var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
                     body.append(tag);
+                    var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
+                    body.append(date)
                 } else {
-                        var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
-                        body.append(tag);
+                    var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
+                    body.append(tag);
+                    var date = `<small class="from-them" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
+                    body.append(date)
                 }
-                var date = `<small style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
-                body.append(date)
             }
             window.scrollTo(0, 10000);
         }

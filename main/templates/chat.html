@@ -8,10 +8,8 @@
 <script src="/static/chat.js"></script>
 <script>
     var tabs = ['{{tab}}'];
-    var chat_counts = {};
+    var chat_counts = {users};
     var username = '{{request.user.username}}';
-
-    console.assert(tabs);
 </script>
 <link rel="stylesheet" href="/static/chat.css">
 <div id="tabs" style="display: none;">

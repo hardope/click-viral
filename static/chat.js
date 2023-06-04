@@ -90,11 +90,7 @@ function load_chat(user){
     }
 }
 function refresh(){
-    console.log("Refreshing")
-    if (chat_counts == {}) {
-        console.log("empty")
-    }
-    if (tabs.length == 0 || tabs[0] == "users" || chat_counts == {}) {
+    if (true) {
         return;
     }
     else{

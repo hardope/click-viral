@@ -20,9 +20,38 @@ $(document).ready(function(){
             open_chat(tabs[0], "force");
         }
     }
-    setInterval(refresh(), 1000)
     setInterval(function (){
-        console.log("TEST")
+        if (true) {
+            console.log(chat_counts)
+            return;
+        }
+        else{
+            console.log("Here")
+            console.log(chat_counts)
+            for (let user of tabs) {
+                let url = window.location.origin
+    
+                let request = new XMLHttpRequest();
+                request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
+                request.send();
+                request.onload = () => {
+                    chat_counts[user] = JSON.parse(request.response).length;
+                    if (request.status === 200) {
+                        let body = document.querySelector('#tab_' + user + ' #body');
+                        for (let obj of JSON.parse(request.response)) {
+                            if (obj.sender === username ) {
+                                var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
+                                body.append(tag);
+                            } else {
+                                    var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
+                                    body.append(tag);
+                            }
+                        }
+                        window.scrollTo(0, 10000);
+                    }
+                }
+            }
+        }
     }, 1000)
 
 });
@@ -89,39 +118,6 @@ function load_chat(user){
                 }
             }
             window.scrollTo(0, 10000);
-        }
-    }
-}
-function refresh(){
-    if (true) {
-        console.log(chat_counts)
-        return;
-    }
-    else{
-        console.log("Here")
-        console.log(chat_counts)
-        for (let user of tabs) {
-            let url = window.location.origin
-
-            let request = new XMLHttpRequest();
-            request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
-            request.send();
-            request.onload = () => {
-                chat_counts[user] = JSON.parse(request.response).length;
-                if (request.status === 200) {
-                    let body = document.querySelector('#tab_' + user + ' #body');
-                    for (let obj of JSON.parse(request.response)) {
-                        if (obj.sender === username ) {
-                            var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
-                            body.append(tag);
-                        } else {
-                                var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
-                                body.append(tag);
-                        }
-                    }
-                    window.scrollTo(0, 10000);
-                }
-            }
         }
     }
 }

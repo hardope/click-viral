@@ -20,7 +20,7 @@ $(document).ready(function(){
             open_chat(tabs[0], "force");
         }
     }
-    //setInterval(refresh(), 1000)
+    setInterval(refresh(), 1000)
 
 });
 

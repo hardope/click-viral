@@ -10,7 +10,9 @@
     var tabs = ['{{tab}}'];
     var chat_counts = {};
     var username = '{{request.user.username}}';
+    var csrftoken = '{{ csrf_token }}';
 </script>
+{% csrf_token %}
 <link rel="stylesheet" href="/static/chat.css">
 <div id="tabs" style="display: none;">
     

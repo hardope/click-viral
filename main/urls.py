@@ -25,6 +25,7 @@ urlpatterns = [
     path("chat/<query>", views.chat, name="chat"),
     path("get_chats", views.get_chats, name="get_chats"),
     path("get_messages/<query>", views.get_messages, name="get_messages"),
+    path("send_message", views.send_message, name="send_message"),
 
     # Auth Views
     path("login", views.login_view, name="login"),

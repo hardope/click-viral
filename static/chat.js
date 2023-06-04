@@ -78,14 +78,10 @@ function open_chat(element, priority="none"){
     <div id="body" class="imessage">
 
     </div>
-        <form id="form">
-            <div class="div">
-                <input type="text" id="message" autocomplete="off" autofocus>
-                <button type="submit" id="send_message">Send</button>
-            </div>
-        </form>
-    </div>
-</div>`
+    <div class="div"">
+        <input type="text" id="message" autocomplete="off" autofocus>
+        <button type="submit" id="send_message" onclick="send_message(${element}})">Send</button>
+    </div>`
 
     $('#tabs').append(tab);
     load_chat(element);
@@ -124,4 +120,27 @@ function load_chat(user){
             window.scrollTo(0, 10000);
         }
     }
+}
+
+function send_message(user){
+    let message = $(`#tab_${user} #message`).val();
+    if (message == ''){
+        return;
+    }
+    let formData = new FormData();
+    formData.append('message', message);
+    formData.append('recipient', user);
+    $.ajax({
+        url: window.location.origin + '/send_message/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            "X-CSRFToken": csrftoken
+        },
+        error: function(xhr, status, error) {
+            alert("Error, Please Check Your Internet Connection"); // handle error response
+        } 
+    });
 }

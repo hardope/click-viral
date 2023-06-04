@@ -79,7 +79,7 @@ function open_chat(element, priority="none"){
 
     </div>
     <div class="div"">
-        <input type="text" id="message" autocomplete="off" autofocus>
+        <textarea type="text" style="resize: vertical;" id="message" autocomplete="off" autofocus></textarea>
         <button type="submit" id="send_message" onclick="send_message('${element}')">Send</button>
     </div>`
 
@@ -138,6 +138,9 @@ function send_message(user){
         contentType: false,
         headers: {
             "X-CSRFToken": csrftoken
+        },
+        success: function(data) {
+            $(`#tab_${user} #message`).val('');
         },
         error: function(xhr, status, error) {
             alert("Error, Please Check Your Internet Connection"); // handle error response

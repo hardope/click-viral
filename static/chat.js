@@ -95,6 +95,8 @@ function refresh(chat_counts){
         return;
     }
     else{
+        console.log("Here")
+        console.log(chat_counts)
         for (let user of tabs) {
             let url = window.location.origin
 

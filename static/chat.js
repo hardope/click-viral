@@ -80,7 +80,7 @@ function load_chat(user){
                         var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
                         body.append(tag);
                 }
-                var date = `<small style="text-align: right; font-size: 15px !important"></small>`
+                var date = `<small style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
                 body.append(date)
             }
             window.scrollTo(0, 10000);
@@ -89,8 +89,7 @@ function load_chat(user){
 }
 function refresh(chat_counts){
     console.log("Refreshing")
-    if (Object.keys(chat_counts).length == 0){
-        console.log("Returning")
+    if (tabs.length == 0 || tabs[0] == "users") {
         return;
     }
     for (let user of tabs) {

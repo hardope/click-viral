@@ -33,6 +33,7 @@ $(document).ready(function(){
                 request.send();
                 request.onload = () => {
                     chat_counts[user] = JSON.parse(request.response).length;
+                    console.log(request.response);
                     if (request.status === 200) {
                         let body = document.querySelector('#tab_' + user + ' #body');
                         for (let obj of JSON.parse(request.response)) {

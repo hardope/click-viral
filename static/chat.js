@@ -71,17 +71,17 @@ function load_chat(user){
     request.onload = () => {
         chat_counts[user] = JSON.parse(request.response).length;
         if (request.status === 200) {
-            let body = document.querySelector('#tab_' + user + ' #body');
+            let body = $('#tab_' + user + ' #body');
             for (let obj of JSON.parse(request.response)) {
                 if (obj.sender === username ) {
                     var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
-                    body.appendChild(tag);
+                    body.append(tag);
                 } else {
                         var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
-                        body.appendChild(tag);
+                        body.append(tag);
                 }
                 var date = `<small style="text-align: right; font-size: 15px !important"></small>`
-                body.appendChild(date)
+                body.append(date)
             }
             window.scrollTo(0, 10000);
         }
@@ -101,13 +101,13 @@ function refresh() {
                 for (let obj of JSON.parse(request.response)) {
                     if (obj.sender === username ) {
                         var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
-                        body.appendChild(tag);
+                        body.append(tag);
                     } else {
                             var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
-                            body.appendChild(tag);
+                            body.append(tag);
                     }
                     var date = `<small style="text-align: right; font-size: 15px !important"></small>`
-                    body.appendChild(date)
+                    body.append(date)
                 }
                 window.scrollTo(0, 10000);
             }

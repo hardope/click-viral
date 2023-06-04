@@ -91,6 +91,7 @@ function load_chat(user){
 }
 function refresh(){
     if (true) {
+        console.log(chat_counts)
         return;
     }
     else{

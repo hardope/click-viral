@@ -21,13 +21,10 @@ $(document).ready(function(){
         }
     }
     setInterval(function (){
-        if (tabs.length == 0 || chat_counts == {}) {
-            console.log(chat_counts)
+        if (tabs.length == 0 || chat_counts == {} || tabs[0] == "users") {
             return;
         }
         else{
-            console.log("Here")
-            console.log(chat_counts)
             for (let user of tabs) {
                 let url = window.location.origin
     

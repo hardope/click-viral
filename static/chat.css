@@ -12,7 +12,8 @@
 #send_message {
   border: none;
   border-radius: 15px;
-  margin-le
+  margin-left: 10px;
+  margin-top: -50px;
   width: 70px;
   height: 40px;
   background-color: rgb(221, 221, 221);

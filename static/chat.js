@@ -17,17 +17,16 @@ $(document).ready(function(){
             tabs = [];
         }
         if (tabs.length > 0) {
-            open_chat(tabs[0]);
+            open_chat(tabs[0], "force");
         }
     }
 
 });
 
-function open_chat(element){
+function open_chat(element, priority="none"){
     $('#list').hide();
     $('#tabs').show();
-    if ($.inArray(element, tabs) > -1){
-        console.log("Here")
+    if ($.inArray(element, tabs) > -1 & priority == "none"){
         $(`#tab_${element}`).show();
         return;
     }

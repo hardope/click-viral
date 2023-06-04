@@ -35,11 +35,11 @@ $(document).ready(function(){
                 request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
                 request.send();
                 request.onload = () => {
-                    chat_counts[user] += JSON.parse(request.response).length;
                     console.log(chat_counts[user]);
                     if (request.status === 200) {
                         let body = $('#tab_' + user + ' #body');
                         for (let obj of JSON.parse(request.response)) {
+                            chat_counts[user] += 1;
                             if (obj.sender === username ) {
                                 var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
                                 body.append(tag);

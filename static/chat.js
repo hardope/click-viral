@@ -115,8 +115,6 @@ function refresh(chat_counts){
                                 var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
                                 body.append(tag);
                         }
-                        var date = `<small style="text-align: right; font-size: 15px !important"></small>`
-                        body.append(date)
                     }
                     window.scrollTo(0, 10000);
                 }

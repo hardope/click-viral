@@ -20,7 +20,7 @@ $(document).ready(function(){
             open_chat(tabs[0], "force");
         }
     }
-    setInterval(refresh(), 1000)
+    setInterval(refresh(chat_counts), 1000)
 
 });
 
@@ -87,7 +87,7 @@ function load_chat(user){
         }
     }
 }
-function refresh() {
+function refresh(chat_counts){ {
     if (chat_counts == {}){
         return;
     }

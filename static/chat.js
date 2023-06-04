@@ -131,7 +131,7 @@ function send_message(user){
     formData.append('message', message);
     formData.append('recipient', user);
     $.ajax({
-        url: window.location.origin + '/send_message/',
+        url: window.location.origin + '/send_message',
         type: 'POST',
         data: formData,
         processData: false,

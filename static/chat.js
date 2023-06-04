@@ -81,7 +81,7 @@ function load_chat(user){
                 } else {
                     var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
                     body.append(tag);
-                    var date = `<small class="from-them" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
+                    var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
                     body.append(date)
                 }
             }

@@ -4,9 +4,9 @@
   border: none;
   margin-left: 40px;
   background-color: rgb(221, 221, 221);
-  border-radius: 15px;
-  width: 450px;
-  height: 50px;
+  border-radius: 15px !important;
+  width: 450px !important;
+  height: 50px !important;
 }
 #send_message {
   border: none;

@@ -79,7 +79,7 @@ function open_chat(element, priority="none"){
 
     </div>
     <div class="div" style="display: inline_flex;">
-        <input type="text" id="message" autocomplete="off" autofocus>
+        <textarea type="text" id="message" autocomplete="off" autofocus></textarea>
         <button type="submit" id="send_message" onclick="send_message('${element}')">Send</button>
     </div>`
 

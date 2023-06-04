@@ -32,7 +32,7 @@ $(document).ready(function(){
                 request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
                 request.send();
                 request.onload = () => {
-                    chat_counts[user] = JSON.parse(request.response).length;
+                    chat_counts[user] += JSON.parse(request.response).length;
                     console.log(request.response);
                     if (request.status === 200) {
                         let body = document.querySelector('#tab_' + user + ' #body');

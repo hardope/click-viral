@@ -94,6 +94,7 @@ function refresh(chat_counts){
     if (tabs.length == 0 || tabs[0] == "users") {
         return;
     }
+    console.log(chat_counts)
     for (let user of tabs) {
         let url = window.location.origin
 

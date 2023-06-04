@@ -80,7 +80,7 @@ function open_chat(element, priority="none"){
     </div>
     <div class="div"">
         <input type="text" id="message" autocomplete="off" autofocus>
-        <button type="submit" id="send_message" onclick="send_message(${element}})">Send</button>
+        <button type="submit" id="send_message" onclick="send_message(${element})">Send</button>
     </div>`
 
     $('#tabs').append(tab);

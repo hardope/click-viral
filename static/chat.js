@@ -88,10 +88,7 @@ function load_chat(user){
     }
 }
 function refresh(chat_counts){
-    if (chat_counts == {}){
-        return;
-    }
-    for (let user in tabs) {
+    for (let user of tabs) {
         let url = window.location.origin
 
         let request = new XMLHttpRequest();

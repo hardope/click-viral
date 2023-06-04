@@ -20,7 +20,7 @@ $(document).ready(function(){
             open_chat(tabs[0], "force");
         }
     }
-    setInterval(refresh(chat_counts), 1000)
+    setInterval(refresh(), 1000)
 
 });
 
@@ -89,10 +89,10 @@ function load_chat(user){
         }
     }
 }
-function refresh(chat_counts){
+function refresh(){
     console.log("Refreshing")
     if (chat_counts == {}) {
-        console.log(empty)
+        console.log("empty")
     }
     if (tabs.length == 0 || tabs[0] == "users" || chat_counts == {}) {
         return;

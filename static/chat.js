@@ -87,7 +87,7 @@ function load_chat(user){
         }
     }
 }
-function refresh(chat_counts){ {
+function refresh(chat_counts){
     if (chat_counts == {}){
         return;
     }

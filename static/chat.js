@@ -91,7 +91,7 @@ function load_chat(user){
 }
 function refresh(chat_counts){
     console.log("Refreshing")
-    if (tabs.length == 0 || tabs[0] == "users") {
+    if (tabs.length == 0 || tabs[0] == "users" || chat_counts == {}) {
         return;
     }
     console.log(chat_counts)

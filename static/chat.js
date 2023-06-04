@@ -21,6 +21,9 @@ $(document).ready(function(){
         }
     }
     setInterval(refresh(), 1000)
+    setInterval(function (){
+        console.log("TEST")
+    }, 1000)
 
 });
 

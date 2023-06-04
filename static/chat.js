@@ -94,29 +94,30 @@ function refresh(chat_counts){
     if (tabs.length == 0 || tabs[0] == "users" || chat_counts == {}) {
         return;
     }
-    console.log(chat_counts)
-    for (let user of tabs) {
-        let url = window.location.origin
+    else{
+        for (let user of tabs) {
+            let url = window.location.origin
 
-        let request = new XMLHttpRequest();
-        request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
-        request.send();
-        request.onload = () => {
-            chat_counts[user] = JSON.parse(request.response).length;
-            if (request.status === 200) {
-                let body = document.querySelector('#tab_' + user + ' #body');
-                for (let obj of JSON.parse(request.response)) {
-                    if (obj.sender === username ) {
-                        var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
-                        body.append(tag);
-                    } else {
-                            var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
+            let request = new XMLHttpRequest();
+            request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);
+            request.send();
+            request.onload = () => {
+                chat_counts[user] = JSON.parse(request.response).length;
+                if (request.status === 200) {
+                    let body = document.querySelector('#tab_' + user + ' #body');
+                    for (let obj of JSON.parse(request.response)) {
+                        if (obj.sender === username ) {
+                            var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
                             body.append(tag);
+                        } else {
+                                var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
+                                body.append(tag);
+                        }
+                        var date = `<small style="text-align: right; font-size: 15px !important"></small>`
+                        body.append(date)
                     }
-                    var date = `<small style="text-align: right; font-size: 15px !important"></small>`
-                    body.append(date)
+                    window.scrollTo(0, 10000);
                 }
-                window.scrollTo(0, 10000);
             }
         }
     }

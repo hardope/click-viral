@@ -5,7 +5,8 @@
   margin-left: 40px;
   background-color: rgb(221, 221, 221);
   border-radius: 15px;
-  min-width: 450px;
+  max-width: 450px;
+  min-width: 300px;
   min-height: 50px;
   resize: vertical;
 }

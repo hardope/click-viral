@@ -21,7 +21,7 @@ $(document).ready(function(){
         }
     }
     setInterval(function (){
-        if (true) {
+        if (tab == []) {
             console.log(chat_counts)
             return;
         }

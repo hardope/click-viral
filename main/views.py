@@ -303,6 +303,21 @@ def get_messages(request, query):
 
         return JsonResponse(chats, safe=False)
 
+def send_message(request):
+    if not request.user.is_authenticated:
+        return HttpResponse("...")
+    if request.method == "POST":
+        if request.POST.get('recipient') == request.user.username:
+            return HttpResponse("...")
+        else:
+            try:
+                recipient = User.objects.get(username=request.POST.get('recipient'))
+            except:
+                return HttpResponse("...")
+            new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'))
+            new_message.save()
+            return HttpResponse("...")
+
 def view_likes(request, query):
     try:
         try:

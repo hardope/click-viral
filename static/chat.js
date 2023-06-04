@@ -39,6 +39,7 @@ $(document).ready(function(){
                         let body = $('#tab_' + user + ' #body');
                         var fid = 0;
                         for (let obj of JSON.parse(request.response)) {
+                            console.log(fid)
                             chat_counts[user] += 1;
                             if (fid == obj.id) {
                                 console.log("Same")

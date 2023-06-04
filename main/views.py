@@ -294,9 +294,12 @@ def get_messages(request, query):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
+        username, count = query.split("-")
         user = User.objects.get(username=query)
         chats = Chat.objects.filter(Q(sender=request.user, recipient=user) | Q(recipient=request.user, sender=user)).order_by('created_at')
         chats = [i.to_dict() for i in chats]
+        if count != "0":
+            chats = chats[int(count):]
 
         return JsonResponse(chats, safe=False)
 

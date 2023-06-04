@@ -27,6 +27,9 @@ $(document).ready(function(){
         else{
             for (let user of tabs) {
                 let url = window.location.origin
+                if (chat_counts[user] == undefined){
+                    return;
+                }
     
                 let request = new XMLHttpRequest();
                 request.open("GET", `${url}/get_messages/${user}-${chat_counts[user]}`);

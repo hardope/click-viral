@@ -26,7 +26,8 @@ $(document).ready(function(){
 function open_chat(element){
     $('#list').hide();
     $('#tabs').show();
-    if (element in tabs){
+    if ($.inArray(elemant, tabs) > -1){
+        console.log("Here")
         $(`#tab_${element}`).show();
         return;
     }

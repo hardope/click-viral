@@ -5,8 +5,9 @@
   margin-left: 40px;
   background-color: rgb(221, 221, 221);
   border-radius: 15px;
-  width: 450px;
-  height: 50px
+  min-width: 450px;
+  min-height: 50px;
+  resize: vertical;
 }
 #send_message {
   border: none;

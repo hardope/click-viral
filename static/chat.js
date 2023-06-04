@@ -20,6 +20,7 @@ $(document).ready(function(){
             open_chat(tabs[0], "force");
         }
     }
+    setInterval(refresh(), 1000)
 
 });
 
@@ -68,7 +69,8 @@ function load_chat(user){
     request.open("GET", url + "/get_messages/" + user);
     request.send();
     request.onload = () => {
-        console.log(request.response)
+        chat_counts[user] = JSON.parse(request.response).length;
+        console.log(chat_counts)
         if (request.status === 200) {
             let body = document.querySelector('#tab_' + user + ' #body');
             for (let obj of JSON.parse(request.response)) {
@@ -135,26 +137,4 @@ function refresh() {
             }
         }
     }
-}
-//setInterval(refresh, 1000);
-//document.querySelector('#submit').disabled = true;
-
-document.querySelector('#message').onkeyup = () => {
-    if (document.querySelector('#message').value.length > 0){
-        document.querySelector('#submit').disabled = false;
-    }
-    else {
-        document.querySelector('#submit').disabled = true;
-    }
-}
-document.querySelector('#form').onsubmit = () => {
-    let message = document.querySelector('#message').value;
-    let newmessage = new XMLHttpRequest();
-    var formdata = new FormData()
-    formdata.append("message", message)
-    newmessage.open("POST", url + "/messages/{{recipient}}");
-    newmessage.send(formdata);
-    document.querySelector('#message').value = '';
-    document.querySelector('#submit').disabled = true;
-    return false
 }

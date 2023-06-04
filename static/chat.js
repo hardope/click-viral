@@ -88,7 +88,9 @@ function load_chat(user){
     }
 }
 function refresh() {
-    console.log(chat_counts);
+    if (chat_counts == {}){
+        return;
+    }
     for (let user in tabs) {
         let url = window.location.origin
 

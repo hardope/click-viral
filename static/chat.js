@@ -36,6 +36,7 @@ $(document).ready(function(){
                 request.send();
                 request.onload = () => {
                     chat_counts[user] += JSON.parse(request.response).length;
+                    console.log(chat_counts[user]);
                     if (request.status === 200) {
                         let body = $('#tab_' + user + ' #body');
                         for (let obj of JSON.parse(request.response)) {

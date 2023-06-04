@@ -88,7 +88,9 @@ function load_chat(user){
     }
 }
 function refresh(chat_counts){
+    console.log("Refreshing")
     if (Object.keys(chat_counts).length == 0){
+        console.log("Returning")
         return;
     }
     for (let user of tabs) {

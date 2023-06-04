@@ -41,6 +41,7 @@ $(document).ready(function(){
                         for (let obj of JSON.parse(request.response)) {
                             chat_counts[user] += 1;
                             if (fid == obj.id) {
+                                console.log("Same")
                                 continue;
                             }
                             fid = obj.id;

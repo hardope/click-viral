@@ -127,7 +127,7 @@ function load_chat(user){
                             var media = `<video src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
-                            var media = `<img src="/media/chats/${obj.id}/${obj.media}">`;
+                            var media = `<img src="/media/chats/${obj.id}.${obj.media}">`;
                         }
                         body.append(media);
                     }
@@ -143,7 +143,7 @@ function load_chat(user){
                             var media = `<video src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
-                            var media = `<img src="/media/chats/${obj.id}/${obj.media}">`;
+                            var media = `<img src="/media/chats/${obj.id}.${obj.media}">`;
                         }
                         body.append(media);
                     }

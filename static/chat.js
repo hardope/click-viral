@@ -45,7 +45,7 @@ setInterval(function() {
                             if (obj.sender === username) {
                                 var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`;
                                 body.append(tag);
-                                var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`;
+                                var date = `<small style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`;
                                 body.append(date);
                             } else {
                                 var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`;
@@ -89,6 +89,7 @@ function open_chat(element, priority="none"){
         <textarea type="text" id="message" autocomplete="off" autofocus></textarea>
         <button type="submit" id="send_message" onclick="send_message('${element}')">Send</button>
     </div>`
+    `<input type="file" id="comment_media_${post.id}" name="media" onchange="validate_c_media(this)" accept="image/*,video/mp4" value="" hidden><div id="label_cont"><label for="comment_media_${post.id}" id="media_label_${post.id}">Upload Media &#128206;</label></div><button onclick=submit_comment("' + post.id + '") id="button" data-mdb-ripple-color="dark" class="submit_button">Comment</button></center>`
 
     $('#tabs').append(tab);
     load_chat(element);

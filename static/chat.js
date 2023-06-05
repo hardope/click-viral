@@ -87,9 +87,9 @@ function open_chat(element, priority="none"){
     </div>
     <div class="div" style="display: inline-flex;">
         <textarea type="text" id="message" autocomplete="off" autofocus></textarea>
-        <input type="file" id="comment_media_${element}" name="media" onchange="validate_c_media(this)" accept="image/*,video/mp4" value="" hidden>
-        <div id="label_cont" style="margin-left: 10px; margin-top: -5px;">
-        <label for="comment_media_${element}" id="media_label_${element}">&#128206;</label></div>
+        <input type="file" id="media_${element}" name="media" onchange="validate_c_media(this)" accept="image/*,video/mp4" value="" hidden>
+        <div id="label_cont" style="margin-left: 10px; margin-top: -1px;">
+        <label for="media_${element}" id="media_label_${element}">&#128206;</label></div>
         <button type="submit" id="send_message" onclick="send_message('${element}')">Send</button>
     </div>`
 
@@ -142,11 +142,13 @@ function load_chat(user){
 function send_message(user){
     $(`#tab_${user} #send_message`).prop("disabled",true);
     let message = $(`#tab_${user} #message`).val();
+    let media = $(`#tab_${user} #media_${user}`)[0].files[0];
     if (message == ''){
         return;
     }
     let formData = new FormData();
     formData.append('message', message);
+    formData.append('media', media);
     formData.append('recipient', user);
     $.ajax({
         url: window.location.origin + '/send_message',

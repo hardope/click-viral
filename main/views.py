@@ -314,8 +314,19 @@ def send_message(request):
                 recipient = User.objects.get(username=request.POST.get('recipient'))
             except:
                 return HttpResponse("...")
-            new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'))
-            new_message.save()
+            try:
+                media_file = request.FILES.get("media")
+                media = str(media_file).split(".")[1]
+                assert media_file is not None
+                new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'), media=media)
+                with open(f"{root}/media/chats/{new_message.id}.{media}", "wb+") as file:
+                    for chunk in media_file.chunks():
+                        file.write(chunk)
+            except:
+                if request.POST.get('message') != "":
+                    new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'), media=media)
+            if request.POST.get('message') != "":
+                new_message.save()
             return HttpResponse("...")
 
 def view_likes(request, query):

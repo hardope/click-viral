@@ -124,10 +124,10 @@ function load_chat(user){
                 if (obj.sender === username ) {
                     if (obj.media != "empty"){
                         if (obj.media == "mp4"){
-                            var media = `<video class="chat_media" style="text-align: right; src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                            var media = `<video class="chat_media" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
-                            var media = `<img class="chat_media" style="text-align: right; src="/media/chats/${obj.id}.${obj.media}">`;
+                            var media = `<img class="chat_media" src="/media/chats/${obj.id}.${obj.media}">`;
                         }
                         body.append(media);
                     }

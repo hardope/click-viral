@@ -45,18 +45,16 @@ setInterval(function() {
                             if (obj.sender === username ) {
                                 if (obj.media != "empty"){
                                     if (obj.media == "mp4"){
-                                        var media = `<video class="chat_media" style="float: right" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                                        var media = `<video class="chat_media" style="right: 20px;" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                                     }
                                     else{
-                                        var media = `<img class="chat_media" style="float: right" src="/media/chats/${obj.id}.${obj.media}">`;
+                                        var media = `<img class="chat_media" style="right: 20px;" src="/media/chats/${obj.id}.${obj.media}">`;
                                     }
                                     body.append(media);
                                 }
                                 if (obj.message != ""){
                                     var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
                                     body.append(tag);
-                                    var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
-                                    body.append(date)
                                 }
                             } else {
                                 if (obj.media != "empty"){
@@ -71,8 +69,6 @@ setInterval(function() {
                                 if (obj.message!= ""){
                                     var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
                                     body.append(tag);
-                                    var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
-                                    body.append(date)
                                 }
                             }
                             appendedMessageIds[user] = appendedMessageIds[user] || [];
@@ -146,10 +142,10 @@ function load_chat(user){
                 if (obj.sender === username ) {
                     if (obj.media != "empty"){
                         if (obj.media == "mp4"){
-                            var media = `<video class="chat_media" style="float: right" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                            var media = `<video class="chat_media" style="right: 20px;" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
-                            var media = `<img class="chat_media" style="float: right" src="/media/chats/${obj.id}.${obj.media}">`;
+                            var media = `<img class="chat_media" style="right: 20px;" src="/media/chats/${obj.id}.${obj.media}">`;
                         }
                         body.append(media);
                     }

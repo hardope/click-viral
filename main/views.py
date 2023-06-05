@@ -324,7 +324,7 @@ def send_message(request):
                         file.write(chunk)
             except:
                 if request.POST.get('message') != "":
-                    new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'), media=media)
+                    new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'))
             if request.POST.get('message') != "":
                 new_message.save()
             return HttpResponse("...")

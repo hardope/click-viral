@@ -88,7 +88,7 @@ function open_chat(element, priority="none"){
     <div class="div" style="display: inline-flex;">
         <textarea type="text" id="message" autocomplete="off" autofocus></textarea>
         <input type="file" id="media_${element}" name="media" onchange="validate_c_media(this)" accept="image/*,video/mp4" value="" hidden>
-        <div id="label_cont" style="margin-left: 10px; margin-top: -1px;">
+        <div id="label_cont" style="margin-left: 10px; margin-top: 01px !important;">
         <label for="media_${element}" id="media_label_${element}">&#128206;</label></div>
         <button type="submit" id="send_message" onclick="send_message('${element}')">Send</button>
     </div>`

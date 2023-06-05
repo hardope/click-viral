@@ -9,6 +9,13 @@
   width: 400px !important;
   height: 60px !important;
 }
+.chat_media{
+  margin-top: 10px !important;
+  width: 60vw !important;
+  height: auto !important;
+  min-height: 50px;
+  max-width: 750px;
+}
 #send_message {
   border: none;
   border-radius: 15px;

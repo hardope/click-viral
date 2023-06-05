@@ -88,13 +88,21 @@ function open_chat(element, priority="none"){
     <div class="div" style="display: inline-flex;">
         <textarea type="text" id="message" autocomplete="off" autofocus></textarea>
         <input type="file" id="comment_media_${element}" name="media" onchange="validate_c_media(this)" accept="image/*,video/mp4" value="" hidden>
-        <div id="label_cont"><label for="comment_media_${element}" id="media_label_${element}">&#128206;</label></div>
+        <div id="label_cont" style="margin-left: 10px; margin-top: -5px;">
+        <label for="comment_media_${element}" id="media_label_${element}">&#128206;</label></div>
         <button type="submit" id="send_message" onclick="send_message('${element}')">Send</button>
     </div>`
 
     $('#tabs').append(tab);
     load_chat(element);
 
+}
+function validate_c_media (event) {
+    if(event.value != "") {
+        console.log(event.id.split("_")[2])
+        let label = $("#media_label_" + event.id.split("_")[2])
+        label.css('background-color', 'green');
+    }
 }
 
 function close_chat(){

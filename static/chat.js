@@ -99,8 +99,7 @@ function open_chat(element, priority="none"){
 }
 function validate_c_media (event) {
     if(event.value != "") {
-        console.log(event.id.split("_")[2])
-        let label = $("#media_label_" + event.id.split("_")[2])
+        let label = $("#media_label_" + event.id.split("_")[1])
         label.css('background-color', 'green');
     }
 }
@@ -123,15 +122,37 @@ function load_chat(user){
             let body = $('#tab_' + user + ' #body');
             for (let obj of JSON.parse(request.response)) {
                 if (obj.sender === username ) {
-                    var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
-                    body.append(tag);
-                    var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
-                    body.append(date)
+                    if (obj.media != "empty"){
+                        if (obj.media == "mp4"){
+                            var media = `<video src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                        }
+                        else{
+                            var media = `<img src="/media/chats/${obj.id}/${obj.media}">`;
+                        }
+                        body.append(media);
+                    }
+                    if (obj.message != ""){
+                        var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
+                        body.append(tag);
+                        var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
+                        body.append(date)
+                    }
                 } else {
-                    var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
-                    body.append(tag);
-                    var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
-                    body.append(date)
+                    if (obj.media != "empty"){
+                        if (obj.media == "mp4"){
+                            var media = `<video src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                        }
+                        else{
+                            var media = `<img src="/media/chats/${obj.id}/${obj.media}">`;
+                        }
+                        body.append(media);
+                    }
+                    if (obj.message!= ""){
+                        var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
+                        body.append(tag);
+                        var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
+                        body.append(date)
+                    }
                 }
             }
             window.scrollTo(0, 10000);
@@ -143,9 +164,6 @@ function send_message(user){
     $(`#tab_${user} #send_message`).prop("disabled",true);
     let message = $(`#tab_${user} #message`).val();
     let media = $(`#tab_${user} #media_${user}`)[0].files[0];
-    if (message == ''){
-        return;
-    }
     let formData = new FormData();
     formData.append('message', message);
     formData.append('media', media);

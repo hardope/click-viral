@@ -42,16 +42,38 @@ setInterval(function() {
                     let messages = JSON.parse(request.response);
                     for (let obj of messages) {
                         if (!appendedMessageIds[user] || !appendedMessageIds[user].includes(obj.id)) {
-                            if (obj.sender === username) {
-                                var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`;
-                                body.append(tag);
-                                var date = `<small style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`;
-                                body.append(date);
+                            if (obj.sender === username ) {
+                                if (obj.media != "empty"){
+                                    if (obj.media == "mp4"){
+                                        var media = `<video class="chat_media" style="float: right" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                                    }
+                                    else{
+                                        var media = `<img class="chat_media" style="float: right" src="/media/chats/${obj.id}.${obj.media}">`;
+                                    }
+                                    body.append(media);
+                                }
+                                if (obj.message != ""){
+                                    var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
+                                    body.append(tag);
+                                    var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
+                                    body.append(date)
+                                }
                             } else {
-                                var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`;
-                                body.append(tag);
-                                var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`;
-                                body.append(date);
+                                if (obj.media != "empty"){
+                                    if (obj.media == "mp4"){
+                                        var media = `<video class="chat_media" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                                    }
+                                    else{
+                                        var media = `<img class="chat_media" src="/media/chats/${obj.id}.${obj.media}">`;
+                                    }
+                                    body.append(media);
+                                }
+                                if (obj.message!= ""){
+                                    var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
+                                    body.append(tag);
+                                    var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
+                                    body.append(date)
+                                }
                             }
                             appendedMessageIds[user] = appendedMessageIds[user] || [];
                             appendedMessageIds[user].push(obj.id);
@@ -124,10 +146,10 @@ function load_chat(user){
                 if (obj.sender === username ) {
                     if (obj.media != "empty"){
                         if (obj.media == "mp4"){
-                            var media = `<video class="chat_media" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                            var media = `<video class="chat_media" style="float: right" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
-                            var media = `<img class="chat_media" src="/media/chats/${obj.id}.${obj.media}">`;
+                            var media = `<img class="chat_media" style="float: right" src="/media/chats/${obj.id}.${obj.media}">`;
                         }
                         body.append(media);
                     }

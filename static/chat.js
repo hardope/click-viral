@@ -196,7 +196,9 @@ function send_message(user){
             "X-CSRFToken": csrftoken
         },
         success: function(data) {
+            console.log(data);
             $(`#tab_${user} #message`).val('');
+            $(`#tab_${user} #media_${user}`).val('');
             $(`#tab_${user} #send_message`).prop("disabled",false);
         },
         error: function(xhr, status, error) {

@@ -152,9 +152,10 @@ function load_chat(user){
                     if (obj.message != ""){
                         var tag = `<p class="from-me margin-b_none" style="font-size: 20px;">${obj.message}</p>`
                         body.append(tag);
-                        var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
-                        body.append(date)
+                        
                     }
+                    var date = `<small class="from-me margin-b_none" style="text-align: right; font-size: 15px !important">${obj.created_at}</small>`
+                    body.append(date)
                 } else {
                     if (obj.media != "empty"){
                         if (obj.media == "mp4"){
@@ -168,9 +169,9 @@ function load_chat(user){
                     if (obj.message!= ""){
                         var tag = `<p class="from-them" style="font-size: 20px;">${obj.message}</p>`
                         body.append(tag);
-                        var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
-                        body.append(date)
                     }
+                    var date = `<small class="from-them" style="font-size: 15px !important">${obj.created_at}</small>`
+                    body.append(date)
                 }
             }
             window.scrollTo(0, 10000);
@@ -197,7 +198,7 @@ function send_message(user){
             "X-CSRFToken": csrftoken
         },
         success: function(data) {
-            console.log(data);
+            $(`#media_label_${user}`).css("background-color", "rgb(221, 221, 221)");
             $(`#tab_${user} #message`).val('');
             $(`#tab_${user} #media_${user}`).val('');
             $(`#tab_${user} #send_message`).prop("disabled",false);

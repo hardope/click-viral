@@ -45,7 +45,7 @@ setInterval(function() {
                             if (obj.sender === username ) {
                                 if (obj.media != "empty"){
                                     if (obj.media == "mp4"){
-                                        var media = `<video class="chat_media" style="margin-left: 30vw" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                                        var media = `<video class="chat_media" style="margin-left: 30vw" src="/media/chats/${obj.id}.mp4" controls loop preload="auto"></video>`
                                     }
                                     else{
                                         var media = `<img class="chat_media" style="margin-left: 30vw" src="/media/chats/${obj.id}.${obj.media}">`;
@@ -59,7 +59,7 @@ setInterval(function() {
                             } else {
                                 if (obj.media != "empty"){
                                     if (obj.media == "mp4"){
-                                        var media = `<video class="chat_media" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                                        var media = `<video class="chat_media" src="/media/chats/${obj.id}.mp4" controls loop preload="auto"></video>`
                                     }
                                     else{
                                         var media = `<img class="chat_media" src="/media/chats/${obj.id}.${obj.media}">`;
@@ -142,7 +142,7 @@ function load_chat(user){
                 if (obj.sender === username ) {
                     if (obj.media != "empty"){
                         if (obj.media == "mp4"){
-                            var media = `<video class="chat_media" style="margin-left: 30vw" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                            var media = `<video class="chat_media" style="margin-left: 30vw" src="/media/chats/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
                             var media = `<img class="chat_media" style="margin-left: 30vw" src="/media/chats/${obj.id}.${obj.media}">`;
@@ -159,7 +159,7 @@ function load_chat(user){
                 } else {
                     if (obj.media != "empty"){
                         if (obj.media == "mp4"){
-                            var media = `<video class="chat_media" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                            var media = `<video class="chat_media" src="/media/chats/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
                             var media = `<img class="chat_media" src="/media/chats/${obj.id}.${obj.media}">`;
@@ -180,7 +180,6 @@ function load_chat(user){
 }
 
 function send_message(user){
-    console.log("Sending message")
     $(`#tab_${user} #send_message`).prop("disabled",true);
     let message = $(`#tab_${user} #message`).val();
     let media = $(`#tab_${user} #media_${user}`)[0].files[0];

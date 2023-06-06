@@ -179,6 +179,7 @@ function load_chat(user){
 }
 
 function send_message(user){
+    console.log("Sending message")
     $(`#tab_${user} #send_message`).prop("disabled",true);
     let message = $(`#tab_${user} #message`).val();
     let media = $(`#tab_${user} #media_${user}`)[0].files[0];

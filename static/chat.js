@@ -45,10 +45,10 @@ setInterval(function() {
                             if (obj.sender === username ) {
                                 if (obj.media != "empty"){
                                     if (obj.media == "mp4"){
-                                        var media = `<video class="chat_media" style="right: 20px;" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                                        var media = `<video class="chat_media" style="right: 120px;" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                                     }
                                     else{
-                                        var media = `<img class="chat_media" style="right: 20px;" src="/media/chats/${obj.id}.${obj.media}">`;
+                                        var media = `<img class="chat_media" style="right: 120px;" src="/media/chats/${obj.id}.${obj.media}">`;
                                     }
                                     body.append(media);
                                 }
@@ -106,7 +106,7 @@ function open_chat(element, priority="none"){
     <div class="div" style="display: inline-flex;">
         <textarea type="text" id="message" autocomplete="off" autofocus></textarea>
         <input type="file" id="media_${element}" name="media" onchange="validate_c_media(this)" accept="image/*,video/mp4" value="" hidden>
-        <div id="label_cont" style="margin-left: 10px; margin-top: 01px !important;">
+        <div id="label_cont" style="margin-left: 10px; margin-top: 0px !important;">
         <label for="media_${element}" id="media_label_${element}">&#128206;</label></div>
         <button type="submit" id="send_message" onclick="send_message('${element}')">Send</button>
     </div>`
@@ -142,10 +142,10 @@ function load_chat(user){
                 if (obj.sender === username ) {
                     if (obj.media != "empty"){
                         if (obj.media == "mp4"){
-                            var media = `<video class="chat_media" style="right: 20px;" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
+                            var media = `<video class="chat_media" style="right: 120px;" src="/media/posts/${obj.id}.mp4" controls loop preload="auto"></video>`
                         }
                         else{
-                            var media = `<img class="chat_media" style="right: 20px;" src="/media/chats/${obj.id}.${obj.media}">`;
+                            var media = `<img class="chat_media" style="right: 120px;" src="/media/chats/${obj.id}.${obj.media}">`;
                         }
                         body.append(media);
                     }

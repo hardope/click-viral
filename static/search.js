@@ -6,11 +6,14 @@ $(document).ready(function() {
             formData.append('search', value);
             $.ajax({
                 url: `${window.location.origin}/search`,
-                type: 'GET',
+                type: 'POST',
                 data: formData,
                 dataType: 'text',
                 contentType: false,
                 processData: false,
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
                 success: function(data) {
                     console.log(data);
                 }

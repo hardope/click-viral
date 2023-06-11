@@ -118,7 +118,9 @@ document.addEventListener('click', closeNav())
         </div>
       <div style="margin-top:130px">
 
-        {% block body %}
-        {% endblock %}
+        <div id="body_block">
+          {% block body %}
+          {% endblock %}
+        </div>
       </div>
 </body></html>

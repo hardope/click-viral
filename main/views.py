@@ -108,7 +108,7 @@ def search(request):
     
     if request.method == "POST":
         query = request.POST.get("search").strip()
-        users = User.objects.filter(Q(username__icontains=query) | Q(email__icontains=query))
+        users = User.objects.filter(Q(username__icontains=query) | Q(email__icontains=query) | Q(first_name__icontains=query | Q(last_name__icontains=query)))
         users = [i.username for i in users]
         return JsonResponse(users, safe=False)
 

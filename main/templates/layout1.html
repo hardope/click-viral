@@ -107,10 +107,10 @@ document.addEventListener('click', closeNav())
           <br>
           <br>
           <a href="javascript:void(0)" style="font-size: 300%" class="closebtn" onclick="closeNav()">&#x2715;</a>
-          <div class="nav_link"><a href="/">Home</a></div>
-          <div class="nav_link"><a href="/chat/users">Chats</a></div>
-          <div class="nav_link"><a href="/profile/{{request.user.username}}">Profile</a></div>
-          <div class="nav_link"><a href="/logout">Logout</a></div>
+          <a href="/"><div class="nav_link">Home</div></a>
+          <a href="/chat/users"><div class="nav_link">Chats</div></a>
+          <a href="/profile/{{request.user.username}}"><div class="nav_link">Profile</div></a>
+          <a href="/logout"><div class="nav_link">Logout</div></a>
         </div>
       </div></header>
         </div>

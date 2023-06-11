@@ -66,4 +66,5 @@ footer {
   background-color: rgb(216, 216, 216);
   padding-top: -10px;
   text-align: center;
+  color: black !important;
 }

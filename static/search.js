@@ -4,6 +4,7 @@ $(document).ready(function() {
         if (value.length > 0) {
             formData = new FormData();
             formData.append('search', value);
+            console.log(formData)
             $.ajax({
                 url: `${window.location.origin}/search`,
                 type: 'GET',

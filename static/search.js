@@ -2,12 +2,12 @@ $(document).ready(function() {
     $('#search').keyup(function() {
         var value = $(this).val();
         if (value.length > 0) {
-            FormData = new FormData();
+            formData = new FormData();
             FormData.append('search', value);
             $.ajax({
                 url: `${window.location.origin}/search`,
                 type: 'GET',
-                data: FormData,
+                data: formData,
                 dataType: 'text',
                 contentType: false,
                 processData: false,

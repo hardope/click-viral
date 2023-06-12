@@ -42,9 +42,7 @@ $(document).ready(function() {
                     }
                     /* If there are no matches */
                     if (a < 1) {
-                        let no_match = document.createElement('b');
-                        no_match.setAttribute('style', 'font-size: 20px; margin-top: 20px; margin-left: 30px;')
-                        $('#search_result').append(no_match)
+                        $('#search_result').html("<b>No matches found</b>")
                     }
                 }
             });

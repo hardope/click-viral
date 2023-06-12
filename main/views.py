@@ -145,9 +145,17 @@ def profile(request, query):
         profile = Profile.objects.get(user=user)
     except:
         return render(request, "nopage.html")
-        
+
     if not request.user.is_authenticated:
-        return HttpResponse("Hold On")
+        return render(
+            request,
+            "profile.html",
+            {
+                "user": user,
+                "profile": profile,
+                "f_count": f_count,
+            },
+        )
         
     else:
         follow_value = request.user in [

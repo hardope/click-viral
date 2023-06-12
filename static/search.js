@@ -26,15 +26,15 @@ $(document).ready(function() {
                         pic = document.createElement('img')
                         pic.setAttribute('src', '/static/favicon.ico')
                         pic.setAttribute('style', 'width: 50px; border-radius: 25px; margin-top: 20px; margin-left: 30px')
-                        name_link.appendChild(pic)
+                        name_link.append(pic)
                         var name = document.createElement('div');
                         name.setAttribute('class', 'p')
                         name.textContent = obj;
                         name_link.setAttribute('href', "/profile/" + obj)
                         name.setAttribute('style', 'margin-left: 10px; margin-top: 30px;')
-                        name_link.appendChild(name)
-                        v_cont.appendChild(name_link)
-                        $('#search_result').appendChild(v_cont)
+                        name_link.append(name)
+                        v_cont.append(name_link)
+                        $('#search_result').append(v_cont)
         
                         a+=1
                     }

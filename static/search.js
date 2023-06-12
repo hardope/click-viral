@@ -18,6 +18,7 @@ $(document).ready(function() {
                     'X-CSRFToken': csrftoken
                 },
                 success: function(data) {
+                    console.log(data.length);
                     for (let obj of JSON.parse(data)) {
                         /* Display Users */
                         var v_cont = document.createElement('div')

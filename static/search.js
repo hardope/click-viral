@@ -42,7 +42,7 @@ $(document).ready(function() {
                     }
                     /* If there are no matches */
                     if (a < 1) {
-                        $('#search_result').html("<b>No matches found</b>")
+                        $('#search_result').html("<b style='text-align: center;'>No matches found</b>")
                     }
                 }
             });
@@ -53,3 +53,8 @@ $(document).ready(function() {
         }
     });
 });
+function close_search() {
+    $('#search_result').hide();
+    $('#search_result').empty();
+    $('#body_block').show();
+}

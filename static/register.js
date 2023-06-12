@@ -39,6 +39,7 @@ function request_code(username, email) {
 }
 
 function check_otp(username, password, first_name, last_name, email, otp) {
+    $('#verify_message').html('Loading...');
     let verify = $('#verify');
     let verify_message = $('#verify_message');
     let url = window.location.origin;
@@ -76,6 +77,7 @@ function check_otp(username, password, first_name, last_name, email, otp) {
 }
 
 function confirm() {
+    $('#details_message').html('Loading...');
     let verify = $('#verify');
     let details = $('#details');
     let first_name = $('#first_name').val();
@@ -99,6 +101,7 @@ function confirm() {
     }
 }
 function confirm_otp() {
+    $('#verify_message').html('Loading...');
     let sign_up = $('#submit_block');
     let verify = $('#verify');
     let otp = $('#otp').val();

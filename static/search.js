@@ -42,7 +42,8 @@ $(document).ready(function() {
                     }
                     /* If there are no matches */
                     if (a < 1) {
-                        $('#search_result').html(`<p style="text-align: center; margin-top: 100px><b>No Match</b></p>`)
+                        let no_match = `<p style="text-align: center; margin-top: 100px><b>No Match</b></p>`
+                        $('#search_result').html(no_match)
                     }
                 }
             });

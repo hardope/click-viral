@@ -44,7 +44,7 @@ $(document).ready(function() {
                     if (a < 1) {
                         console.log('No matches found');
                         let no = '<p style="text-align: center; margin-top: 100px><b>No Match</b></p>'
-                        $('#search_result').append(no);
+                        $('#search_result').append(no)
                     }
                 }
             });

@@ -83,33 +83,6 @@
                 </form>
             {% endif %}
         </center>
-        {% for i in posts %}
-        <div class="name_container">
-            <a class="a" href="/profile/{{i.name}}" style="display: inline-flex">
-                <img src="/static/favicon.ico" style="width: 50px; border-radius: 25px; margin-top: 20px; margin-left: 0px">
-                <div style="margin-left: 10px; margin-top: 30px;">
-                    {{i.name}}
-                </div>
-            </a>
-        </div>
-            <div class="div">
-
-            </div>
-            {% if i.media == "pic" %}
-                <a href="/static/{{iid}}.jpg">
-                    <img src="/static/{{i.id}}.jpg">
-                </a>
-            {% else %}
-                {% if i.media == "video" %}
-                    <video src="/static/{{i.id}}.mp4" controls loop preload="auto"></video>
-                {% endif %}
-            {% endif %}
-            <div class="container">
-                <p class="react" value="{{i.like_value}}" id="{{i.id}}" onclick="like({{i.id}})">{{i.likes}}</p>
-                <a href="/comment/{{i.id}}"><p class="comment">{{i.comments}} 💬</p></a>
-                <p class="v_like" onclick="view_likes({{i.id}})">📊</p>
-            </div>
-        {% endfor %}
     </div>
 
     <center>

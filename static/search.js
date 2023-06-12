@@ -18,9 +18,9 @@ $(document).ready(function() {
                     'X-CSRFToken': csrftoken
                 },
                 success: function(data) {
-                    console.log(data.length);
                     for (let obj of JSON.parse(data)) {
                         /* Display Users */
+                        console.log(`$obj: ${obj}`);
                         var v_cont = document.createElement('div')
                         v_cont.setAttribute('class', 'v_cont')
                         var name_link = document.createElement('a')

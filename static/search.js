@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#search').keyup(function() {
         $('#body_block').hide();
-        $('#search_result').show();
+        $('#search_box').show();
         $('#search_result').empty();
         var value = $(this).val();
         if (value.length > 0) {
@@ -47,14 +47,14 @@ $(document).ready(function() {
                 }
             });
         } else {
-            $('#search_result').hide();
+            $('#search_box').hide();
             $('#search_result').empty();
             $('#body_block').show();
         }
     });
 });
 function close_search() {
-    $('#search_result').hide();
+    $('#search_box').hide();
     $('#search_result').empty();
     $('#body_block').show();
 }

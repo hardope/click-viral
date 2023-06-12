@@ -136,21 +136,23 @@ def edit_post(request, query):
 
 
 def profile(request, query):
+    try:
+        user = User.objects.get(username=query)
+        f_count = Follow.objects.filter(user=user).count()
+        profile = Profile.objects.get(user=user)
+        profile.followers = f_count
+        profile.save()
+        profile = Profile.objects.get(user=user)
+    except:
+        return render(request, "nopage.html")
+        
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponse("Hold On")
+        
     else:
-        try:
-            user = User.objects.get(username=query)
-            f_count = Follow.objects.filter(user=user).count()
-            profile = Profile.objects.get(user=user)
-            profile.followers = f_count
-            profile.save()
-            profile = Profile.objects.get(user=user)
-            follow_value = request.user in [
-                i.follow for i in Follow.objects.filter(user=user)
-            ]
-        except:
-            return render(request, "nopage.html")
+        follow_value = request.user in [
+            i.follow for i in Follow.objects.filter(user=user)
+        ]
         return render(
             request,
             "profile.html",

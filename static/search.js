@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('#search').keyup(function() {
         $('#body_block').hide();
         $('#search_result').show();
+        $('#search_result').empty();
         var value = $(this).val();
         if (value.length > 0) {
             formData = new FormData();

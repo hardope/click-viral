@@ -20,7 +20,6 @@ $(document).ready(function() {
                 success: function(data) {
                     for (let obj of JSON.parse(data)) {
                         /* Display Users */
-                        console.log(`$obj: ${obj}`);
                         var v_cont = document.createElement('div')
                         v_cont.setAttribute('class', 'v_cont')
                         var name_link = document.createElement('a')
@@ -41,7 +40,7 @@ $(document).ready(function() {
                         a+=1
                     }
                     /* If there are no matches */
-                    if (data.length == 0) {
+                    if (JSON.parse(data).length == 0) {
                         $('#search_result').html('<p style="text-align: center; margin-top: 100px><b>No Match</b></p>');
                     }
                 }

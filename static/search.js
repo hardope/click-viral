@@ -42,7 +42,7 @@ $(document).ready(function() {
                     }
                     /* If there are no matches */
                     if (a < 1) {
-                        $('#search_result').html("<b style='text-align: center;'>No matches found</b>")
+                        $('#search_result').html("<center><b>No matches found</b></center>")
                     }
                 }
             });

@@ -2,7 +2,6 @@ from django.test import TestCase
 
 # Create your tests here.
 from .models import Otp, Post
-from 
 
 class OtpTestCase(TestCase):
     def setUp(self):

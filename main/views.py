@@ -149,7 +149,7 @@ def profile(request, query):
     if not request.user.is_authenticated:
         return render(
             request,
-            "profile.html",
+            "profile_noauth.html",
             {
                 "user": user,
                 "profile": profile,

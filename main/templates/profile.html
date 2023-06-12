@@ -27,7 +27,7 @@
             {% if profile.image == "empty" or user.preference.image == False %}
                 <img src="/static/favicon.ico" id="profile_image" style="border-radius: 50%; width:20%;">
             {% else %}
-                <a href="/media/profile/{{user}}.{{profile.image}}" id="profile_image"><img src="/media/profile/{{user}}.{{profile.image}}" id="main_image" style="border-radius: 15%; width:30%;"></a>
+                <a href="/media/profile/{{user}}.{{profile.image}}" id="profile_image"><img src="/media/profile/{{user}}.{{profile.image}}" id="main_image" style="border-radius: 15%; margin-top: 20px; width:30%;"></a>
             {% endif %}
         </center>
     </div>

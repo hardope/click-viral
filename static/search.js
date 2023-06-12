@@ -41,7 +41,7 @@ $(document).ready(function() {
                         a+=1
                     }
                     /* If there are no matches */
-                    if (a == 2) {
+                    if (a < 1) {
                         $('#search_result').html('<p style="text-align: center; margin-top: 100px><b>No Match</b></p>');
                     }
                 }

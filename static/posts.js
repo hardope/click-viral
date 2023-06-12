@@ -319,6 +319,7 @@ function close_all() {
     $('#create_post').hide();
     $('#edit_post').hide();
     $('#comment_block').hide();
+    $('#search_box').hide();
     $('#main').show();
 }
 

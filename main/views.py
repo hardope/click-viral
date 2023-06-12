@@ -209,7 +209,6 @@ def edit_profile(request):
 
 
 def delete(request, query):
-    sys.stderr.write(f"\n{query}\n")
     try:
         post = Post.objects.get(id=query)
     except:
@@ -221,7 +220,10 @@ def delete(request, query):
         return HttpResponse("...")
 
     if post.media != "empty":
-        os.remove(f"{root}/media/posts/{post.id}.{post.media}")
+        try:
+            os.remove(f"{root}/media/posts/{post.id}.{post.media}")
+        except:
+            pass
     else:
         pass
 

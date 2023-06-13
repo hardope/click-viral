@@ -172,6 +172,12 @@ def profile(request, query):
             },
         )
 
+def security(request):
+    if not request.user.is_authenticated:
+        return redirect(reverse("login"))
+
+    return render(request, "security.html")
+
 def edit_profile(request):
     if request.method == 'POST':
         if request.user.is_authenticated:

@@ -5,7 +5,9 @@ from . import views
 urlpatterns = [
     # Main Views
     path("", views.feed, name="feed"),
+    path("chat/<query>", views.chat, name="chat"),
     path("profile/<query>", views.profile, name="profile"),
+    path("security", views.security, name="security"),
 
     # Json Views
     path("request_code", views.request_code, name="request_code"),
@@ -22,7 +24,6 @@ urlpatterns = [
     path("edit_post/<query>", views.edit_post, name="edit_post"),
     path("delete/<query>", views.delete, name="delete"),
     path("edit_profile", views.edit_profile, name="edit_profile"),
-    path("chat/<query>", views.chat, name="chat"),
     path("get_chats", views.get_chats, name="get_chats"),
     path("get_messages/<query>", views.get_messages, name="get_messages"),
     path("send_message", views.send_message, name="send_message"),

@@ -16,11 +16,11 @@
                         <div class="u-form u-login-control u-form-1">
                               <div class="u-form-group u-form-name">
                                     <label for="username-c4f9" class="u-label">Username *</label>
-                                    <input type="text" name="username" id="username" placeholder="Enter your Username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                    <input type="text" name="username" id="username" placeholder="Enter your Username" value="{{request.user.username}}" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                               </div>
                               <div class="u-form-group u-form-name">
                                     <label for="username-c4f9" class="u-label">Email *</label>
-                                    <input type="text" name="email" id="email" placeholder="Email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                    <input type="text" name="email" id="email" placeholder="Email" value="{{request.user.email}}" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                               </div>
                               <div class="u-form-group u-form-password">
                                     <label for="password" class="u-label">Password *</label>

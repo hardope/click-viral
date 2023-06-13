@@ -39,16 +39,19 @@
       </div>
       <div id="verify">
             <h1><b>Enter Password to continue</b></h1>
-            <div class="u-form u-login-control u-form-1">
-                  <div class="u-form-group u-form-password">
-                        <label for="password-c4f9" class="u-label">Password *</label>
-                        <input type="password" name="password" placeholder="Enter your Password" id="verify_password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                   </div>
-                  <br>
-                  <div class="u-align-center u-form-group u-form-submit">
-                        <button onclick="verify()" id='button' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Continue</button>
+            <section class="u-clearfix u-section-1" id="sec-afdb">
+                  <div class="u-clearfix u-sheet u-sheet-1">
+                       <div class="u-form u-login-control u-form-1">
+                            <div class="u-form-group u-form-password">
+                                 <label for="password-c4f9" class="u-label">Password *</label>
+                                 <input type="password" name="password" placeholder="Enter your Password" id="verify_password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            </div>
+                            <div class="u-align-center u-form-group u-form-submit">
+                                 <button onclick="verify_user()" id='button' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Sign In</button>
+                            </div>
+                       </div>
                   </div>
-            </div>
+             </section>
       </div>
 </center>
 {% endblock %}

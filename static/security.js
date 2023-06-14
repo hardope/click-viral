@@ -23,7 +23,6 @@ function verify_user(){
             },
             success: function(data) {
                 data = JSON.parse(data);
-                console.log(data.success)
                 if (data['success']){
                     $('#verify').hide();
                     $('#details').show();

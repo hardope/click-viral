@@ -56,7 +56,6 @@ function update_details(detail){
             $(`#message`).html("Email is the same")
             return;
         }
-        $('#details').hide();
         return;
     }
     $('#message').html('Loading ...')
@@ -77,6 +76,12 @@ function update_details(detail){
             'X-CSRFToken': csrftoken
         },
         success: function(data) {
+            if (detail == "email"){
+                $('#verify_message').html("Please check your email for a verification code")
+                $('#details').hide();
+                $('#verify').show();
+                return;
+            }
             data = JSON.parse(data)
             $('#message').html(data.response)
         },

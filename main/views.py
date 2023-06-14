@@ -198,7 +198,8 @@ def security(request):
                 username = request.user.username
                 request.user.set_password(password)
                 request.user.save()
-                login(username, password)
+                user = authenticate(request, username=username, passwoed=password)
+                login(request, user)
                 return JsonResponse({"response": "Password changed successfully"})
         elif request.POST.get("action") == "change_email":
             email = request.POST.get("email").strip()

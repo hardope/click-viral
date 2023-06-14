@@ -1,4 +1,7 @@
-import { validateEmail } from "/static/posts.js";
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
 
 function verify_user(){
     var password = $('#verify_password').val();

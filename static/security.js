@@ -52,11 +52,10 @@ function update_details(detail){
             $(`#message`).html("Please enter a valid email")
             return;
         }
-        if ($(`#${detail}`).val() == "email"){
+        if ($(`#${detail}`).val() == email){
             $(`#message`).html("Email is the same")
             return;
         }
-        return;
     }
     $('#message').html('Loading ...')
     let formdata = new FormData();

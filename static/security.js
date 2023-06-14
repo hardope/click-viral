@@ -22,9 +22,12 @@ function verify_user(){
                 'X-CSRFToken': csrftoken
             },
             success: function(data) {
-                console.log(data)
-                $('#verify').hide();
-                $('#details').show();
+                if (data.success){
+                    $('#verify').hide();
+                    $('#details').show();
+                } else {
+                    $('#verify_message').html("Incorrect Password")
+                }
             },
             error: function(responseText) {
                 $('#verify_message').html("Incorrect Password")

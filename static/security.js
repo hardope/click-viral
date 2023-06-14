@@ -48,12 +48,13 @@ function update_details(detail){
         return;
     }
     if (detail == "email"){
+        console.log(email)
         if (!validateEmail($(`#${detail}`).val())){
             $(`#message`).html("Please enter a valid email")
             return;
         }
-        if ($(`#${detail}`).val() == email){
-            $(`#message`).html("Email is the same")
+        if ($('#email').val() == email){
+            $('#message').html("Email is the same")
             return;
         }
     }

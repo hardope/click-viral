@@ -218,7 +218,7 @@ def security(request):
                 return JsonResponse({"success": "Verify email"})
         elif request.POST.get("action") == "verify":
             password = request.POST.get('password')
-            if password == request.user.password:
+            if request.user.check_password(password):
                 return JsonResponse({"success": "Verified"})
             else:
                 return JsonResponse({"error": "Invalid"})

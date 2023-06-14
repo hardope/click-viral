@@ -21,7 +21,8 @@ function verify_user(){
             headers: {
                 'X-CSRFToken': csrftoken
             },
-            success: function(responseText) {
+            success: function(data) {
+                console.log(data)
                 $('#verify').hide();
                 $('#details').show();
             },

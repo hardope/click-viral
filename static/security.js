@@ -22,7 +22,7 @@ function verify_user(){
                 'X-CSRFToken': csrftoken
             },
             success: function(data) {
-                console.log(data)
+                console.log(data.success)
                 if (data['success'] == "Verified"){
                     $('#verify').hide();
                     $('#details').show();

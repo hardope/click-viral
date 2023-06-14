@@ -23,7 +23,7 @@ function verify_user(){
             },
             success: function(data) {
                 console.log(data)
-                if (data.['success'] == "Verified"){
+                if (data['success'] == "Verified"){
                     $('#verify').hide();
                     $('#details').show();
                 } else {

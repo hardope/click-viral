@@ -48,7 +48,7 @@ function update_details(detail){
     $(`message`).html('Loading ...')
     let formdata = new FormData();
     formdata.append('action', `change_${detail}`);
-    formdata.append('value', $(`#${detail}`).val());
+    formdata.append(detail, $(`#${detail}`).val());
     if (detail == "password"){
         formdata.append('confirm_password', $('confirm_password').val());
     }

@@ -67,5 +67,23 @@
                   </div>
              </section>
       </div>
+      <div id="verify_otp" style="margin-top: 30px;">
+            <h1><b>Please check your email for a verification code</b></h1>
+            <b id="otp_message"></b>
+            <section class="u-clearfix u-section-1" id="sec-afdb">
+                  <div class="u-clearfix u-sheet u-sheet-1">
+                        <div class="u-form u-login-control u-form-1">
+                              <div class="u-form-group u-form-password">
+                                    <div>OTP *</div>
+                                    <input type="text" placeholder="Enter your Password" id="otp" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                              </div>
+                              <br>
+                              <div class="u-align-center u-form-group u-form-submit">
+                                    <button onclick="verify_otp()" id='button' style="font-size: 60px; color: black; border: 0ch; margin-bottom: 2%; border-radius: 10px 10px 10px 10px;  width: 200px; height: 50px;">Continue</button>
+                              </div>
+                        </div>
+                  </div>
+             </section>
+      </div>
 </center>
 {% endblock %}

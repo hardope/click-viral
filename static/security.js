@@ -77,9 +77,8 @@ function update_details(detail){
         },
         success: function(data) {
             if (detail == "email"){
-                $('#verify_message').html("Please check your email for a verification code")
                 $('#details').hide();
-                $('#verify').show();
+                $('#verify_otp').show();
                 return;
             }
             data = JSON.parse(data)
@@ -87,6 +86,34 @@ function update_details(detail){
         },
         error: function(responseText) {
             $('#message').html(responseText)
+        }
+    });
+}
+
+function verify_otp(){
+    $('#otp_message').html('Loading ...')
+    let formdata = new FormData();
+    formdata.append('action', 'verify_email')
+    formdata.append('otp', $('#otp').val());
+    $.ajax({
+        url: window.location.origin + '/security',
+        type: 'POST',
+        data: formdata,
+        dataType: 'text',
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRFToken': csrftoken
+        },
+        success: function(data) {
+            data = JSON.parse(data)
+            if (data.response){
+                $('#verify_otp').hide();
+                $('#details').show();
+                $('#message').html(data.response)
+            } else {
+                $('#otp_message').html(data.error)
+            }
         }
     });
 }

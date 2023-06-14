@@ -15,6 +15,9 @@ class Otp(models.Model):
     tries = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=datetime.now)
 
+    def __str__(self):
+        return f"{self.username} - {self.mail}"
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -25,6 +28,9 @@ class Profile(models.Model):
     birthday = models.CharField(max_length=100, default="Null")
     followers = models.IntegerField(default=0)
     birthyear = models.CharField(max_length=5, default="")
+
+    def __str__(self):
+        return f"{self.user.username}"
 
 
 class Preference(models.Model):
@@ -40,6 +46,9 @@ class Preference(models.Model):
 class Follow(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     follow = models.ForeignKey(User, on_delete=models.CASCADE, related_name="follower")
+
+    def __str__(self):
+        return f"{self.follow.username} - {self.user.username}"
 
 
 class Post(models.Model):
@@ -75,7 +84,7 @@ class Post(models.Model):
         }
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.user.username} - {self.id}"
 
 
 class Comment(models.Model):
@@ -117,7 +126,7 @@ class Comment(models.Model):
         }
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.user.username} - {self.id}"
 
 
 class Like(models.Model):
@@ -146,6 +155,9 @@ class Chat(models.Model):
             "media": self.media,
             "created_at": f"{get_time(self.created_at)}",
         }
+
+    def __str__(self):
+        return f"{self.sender.username} - {self.recipient.username}"
 
 def count_like(id):
     count = 0

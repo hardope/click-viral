@@ -178,8 +178,8 @@ def security(request):
 
     if request.method == "POST":
         if request.POST.get("action") == "change_username":
-            username = request.POST.get("username")
-            if request.user.username == username:
+            username = request.POST.get("username").strip()
+            if str(request.user.username) == username:
                 return JsonResponse({"error": "Username is the same as before"})
             if User.objects.filter(username=username).exists():
                 return JsonResponse({"error": "Username already exists"})

@@ -46,7 +46,7 @@ function update_details(detail){
         return;
     }
     console.log("Here")
-    $('message').html('Loading ...')
+    $('#message').html('Loading ...')
     let formdata = new FormData();
     formdata.append('action', `change_${detail}`);
     formdata.append(detail, $(`#${detail}`).val());
@@ -64,7 +64,7 @@ function update_details(detail){
             'X-CSRFToken': csrftoken
         },
         success: function(responseText) {
-            $('message').html(`Updated ${detail} successfully`)
+            $('#message').html(`Updated ${detail} successfully`)
         },
         error: function(responseText) {
             console.log(responseText);

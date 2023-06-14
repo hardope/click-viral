@@ -176,6 +176,42 @@ def security(request):
     if not request.user.is_authenticated:
         return redirect(reverse("login"))
 
+    if request.method == "POST":
+        if request.POST.get("action") == "change_username":
+            username = request.POST.get("username")
+            if username == request.user.username:
+                return JsonResponse({"error": "Username is the same as before"})
+            if User.objects.filter(username=username).exists():
+                return JsonResponse({"error": "Username already exists"})
+            else:
+                request.user.username = username
+                request.user.save()
+                return JsonResponse({"success": "Username changed successfully"})
+        elif request.POST.get("action") == "change_password":
+            password = request.POST.get("password")
+            if request.user.check_password(password):
+                return JsonResponse({"error": "Password is the same as before"})
+            else:
+                request.user.set_password(password)
+                request.user.save()
+                return JsonResponse({"success": "Password changed successfully"})
+        elif request.POST.get("action") == "change_email":
+            email = request.POST.get("email").strip()
+            if email == request.user.email:
+                return JsonResponse({"error": "Email is the same as before"})
+            if User.objects.filter(email=email).exists():
+                return JsonResponse({"error": "Email already exists"})
+            else:
+                request.user.email = email
+                request.user.save()
+                return JsonResponse({"success": "Email changed successfully"})
+        elif request.POST.get("action") == "verify":
+            password = request.post.get('password')
+            if request.user.check_password(password):
+                return JsonResponse({"success": "Verified"})
+            else:
+                return JsonResponse({"error": "Invalid"})
+
     return render(request, "security.html")
 
 def edit_profile(request):

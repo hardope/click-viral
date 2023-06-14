@@ -226,6 +226,15 @@ def security(request):
             otp = request.POST.get("otp").strip()
             try:
                 otp = Otp.objects.get(username=request.user.username, otp=otp)
+                if otp.tries > 10:
+                    return JsonResponse({"error": "Otp expired"})
+
+                created = otp.created_at
+                now = datetime.now(timezone.utc)
+                diff = now - created
+
+                if diff.total_seconds() > 43200:
+                    return JsonResponse({"error": "Otp expired"})
                 request.user.email = otp.mail
                 request.user.save()
                 otp.delete()

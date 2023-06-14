@@ -48,7 +48,6 @@ function update_details(detail){
         return;
     }
     if (detail == "email"){
-        console.log(email)
         if (!validateEmail($(`#${detail}`).val())){
             $(`#message`).html("Please enter a valid email")
             return;

@@ -8,6 +8,7 @@ urlpatterns = [
     path("chat/<query>", views.chat, name="chat"),
     path("profile/<query>", views.profile, name="profile"),
     path("security", views.security, name="security"),
+    path("forgot_password", views.forgot_password, name="forgot_password"),
 
     # Json Views
     path("request_code", views.request_code, name="request_code"),

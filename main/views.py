@@ -172,6 +172,9 @@ def profile(request, query):
             },
         )
 
+def forgot_password(request):
+    return render(request, "forgot_password.html")
+
 def security(request):
     if not request.user.is_authenticated:
         return redirect(reverse("login"))

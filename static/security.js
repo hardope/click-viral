@@ -55,7 +55,7 @@ function update_details(detail){
     formdata.append('action', `change_${detail}`);
     formdata.append(detail, $(`#${detail}`).val());
     if (detail == "password"){
-        formdata.append('confirm_password', $('confirm_password').val());
+        formdata.append('confirm_password', $('#confirm_password').val());
     }
     $.ajax({
         url: window.location.origin + '/security',

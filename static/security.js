@@ -31,3 +31,7 @@ function verify_user(){
         });
     }
 }
+
+function update_details(detail){
+    console.log($(`#${detail}`).val())
+}

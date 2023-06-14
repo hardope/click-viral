@@ -68,7 +68,7 @@ function update_details(detail){
             'X-CSRFToken': csrftoken
         },
         success: function(data) {
-            console.log(data.response)
+            data = JSON.parse(data)
             $('#message').html(data.response)
         },
         error: function(responseText) {

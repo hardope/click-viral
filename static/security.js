@@ -52,6 +52,10 @@ function update_details(detail){
             $(`#message`).html("Please enter a valid email")
             return;
         }
+        if ($(`#${detail}`).val() == "email"){
+            $(`#message`).html("Email is the same")
+            return;
+        }
         $('#details').hide();
         return;
     }

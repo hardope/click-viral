@@ -180,27 +180,27 @@ def security(request):
         if request.POST.get("action") == "change_username":
             username = request.POST.get("username").strip()
             if request.user.username == username:
-                return JsonResponse({"error": "Username is the same as before"})
+                return JsonResponse({"response": "Username is the same as before"})
             if User.objects.filter(username=username).exists():
-                return JsonResponse({"error": "Username already exists"})
+                return JsonResponse({"response": "Username already exists"})
             else:
                 request.user.username = username
                 request.user.save()
-                return JsonResponse({"success": "Username changed successfully"})
+                return JsonResponse({"response": "Username changed successfully"})
         elif request.POST.get("action") == "change_password":
             password = request.POST.get("password")
             if request.user.check_password(password):
-                return JsonResponse({"error": "Password is the same as before"})
+                return JsonResponse({"response": "Password is the same as before"})
             else:
                 request.user.set_password(password)
                 request.user.save()
-                return JsonResponse({"success": "Password changed successfully"})
+                return JsonResponse({"response": "Password changed successfully"})
         elif request.POST.get("action") == "change_email":
             email = request.POST.get("email").strip()
             if email == request.user.email:
-                return JsonResponse({"error": "Email is the same as before"})
+                return JsonResponse({"response": "Email is the same as before"})
             if User.objects.filter(email=email).exists():
-                return JsonResponse({"error": "Email already exists"})
+                return JsonResponse({"response": "Email already exists"})
             else:
                 try:
                     Otp.objects.get(username=request.user.username, mail=email).delete()
@@ -219,7 +219,7 @@ def security(request):
         elif request.POST.get("action") == "verify":
             password = request.POST.get('password')
             if request.user.check_password(password):
-                return JsonResponse({"success": "Verified"})
+                return JsonResponse({"response": "Verified"})
             else:
                 return JsonResponse({"error": "Invalid"})
 

@@ -23,7 +23,7 @@ function verify_user(){
             },
             success: function(data) {
                 data = JSON.parse(data);
-                if (data['success']){
+                if (data.response){
                     $('#verify').hide();
                     $('#details').show();
                 } else {
@@ -67,8 +67,8 @@ function update_details(detail){
         headers: {
             'X-CSRFToken': csrftoken
         },
-        success: function(responseText) {
-            $('#message').html(responseText)
+        success: function(data) {
+            $('#message').html(data.response)
         },
         error: function(responseText) {
             $('#message').html(responseText)

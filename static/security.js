@@ -1,3 +1,5 @@
+import { validateEmail } from "/static/posts.js";
+
 function verify_user(){
     var password = $('#verify_password').val();
     if (password == ""){

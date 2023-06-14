@@ -66,6 +66,7 @@ function update_details(detail){
             $('message').html(`Updated ${detail} successfully`)
         },
         error: function(responseText) {
+            console.log(responseText);
             $('#message').html(responseText)
         }
     });

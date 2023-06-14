@@ -189,8 +189,11 @@ def security(request):
                 return JsonResponse({"response": "Username changed successfully"})
         elif request.POST.get("action") == "change_password":
             password = request.POST.get("password")
+            confirm = request.POST.get('confirm_password')
             if request.user.check_password(password):
                 return JsonResponse({"response": "Password is the same as before"})
+            if password != confirm:
+                return JsonResponse({"response": "Password and confirmation does not match"})
             else:
                 request.user.set_password(password)
                 request.user.save()

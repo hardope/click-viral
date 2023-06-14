@@ -45,7 +45,7 @@ function update_details(detail){
         $('#details').hide();
         return;
     }
-    $(`message`).html('Loading ...')
+    $('message').html('Loading ...')
     let formdata = new FormData();
     formdata.append('action', `change_${detail}`);
     formdata.append(detail, $(`#${detail}`).val());

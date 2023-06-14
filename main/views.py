@@ -198,7 +198,7 @@ def security(request):
                 username = request.user.username
                 request.user.set_password(password)
                 request.user.save()
-                user = authenticate(request, username=username, passwoed=password)
+                user = authenticate(request, username=username, password=password)
                 login(request, user)
                 return JsonResponse({"response": "Password changed successfully"})
         elif request.POST.get("action") == "change_email":
@@ -218,8 +218,8 @@ def security(request):
                 new_otp.save()
                 send_mail(
                     email,
-                    f"ClickViral OTP Verification Code For: {username}",
-                    f"Hello {username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
+                    f"ClickViral OTP Verification Code For: {request.user.username}",
+                    f"Hello {request.user.username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
                 )
                 return JsonResponse({"success": "Verify email"})
         elif request.POST.get("action") == "verify":

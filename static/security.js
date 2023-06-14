@@ -50,7 +50,6 @@ function update_details(detail){
         $('#details').hide();
         return;
     }
-    console.log("Here")
     $('#message').html('Loading ...')
     let formdata = new FormData();
     formdata.append('action', `change_${detail}`);
@@ -72,7 +71,6 @@ function update_details(detail){
             $('#message').html(`Updated ${detail} successfully`)
         },
         error: function(responseText) {
-            console.log(responseText);
             $('#message').html(responseText)
         }
     });

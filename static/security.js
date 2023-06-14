@@ -33,5 +33,40 @@ function verify_user(){
 }
 
 function update_details(detail){
-    console.log($(`#${detail}`).val())
+    if ($(`#${detail}`).val() == "") {
+        $(`#${detail}_message`).html("Please enter your " + detail)
+        return;
+    }
+    if (detail == "email"){
+        if (!validateEmail($(`#${detail}`).val())){
+            $(`#${detail}_message`).html("Please enter a valid email")
+            return;
+        }
+        $('#details').hide();
+        return;
+    }
+    $(`#${detail}_message`).html('Loading ...')
+    let formdata = new FormData();
+    formdata.append('action', `change_${detail}`);
+    formdata.append('value', $(`#${detail}`).val());
+    if (detail == "password"){
+        formdata.append('confirm_password', $('confirm_password').val());
+    }
+    $.ajax({
+        url: window.location.origin + '/security',
+        type: 'POST',
+        data: formdata,
+        dataType: 'text',
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRFToken': csrftoken
+        },
+        success: function(responseText) {
+            $('message').html(`Updated ${detail} successfully`)
+        },
+        error: function(responseText) {
+            $('#message').html(responseText)
+        }
+    });
 }

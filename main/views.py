@@ -202,9 +202,20 @@ def security(request):
             if User.objects.filter(email=email).exists():
                 return JsonResponse({"error": "Email already exists"})
             else:
-                request.user.email = email
-                request.user.save()
-                return JsonResponse({"success": "Email changed successfully"})
+                try:
+                    Otp.objects.get(username=request.user.username, mail=email).delete()
+                except:
+                    pass
+                otp = str(random.randint(100000, 999999))
+                new_otp = Otp(username=request.user.username, mail=email, otp=otp)
+
+                new_otp.save()
+                send_mail(
+                    email,
+                    f"ClickViral OTP Verification Code For: {username}",
+                    f"Hello {username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
+                )
+                return JsonResponse({"success": "Verify email"})
         elif request.POST.get("action") == "verify":
             password = request.POST.get('password')
             if request.user.check_password(password):
@@ -564,7 +575,6 @@ def request_code(request):
         except:
             pass
         otp = str(random.randint(100000, 999999))
-        sys.stderr.write(f"{request}\n")
         new_otp = Otp(username=username, mail=email, otp=otp)
 
         new_otp.save()

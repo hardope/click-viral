@@ -34,18 +34,18 @@ function verify_user(){
 
 function update_details(detail){
     if ($(`#${detail}`).val() == "") {
-        $(`#${detail}_message`).html("Please enter your " + detail)
+        $(`#message`).html("Please enter your " + detail)
         return;
     }
     if (detail == "email"){
         if (!validateEmail($(`#${detail}`).val())){
-            $(`#${detail}_message`).html("Please enter a valid email")
+            $(`#message`).html("Please enter a valid email")
             return;
         }
         $('#details').hide();
         return;
     }
-    $(`#${detail}_message`).html('Loading ...')
+    $(`message`).html('Loading ...')
     let formdata = new FormData();
     formdata.append('action', `change_${detail}`);
     formdata.append('value', $(`#${detail}`).val());

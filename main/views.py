@@ -193,6 +193,7 @@ def security(request):
             if request.user.check_password(password):
                 return JsonResponse({"response": "Password is the same as before"})
             if password != confirm:
+                sys.stderr.write(f"\n\n{password}: {confirm}\n {password == confirm}")
                 return JsonResponse({"response": "Password and confirmation does not match"})
             else:
                 request.user.set_password(password)

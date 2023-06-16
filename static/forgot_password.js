@@ -67,7 +67,9 @@ function verify_forgot_password(){
             "X-CSRFToken": csrftoken
         },
         success: function(data) {
+            console.log(data);
             data = JSON.parse(data);
+            console.log(data);
             if (data.success){
                 window.location.replace(url + "/");
             }

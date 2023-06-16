@@ -204,39 +204,61 @@ $(document).ready(function(){
         var posts = JSON.parse(request.response);
         for (var i = 0; i < posts.length; i++) {
             var post = posts[i];
-            var nameContainer = '<div class="name_container" display: inline-flex;><a class="a" href="/profile/' + post.name + '" style="display: inline-flex"><img src="/static/favicon.ico" class="profile_pic"><div style="margin-left: 10px; margin-top: 30px;">' + post.name + '</div></a><div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">' + post.created_at;
+            var nameContainer = `
+            <div class="name_container">
+                <a class="a" href="/profile/${post.name}" style="display: inline-flex">
+                    <img src="/static/favicon.ico" class="profile_pic">
+                    <div style="margin-left: 10px; margin-top: 30px;">
+                        ${post.name}
+                    </div>
+                </a>
+            <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">
+            ${post.created_at}`;
             if (post.name == username) {
-                nameContainer += '<button ' + 'onclick=edit_post("' + post.id + '")' + ' class="edit_button" type="submit">✏️</button>';
+                nameContainer += `<button onclick=edit_post("${post.id}") class="edit_button" type="submit">✏️</button>`;
             } else if (post.edited == true) {
                 nameContainer += '<button class="edited_button" type="submit">Edited</button>';
             }
             nameContainer += '</div></div>';
 
-            var article = '<div class="div" id="article_' + post.id + '"><div>';
+            var article = `<div class="div" id="article_${post.id}"><div>`;
             for (var j = 0; j < post.article.length; j++) {
                 var element = post.article[j];
-                article += '<' + element.tag + '>' + element.text + '</' + element.tag + '>';
+                article += `<${element.tag}>${element.text}</${element.tag}>`;
             }
             article += '</div></div>';
 
             var media = '';
             if (post.media != "empty") {
                 if (post.media == "mp4") {
-                    media += '<video src="/media/posts/' + post.id + '.mp4" controls loop preload="auto"></video>';
+                    media += `<video src="/media/posts/${post.id}.mp4" controls loop preload="auto"></video>`;
                 } else {
-                    media += '<a href="/media/posts/' + post.id + '.' + post.media + '"><img src="/media/posts/' + post.id + '.' + post.media + '"></a>';
+                    media += `
+                    <a href="/media/posts/${post.id}.${post.media}">
+                        <img src="/media/posts/${post.id}.${post.media}">
+                    </a>`;
                 }
             }
 
             var container = '<div class="container">';
             if (post.like_value == "True") {
-                container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' ❤️</p>';
+                container += `
+                <p class="react" value="${post.like_value}" id="${post.id}" onclick="like('${post.id}')">
+                    ${post.likes} ❤️
+                </p>`;
             } else {
-                container += '<p class="react" value="' + post.like_value + '" id="' + post.id + '" onclick="like(\'' + post.id + '\')">' + post.likes + ' 🖤</p>';
+                container += `
+                <p class="react" value="${post.like_value}" id="${post.id}" onclick="like('${post.id}')">
+                    ${post.likes} 🖤
+                </p>`;
             }
-            container += '<p class="comment" onclick=view_comment("'+ post.id  + '")' + '>' + post.comments + ' 💬</p><p class="v_like" onclick="view_likes(\'' + post.id + '\')">📊</p></div>';
-            
-            var postElement = '<div id="' + 'post_' + post.id + '">' + (nameContainer + article + media + container) + '</div>'
+            container += `
+            <p class="comment" onclick=view_comment("${post.id}")>
+                ${post.comments} 💬</p>
+                <p class="v_like" onclick="view_likes('${post.id}')">📊</p>
+            </div>`;
+
+            var postElement = `<div id="post_${post.id}">${(nameContainer + article + media + container)}</div>`;
             $('#body').append(postElement)
             }
     }

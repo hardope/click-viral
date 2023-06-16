@@ -198,7 +198,7 @@ def forgot_password(request):
             otp = request.POST.get('otp').strip()
             email = request.POST.get('email').strip()
             if Otp.objects.filter(otp=otp, mail=email).exists():
-                otp = Otp.objects.get(otp=otp).delete()
+                otp = Otp.objects.get(otp=otp, mail=email).delete()
                 user = User.objects.get(email=email)
                 user.set_password(password)
                 user.save()
@@ -207,6 +207,20 @@ def forgot_password(request):
                 return JsonResponse({'success': otp.username})
             else:
                 return JsonResponse({'error': 'Invalid OTP'})
+    if request.user.is_authenticated:
+        try:
+            Otp.objects.get(username=request.user.username).delete()
+        except:
+            pass
+        otp = str(random.randint(100000, 999999))
+        new_otp = Otp(username=request.user.username, mail=email, otp=otp)
+
+        new_otp.save()
+        send_mail(
+            email,
+            f"Password Reset - ClickViral OTP Verification Code For: {request.user.username}",
+            f"Hello {request.user.username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
+        )
                     
     return render(request, "forgot_password.html")
 

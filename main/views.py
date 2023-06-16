@@ -213,7 +213,7 @@ def forgot_password(request):
         except:
             pass
         otp = str(random.randint(100000, 999999))
-        new_otp = Otp(username=request.user.username, mail=email, otp=otp)
+        new_otp = Otp(username=request.user.username, mail=request.user.email, otp=otp)
 
         new_otp.save()
         send_mail(

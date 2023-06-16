@@ -55,7 +55,12 @@ function view_comment(id){
         $('#comment_block_' + last).hide();
     }
     c_blocks.push(id);
-    new_block = '<div id="comment_block_' + id + '"><button onclick="close_comment()" class="cancel_button">Cancel</button></div>';
+    new_block = `
+    <div id="comment_block_${id}">
+        <button onclick="close_comment()" class="cancel_button">
+            Cancel
+        </button>
+    </div>`;
     $('#comment_block').append(new_block);
     $.ajax({
         url: window.location.origin + '/comment/' + id,
@@ -66,7 +71,16 @@ function view_comment(id){
         success: function(data) {
             // handle successful response
             var post = data.post;
-            var nameContainer = '<div class="name_container"><a class="a" href="/profile/' + post.name + '" style="display: inline-flex"><img src="/static/favicon.ico" class="profile_pic"><div style="margin-left: 10px; margin-top: 30px;">' + post.name + '</div></a><div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">' + post.created_at;
+            var nameContainer = `
+            <div class="name_container">
+                <a class="a" href="/profile/${post.name}" style="display: inline-flex">
+                    <img src="/static/favicon.ico" class="profile_pic">
+                    <div style="margin-left: 10px; margin-top: 30px;">
+                        ${post.name}
+                    </div>
+                </a>
+            <div style="margin-top: -10px; margin-left: 30px; font-size 1px !important;">
+            ${post.created_at}`;
             if (post.name == username) {
                 nameContainer += '<button ' + 'onclick=edit_post("' + post.id + '")' + ' class="edit_button" type="submit">✏️</button>';
             } else if (post.edited == true) {

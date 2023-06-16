@@ -56,7 +56,7 @@ function verify_forgot_password(){
     formdata.append("otp", otp);
     formdata.append("password", password);
     formdata.append("email", email);
-    formdata.append("action", "verify");
+    formdata.append("action", "verify_otp");
     $.ajax({
         type: "POST",
         url: url + "/forgot_password",

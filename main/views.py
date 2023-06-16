@@ -198,19 +198,11 @@ def forgot_password(request):
             otp = request.POST.get('otp').strip()
             email = request.POST.get('email').strip()
             password = request.POST.get('password').strip()
-            if request.user.check_password(password):
+            user = User.objects.get(email=email)
+            if user.check_password(password):
                 return JsonResponse({'error': 'New password cannot be same as old password'})
             if Otp.objects.filter(otp=otp, mail=email).exists():
                 otp = Otp.objects.get(otp=otp, mail=email)
-                if otp.tries > 10:
-                    return JsonResponse({"error": "Otp expired"})
-
-                created = otp.created_at
-                now = datetime.now(timezone.utc)
-                diff = now - created
-
-                if diff.total_seconds() > 43200:
-                    return JsonResponse({"error": "Otp expired"})
                 otp.delete()
                 user = User.objects.get(email=email)
                 user.set_password(password)

@@ -37,7 +37,7 @@ function find_account(){
 }
 
 function verify_forgot_password(){
-    var email = $('#verify').val();
+    var email = $('#email').val();
     var password = $('#password').val();
     confirm_password = $('#confirm_password').val();
     var otp = $('#otp').val();

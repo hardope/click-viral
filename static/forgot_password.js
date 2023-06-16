@@ -24,7 +24,6 @@ function find_account(){
             "X-CSRFToken": csrftoken
         },
         success: function(data) {
-            data = JSON.parse(data);
             if (data.success){
                 $('#find').hide();
                 $('#verify').show();

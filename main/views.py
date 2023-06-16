@@ -217,7 +217,7 @@ def forgot_password(request):
 
         new_otp.save()
         send_mail(
-            email,
+            request.user.email,
             f"Password Reset - ClickViral OTP Verification Code For: {request.user.username}",
             f"Hello {request.user.username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
         )

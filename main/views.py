@@ -173,6 +173,41 @@ def profile(request, query):
         )
 
 def forgot_password(request):
+    if request.method == 'POST':
+        if request.POST.get('action') == 'find_account':
+            email = request.POST.get('email').strip()
+            if User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+            else:
+                return JsonResponse({'error': 'No account found with this email'})
+            try:
+                Otp.objects.get(username=user.username).delete()
+            except:
+                pass
+            otp = str(random.randint(100000, 999999))
+            new_otp = Otp(username=user.username, mail=email, otp=otp)
+
+            new_otp.save()
+            send_mail(
+                email,
+                f"Password Reset - ClickViral OTP Verification Code For: {user.username}",
+                f"Hello {user.username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
+            )
+            return JsonResponse({"success": "Verify email"})
+        elif request.POST.get('action') == 'verify_otp':
+            otp = request.POST.get('otp').strip()
+            email = request.POST.get('email').strip()
+            if Otp.objects.filter(otp=otp, mail=email).exists():
+                otp = Otp.objects.get(otp=otp).delete()
+                user = User.objects.get(email=email)
+                user.set_password(password)
+                user.save()
+                user = authenticate(request, username=user.username, password=password)
+                login(request, user)
+                return JsonResponse({'success': otp.username})
+            else:
+                return JsonResponse({'error': 'Invalid OTP'})
+                    
     return render(request, "forgot_password.html")
 
 def security(request):

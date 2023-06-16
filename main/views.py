@@ -204,7 +204,7 @@ def forgot_password(request):
                 user.save()
                 user = authenticate(request, username=user.username, password=password)
                 login(request, user)
-                return JsonResponse({'success': otp.username})
+                return JsonResponse({'success': 'Done'})
             else:
                 return JsonResponse({'error': 'Invalid OTP'})
     if request.user.is_authenticated:

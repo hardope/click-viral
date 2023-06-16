@@ -197,6 +197,10 @@ def forgot_password(request):
         elif request.POST.get('action') == 'verify_otp':
             otp = request.POST.get('otp').strip()
             email = request.POST.get('email').strip()
+            password = request.POST.get('password').strip()
+            if password == request.user.password:
+                return JsonResponse({'error': 'New password cannot be same as old password'})
+            sys.stderr.write(f"\n\n{otp} {email}\n{Otp.objects.filter(otp=otp, mail=email).exists()}\n{Otp.objects.get(otp=otp, mail=email).otp}")
             if Otp.objects.filter(otp=otp, mail=email).exists():
                 otp = Otp.objects.get(otp=otp, mail=email).delete()
                 user = User.objects.get(email=email)

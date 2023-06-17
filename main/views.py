@@ -13,7 +13,7 @@ import os
 import random
 from datetime import datetime, timezone
 
-root = "/home/clickviral/viral"
+root = "/home/ubuntu/viral"
 # Create your views here.
 
 

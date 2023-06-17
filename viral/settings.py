@@ -26,8 +26,8 @@ SECRET_KEY = "django-insecure-(n*a!c0j#sbyotyk331!w8@_036%@b3%%s__$#b1tp90ep13a)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["clickviral.pythonanywhere.com"]
-
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://clickviral.tech']
 
 # Application definition
 
@@ -121,9 +121,9 @@ STATIC_URL = "static/"
 
 # default static files settings for PythonAnywhere.
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = "/home/clickviral/viral/media"
+MEDIA_ROOT = "/home/ubuntu/viral/media"
 MEDIA_URL = "/media/"
-STATIC_ROOT = "/home/clickviral/viral/static"
+STATIC_ROOT = "/home/ubuntu/viral/static"
 STATIC_URL = "/static/"
 
 

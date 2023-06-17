@@ -138,10 +138,13 @@ class Like(models.Model):
     def name_user(self):
         return User.objects.get(id=self.user_id).username
 
+
 class Chat(models.Model):
-    id = models.UUIDField(primary_key=True, default = uuid.uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
-    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recipient")
+    recipient = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="recipient"
+    )
     message = models.TextField(default="")
     media = models.CharField(max_length=10, default="empty")
     created_at = models.DateTimeField(default=datetime.now)
@@ -158,6 +161,7 @@ class Chat(models.Model):
 
     def __str__(self):
         return f"{self.sender.username} - {self.recipient.username}"
+
 
 def count_like(id):
     count = 0

@@ -16,6 +16,7 @@ from datetime import datetime, timezone
 root = "/home/clickviral/viral"
 # Create your views here.
 
+
 def feed(request):
     # redirect if user isnt logged in
     if not request.user.is_authenticated:
@@ -102,15 +103,22 @@ def comment(request, query):
 
         return JsonResponse({"post": post, "comments": comments})
 
+
 def search(request):
     if not request.user.is_authenticated:
         return JsonResponse([], safe=False)
-    
+
     if request.method == "POST":
         query = request.POST.get("search").strip()
-        users = User.objects.filter(Q(username__icontains=query) | Q(email__icontains=query) | Q(first_name__icontains=query) | Q(last_name__icontains=query))
+        users = User.objects.filter(
+            Q(username__icontains=query)
+            | Q(email__icontains=query)
+            | Q(first_name__icontains=query)
+            | Q(last_name__icontains=query)
+        )
         users = [i.username for i in users]
         return JsonResponse(users, safe=False)
+
 
 def edit_post(request, query):
     # redirect if user isnt logged in
@@ -156,7 +164,7 @@ def profile(request, query):
                 "f_count": f_count,
             },
         )
-        
+
     else:
         follow_value = request.user in [
             i.follow for i in Follow.objects.filter(user=user)
@@ -172,14 +180,15 @@ def profile(request, query):
             },
         )
 
+
 def forgot_password(request):
-    if request.method == 'POST':
-        if request.POST.get('action') == 'find_account':
-            email = request.POST.get('email').strip()
+    if request.method == "POST":
+        if request.POST.get("action") == "find_account":
+            email = request.POST.get("email").strip()
             if User.objects.filter(email=email).exists():
                 user = User.objects.get(email=email)
             else:
-                return JsonResponse({'error': 'No account found with this email'})
+                return JsonResponse({"error": "No account found with this email"})
             try:
                 Otp.objects.get(username=user.username).delete()
             except:
@@ -194,13 +203,15 @@ def forgot_password(request):
                 f"Hello {user.username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
             )
             return JsonResponse({"success": "Verify email"})
-        elif request.POST.get('action') == 'verify_otp':
-            otp = request.POST.get('otp').strip()
-            email = request.POST.get('email').strip()
-            password = request.POST.get('password').strip()
+        elif request.POST.get("action") == "verify_otp":
+            otp = request.POST.get("otp").strip()
+            email = request.POST.get("email").strip()
+            password = request.POST.get("password").strip()
             user = User.objects.get(email=email)
             if user.check_password(password):
-                return JsonResponse({'error': 'New password cannot be same as old password'})
+                return JsonResponse(
+                    {"error": "New password cannot be same as old password"}
+                )
             if Otp.objects.filter(otp=otp, mail=email).exists():
                 otp = Otp.objects.get(otp=otp, mail=email)
                 otp.delete()
@@ -209,9 +220,9 @@ def forgot_password(request):
                 user.save()
                 user = authenticate(request, username=user.username, password=password)
                 login(request, user)
-                return JsonResponse({'success': 'Done'})
+                return JsonResponse({"success": "Done"})
             else:
-                return JsonResponse({'error': 'Invalid OTP'})
+                return JsonResponse({"error": "Invalid OTP"})
     if request.user.is_authenticated:
         try:
             Otp.objects.get(username=request.user.username).delete()
@@ -226,8 +237,9 @@ def forgot_password(request):
             f"Password Reset - ClickViral OTP Verification Code For: {request.user.username}",
             f"Hello {request.user.username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
         )
-                    
+
     return render(request, "forgot_password.html")
+
 
 def security(request):
     if not request.user.is_authenticated:
@@ -246,11 +258,13 @@ def security(request):
                 return JsonResponse({"response": "Username changed successfully"})
         elif request.POST.get("action") == "change_password":
             password = request.POST.get("password")
-            confirm = request.POST.get('confirm_password')
+            confirm = request.POST.get("confirm_password")
             if request.user.check_password(password):
                 return JsonResponse({"response": "Password is the same as before"})
             if password != confirm:
-                return JsonResponse({"response": "Password and confirmation does not match"})
+                return JsonResponse(
+                    {"response": "Password and confirmation does not match"}
+                )
             else:
                 username = request.user.username
                 request.user.set_password(password)
@@ -299,7 +313,7 @@ def security(request):
             except:
                 return JsonResponse({"error": "Invalid OTP"})
         elif request.POST.get("action") == "verify":
-            password = request.POST.get('password')
+            password = request.POST.get("password")
             if request.user.check_password(password):
                 return JsonResponse({"response": "Verified"})
             else:
@@ -307,42 +321,47 @@ def security(request):
 
     return render(request, "security.html")
 
+
 def edit_profile(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         if request.user.is_authenticated:
-            if request.POST.get('username') == request.user.username:
-                if request.POST.get('action') == "upload":
-                    username = request.POST.get('username')
+            if request.POST.get("username") == request.user.username:
+                if request.POST.get("action") == "upload":
+                    username = request.POST.get("username")
                     profile = Profile.objects.get(user=request.user)
                     try:
                         os.remove(f"{root}/media/profile/{username}.{profile.image}")
                     except:
                         pass
-                    profile.image = str(request.FILES.get('image')).split(".")[1]
+                    profile.image = str(request.FILES.get("image")).split(".")[1]
                     profile.save()
-                    with open(f"{root}/media/profile/{username}.{profile.image}", "wb+") as file:
-                        for chunk in request.FILES.get('image').chunks():
+                    with open(
+                        f"{root}/media/profile/{username}.{profile.image}", "wb+"
+                    ) as file:
+                        for chunk in request.FILES.get("image").chunks():
                             file.write(chunk)
                     return JsonResponse({"image": f"{username}.{profile.image}"})
-                elif request.POST.get('action') == "about":
+                elif request.POST.get("action") == "about":
                     profile = Profile.objects.get(user=request.user)
-                    profile.about = request.POST.get('data')
+                    profile.about = request.POST.get("data")
                     profile.save()
                     return JsonResponse({"data": profile.about})
-                elif request.POST.get('action') == "birthday":
+                elif request.POST.get("action") == "birthday":
                     profile = Profile.objects.get(user=request.user)
-                    profile.birthday = request.POST.get('birthday')
-                    profile.birthyear = request.POST.get('birthyear')
+                    profile.birthday = request.POST.get("birthday")
+                    profile.birthyear = request.POST.get("birthyear")
                     profile.save()
-                    return JsonResponse({"birthday": profile.birthday, "birthyear": profile.birthyear})
-                elif request.POST.get('action') == "gender":
+                    return JsonResponse(
+                        {"birthday": profile.birthday, "birthyear": profile.birthyear}
+                    )
+                elif request.POST.get("action") == "gender":
                     profile = Profile.objects.get(user=request.user)
-                    profile.gender = request.POST.get('data')
+                    profile.gender = request.POST.get("data")
                     profile.save()
                     return JsonResponse({"data": profile.gender})
-                elif request.POST.get('action') == "location":
+                elif request.POST.get("action") == "location":
                     profile = Profile.objects.get(user=request.user)
-                    profile.location = request.POST.get('data')
+                    profile.location = request.POST.get("data")
                     profile.save()
                     return JsonResponse({"data": profile.location})
                 else:
@@ -404,13 +423,14 @@ def fetch_posts(request):
 
     return JsonResponse(posts, safe=False)
 
+
 def chat(request, query):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
         if query == "users":
             return render(
-            request,
+                request,
                 "chat.html",
                 {
                     "tab": "users",
@@ -428,17 +448,20 @@ def chat(request, query):
             },
         )
 
+
 def get_chats(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
     else:
-
         chats = Chat.objects.filter(sender=request.user)
         chats1 = Chat.objects.filter(recipient=request.user)
-        chats = [i.to_dict()['recipient'] for i in chats] + [i.to_dict()['sender'] for i in chats1]
+        chats = [i.to_dict()["recipient"] for i in chats] + [
+            i.to_dict()["sender"] for i in chats1
+        ]
         chats = list(set(chats))
 
         return JsonResponse(chats, safe=False)
+
 
 def get_messages(request, query):
     if not request.user.is_authenticated:
@@ -446,39 +469,55 @@ def get_messages(request, query):
     else:
         username, count = query.split("-")
         user = User.objects.get(username=username)
-        chats = Chat.objects.filter(Q(sender=request.user, recipient=user) | Q(recipient=request.user, sender=user)).order_by('created_at')
+        chats = Chat.objects.filter(
+            Q(sender=request.user, recipient=user)
+            | Q(recipient=request.user, sender=user)
+        ).order_by("created_at")
         chats = [i.to_dict() for i in chats]
         if count != "0":
-            chats = chats[int(count):]
+            chats = chats[int(count) :]
 
         return JsonResponse(chats, safe=False)
+
 
 def send_message(request):
     if not request.user.is_authenticated:
         return HttpResponse("...")
     if request.method == "POST":
-        if request.POST.get('recipient') == request.user.username:
+        if request.POST.get("recipient") == request.user.username:
             return HttpResponse("...")
         else:
             try:
-                recipient = User.objects.get(username=request.POST.get('recipient'))
+                recipient = User.objects.get(username=request.POST.get("recipient"))
             except:
                 return HttpResponse("...")
             try:
                 media_file = request.FILES.get("media")
                 media = str(media_file).split(".")[1]
                 assert media_file is not None
-                new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'), media=media)
+                new_message = Chat(
+                    sender=request.user,
+                    recipient=recipient,
+                    message=request.POST.get("message"),
+                    media=media,
+                )
                 new_message.save()
-                with open(f"{root}/media/chats/{new_message.id}.{media}", "wb+") as file:
+                with open(
+                    f"{root}/media/chats/{new_message.id}.{media}", "wb+"
+                ) as file:
                     for chunk in media_file.chunks():
                         file.write(chunk)
             except:
-                if request.POST.get('message') != "":
-                    new_message = Chat(sender=request.user, recipient=recipient, message=request.POST.get('message'))
-            if request.POST.get('message') != "":
+                if request.POST.get("message") != "":
+                    new_message = Chat(
+                        sender=request.user,
+                        recipient=recipient,
+                        message=request.POST.get("message"),
+                    )
+            if request.POST.get("message") != "":
                 new_message.save()
             return HttpResponse("...")
+
 
 def view_likes(request, query):
     try:
@@ -586,6 +625,8 @@ def new_post(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("feed"))
     if request.method == "POST":
         username = request.POST["username"].strip()
         password = request.POST["password"].strip()

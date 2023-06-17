@@ -9,7 +9,6 @@ urlpatterns = [
     path("profile/<query>", views.profile, name="profile"),
     path("security", views.security, name="security"),
     path("forgot_password", views.forgot_password, name="forgot_password"),
-
     # Json Views
     path("request_code", views.request_code, name="request_code"),
     path("check_otp", views.check_otp, name="check_otp"),
@@ -29,7 +28,6 @@ urlpatterns = [
     path("get_messages/<query>", views.get_messages, name="get_messages"),
     path("send_message", views.send_message, name="send_message"),
     path("search", views.search, name="search"),
-
     # Auth Views
     path("login", views.login_view, name="login"),
     path("register", views.register, name="register"),

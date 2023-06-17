@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 
 root = "/home/clickviral/viral"
 # Create your views here.
-def test(requuest):
+def test(request):
     posts = get_posts(request.user)
     posts = [i.to_dict(user) for i in posts]
 

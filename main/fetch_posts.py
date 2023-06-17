@@ -2,79 +2,51 @@ from .models import Post, Like, Comment, Follow, Otp, Profile, Chat
 from django.db.models import Q
 from django.contrib.auth.models import User
 from collections import deque
+import random
+from django.db.models import Count
 
-class UserNode:
-    def __init__(self, user):
-        self.user = user
-        self.next_users = []
+def collect_personalized_posts(current_user):
+    following_posts = get_posts_authored_by_following_users(current_user)
+    liked_commented_posts = get_posts_liked_or_commented_by_user(current_user)
+    chat_posts = get_posts_by_chatted_users(current_user)
+    average_interactions = calculate_average_interactions()
+    viral_posts = get_viral_posts(average_interactions)
+    user_posts = get_current_user_posts(current_user)
+    random_posts = get_random_posts()
+    combined_posts = following_posts + liked_commented_posts + chat_posts + viral_posts + user_posts + random_posts
+    sorted_posts = sort_posts_by_interactions(combined_posts)
+    return sorted_posts
 
-def build_user_graph(user):
-    # Step 1: Retrieve the user's followers
-    followers = Follow.objects.filter(user=user).values_list('follow_id', flat=True)
+def get_posts_by_chatted_users(current_user):
+    chatted_users = Chat.objects.filter(sender=current_user).values_list('recipient', flat=True)
+    chatted_posts = Post.objects.filter(user__in=chatted_users)
+    return chatted_posts
 
-    # Step 2: Retrieve the posts liked by the user
-    liked_posts = Like.objects.filter(user=user, post__isnull=False).values_list('post__user_id', flat=True)
+def get_posts_authored_by_following_users(current_user):
+    following_users = Follow.objects.filter(user=current_user).values_list('follow', flat=True)
+    return Post.objects.filter(user__in=following_users)
 
-    # Step 3: Retrieve the users the current user has chatted with
-    chat_users = Chat.objects.filter(Q(sender=user) | Q(recipient=user)).values_list('sender_id', 'recipient_id')
-    chat_users = set(sum(chat_users, ()))  # Combine sender and recipient IDs
+def get_posts_liked_or_commented_by_user(current_user):
+    liked_posts = Like.objects.filter(user=current_user, post__isnull=False).values_list('post', flat=True)
+    commented_posts = Like.objects.filter(user=current_user, comment__isnull=False).values_list('comment__post', flat=True)
+    return Post.objects.filter(id__in=list(liked_posts) + list(commented_posts))
 
-    # Step 4: Combine the lists of followers, liked user IDs, and chat users
-    user_ids = set(followers) | set(liked_posts) | chat_users
+def calculate_average_interactions():
+    average_interactions = Post.objects.aggregate(avg_interactions=Count('likes') + Count('comment'))['avg_interactions']
+    return average_interactions
 
-    # Step 5: Build the user graph
-    user_nodes = {}
-    for uid in user_ids:
-        user_nodes[uid] = UserNode(uid)
+def get_viral_posts(average_interactions):
+    return Post.objects.annotate(total_interactions=Count('likes') + Count('comment')).filter(total_interactions__gt=average_interactions)
 
-    # Step 6: Connect the user nodes
-    for uid, node in user_nodes.items():
-        if uid in followers:
-            node.next_users.extend([user_nodes[follow_id] for follow_id in followers])
+def get_current_user_posts(current_user):
+    return Post.objects.filter(user=current_user)
 
-        if uid in liked_posts:
-            node.next_users.append(user_nodes[uid])
+def get_random_posts():
+    all_posts = list(Post.objects.all())
+    random.shuffle(all_posts)
+    random_posts = all_posts[:5]  # Adjust the number of random posts as needed
+    return random_posts
 
-        if uid in chat_users:
-            node.next_users.append(user_nodes[uid])
-
-    return user_nodes[user.id]
-
-def get_posts(user):
-    # Step 1: Build the user graph
-    user_graph = build_user_graph(user)
-
-    # Step 2: Perform iterative graph traversal (breadth-first search) to collect posts
-    posts = []
-    visited = set()
-    queue = deque([(user_graph, None)])  # Tuple of (node, parent_post_id)
-
-    while queue:
-        node, parent_post_id = queue.popleft()
-
-        if node.user not in visited:
-            visited.add(node.user)
-
-            # Retrieve posts from the current user
-            if parent_post_id is None:
-                posts.extend(Post.objects.filter(user_id=node.user).order_by('-created_at'))
-
-            # Retrieve posts from followed users
-            if parent_post_id is not None:
-                posts.extend(Post.objects.filter(user_id=node.user, id=parent_post_id).order_by('-created_at'))
-
-            # Retrieve posts from users whose posts have been liked by the current user
-            liked_posts = Like.objects.filter(user=user, post__user_id=node.user).values_list('post_id', flat=True)
-            posts.extend(Post.objects.filter(user_id=node.user, id__in=liked_posts).order_by('-created_at'))
-
-            # Retrieve posts from authors of posts commented on by the current user
-            commented_posts = Comment.objects.filter(user=user, post__user__id=node.user).values_list('post_id', flat=True)
-            posts.extend(Post.objects.filter(id__in=commented_posts).order_by('-created_at'))
-
-            # Retrieve comments from the current user's posts
-            comments = Comment.objects.filter(user_id=node.user, post_id=parent_post_id).order_by('created_at')
-            posts.extend(comments)
-
-            # Traverse to the next user nodes
-            for next_user in node.next_users:
-                queue.append((next_user, parent_post_id))
+def sort_posts_by_interactions(posts):
+    sorted_posts = sorted(posts, key=lambda post: post.likes + post.comments, reverse=True)
+    return sorted_posts

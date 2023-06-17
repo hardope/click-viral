@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 root = "/home/clickviral/viral"
 # Create your views here.
 def test(request):
-    posts = get_posts(request.user)
+    posts = collect_personalized_posts(request.user)
     posts = [i.to_dict(request.user) for i in posts]
 
     return JsonResponse(posts, safe=False)

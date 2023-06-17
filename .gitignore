@@ -1,4 +1,4 @@
-
+/venv
 main/migrations/
 main/__pycache__
 commit.py

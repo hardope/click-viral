@@ -48,6 +48,17 @@ def get_random_posts():
     random_posts = all_posts[:5]  # Adjust the number of random posts as needed
     return random_posts
 
-def sort_posts_by_interactions(posts):
-    sorted_posts = sorted(posts, key=lambda post: post.likes + post.comments, reverse=True)
+def sort_posts_by_interactions(posts, current_user):
+    sorting_option = random.choice(['time', 'interactions', 'user_interactions'])
+    
+    if sorting_option == 'time':
+        sorted_posts = sorted(posts, key=lambda post: post.created_at, reverse=True)
+    elif sorting_option == 'interactions':
+        sorted_posts = sorted(posts, key=lambda post: post.likes + post.comments, reverse=True)
+    else:  # sorting_option == 'user_interactions'
+        sorted_posts = sorted(posts, key=lambda post: calculate_user_interactions(current_user, post), reverse=True)
+    
     return sorted_posts
+
+def calculate_user_interactions(user, post):
+    return Like.objects.filter(user=user, post=post).count() + Like.objects.filter(user=post.user, post=post).count()

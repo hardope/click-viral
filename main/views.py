@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from .models import Post, Like, Comment, Follow, Otp, Profile, Chat
 from .sendmail import send_mail
-from .fetch_posts import get_posts
+from .fetch_posts import collect_personalized_posts
 import json
 import sys
 import os

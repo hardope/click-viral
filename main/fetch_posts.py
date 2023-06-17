@@ -13,7 +13,8 @@ def collect_personalized_posts(current_user):
     viral_posts = list(get_viral_posts(average_interactions))
     user_posts = list(get_current_user_posts(current_user))
     random_posts = list(get_random_posts())
-    combined_posts = following_posts + liked_commented_posts + chat_posts + viral_posts + user_posts + random_posts
+    
+    combined_posts = list(set(following_posts + liked_commented_posts + chat_posts + viral_posts + user_posts + random_posts))
     sorted_posts = sort_posts_by_interactions(combined_posts)
     return sorted_posts
 

@@ -11,7 +11,6 @@ urlpatterns = [
     path("forgot_password", views.forgot_password, name="forgot_password"),
 
     # Json Views
-    path("test", views.test, name="test"),
     path("request_code", views.request_code, name="request_code"),
     path("check_otp", views.check_otp, name="check_otp"),
     path("notification", views.notification, name="notification"),

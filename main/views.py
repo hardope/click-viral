@@ -404,14 +404,8 @@ def follow(request, query):
 
 
 def fetch_posts(request):
-    user = request.user.id
-    try:
-        posts = Post.objects.all()
-        posts = [i.to_dict(user) for i in posts]
-        posts.reverse()
-
-    except:
-        posts = []
+    posts = collect_personalized_posts(request.user)
+    posts = [i.to_dict(request.user) for i in posts]
 
     return JsonResponse(posts, safe=False)
 

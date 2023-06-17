@@ -40,19 +40,20 @@ def build_user_graph(user):
     return user_nodes[user.id]
 
 def get_posts(user):
-    # Step 1: Build the user graph
     user_graph = build_user_graph(user)
 
-    # Step 2: Perform graph traversal (e.g., depth-first search) to collect posts
+    # Step 2: Perform iterative graph traversal (depth-first search) to collect posts
     posts = []
+    stack = [user_graph]
+    visited = set()
 
-    def dfs(node):
-        nonlocal posts
-        posts.extend(Post.objects.filter(user_id=node.user).order_by('-created_at'))
+    while stack:
+        node = stack.pop()
+        if node.user not in visited:
+            visited.add(node.user)
+            posts.extend(Post.objects.filter(user_id=node.user).order_by('-created_at'))
 
-        for next_user in node.next_users:
-            dfs(next_user)
-
-    dfs(user_graph)
+            for next_user in node.next_users:
+                stack.append(next_user)
 
     return posts

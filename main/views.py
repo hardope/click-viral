@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from .models import Post, Like, Comment, Follow, Otp, Profile, Chat
 from .sendmail import send_mail
+from .fetch_posts import get_posts
 import json
 import sys
 import os
@@ -15,7 +16,7 @@ from datetime import datetime, timezone
 root = "/home/clickviral/viral"
 # Create your views here.
 def test(requuest):
-    posts = get_user_posts(request.user)
+    posts = get_posts(request.user)
     posts = [i.to_dict(user) for i in posts]
 
     return JsonResponse(posts, safe=False)

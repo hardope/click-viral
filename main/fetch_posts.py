@@ -1,6 +1,7 @@
 from .models import Post, Like, Comment, Follow, Otp, Profile, Chat
 from django.db.models import Q
 from django.contrib.auth.models import User
+from collections import
 
 class UserNode:
     def __init__(self, user):
@@ -40,20 +41,40 @@ def build_user_graph(user):
     return user_nodes[user.id]
 
 def get_posts(user):
+    # Step 1: Build the user graph
     user_graph = build_user_graph(user)
 
-    # Step 2: Perform iterative graph traversal (depth-first search) to collect posts
+    # Step 2: Perform iterative graph traversal (breadth-first search) to collect posts
     posts = []
-    stack = [user_graph]
     visited = set()
+    queue = deque([(user_graph, None)])  # Tuple of (node, parent_post_id)
 
-    while stack:
-        node = stack.pop()
+    while queue:
+        node, parent_post_id = queue.popleft()
+
         if node.user not in visited:
             visited.add(node.user)
-            posts.extend(Post.objects.filter(user_id=node.user).order_by('-created_at'))
 
+            # Retrieve posts from the current user
+            if parent_post_id is None:
+                posts.extend(Post.objects.filter(user_id=node.user).order_by('-created_at'))
+
+            # Retrieve posts from followed users
+            if parent_post_id is not None:
+                posts.extend(Post.objects.filter(user_id=node.user, id=parent_post_id).order_by('-created_at'))
+
+            # Retrieve posts from users whose posts have been liked by the current user
+            liked_posts = Like.objects.filter(user=user, post__user_id=node.user).values_list('post_id', flat=True)
+            posts.extend(Post.objects.filter(user_id=node.user, id__in=liked_posts).order_by('-created_at'))
+
+            # Retrieve posts from authors of posts commented on by the current user
+            commented_posts = Comment.objects.filter(user=user, post__user__id=node.user).values_list('post_id', flat=True)
+            posts.extend(Post.objects.filter(id__in=commented_posts).order_by('-created_at'))
+
+            # Retrieve comments from the current user's posts
+            comments = Comment.objects.filter(user_id=node.user, post_id=parent_post_id).order_by('created_at')
+            posts.extend(comments)
+
+            # Traverse to the next user nodes
             for next_user in node.next_users:
-                stack.append(next_user)
-
-    return posts
+                queue.append((next_user, parent_post_id))

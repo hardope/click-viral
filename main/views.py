@@ -14,7 +14,11 @@ from datetime import datetime, timezone
 
 root = "/home/clickviral/viral"
 # Create your views here.
+def test(requuest):
+    posts = get_user_posts(request.user)
+    posts = [i.to_dict(user) for i in posts]
 
+    return JsonResponse(posts, safe=False)
 
 def feed(request):
     # redirect if user isnt logged in

@@ -6,13 +6,13 @@ import random
 from django.db.models import Count
 
 def collect_personalized_posts(current_user):
-    following_posts = get_posts_authored_by_following_users(current_user)
-    liked_commented_posts = get_posts_liked_or_commented_by_user(current_user)
-    chat_posts = get_posts_by_chatted_users(current_user)
+    following_posts = list(get_posts_authored_by_following_users(current_user))
+    liked_commented_posts = list(get_posts_liked_or_commented_by_user(current_user))
+    chat_posts = list(get_posts_by_chatted_users(current_user))
     average_interactions = calculate_average_interactions()
-    viral_posts = get_viral_posts(average_interactions)
-    user_posts = get_current_user_posts(current_user)
-    random_posts = get_random_posts()
+    viral_posts = list(get_viral_posts(average_interactions))
+    user_posts = list(get_current_user_posts(current_user))
+    random_posts = list(get_random_posts())
     combined_posts = following_posts + liked_commented_posts + chat_posts + viral_posts + user_posts + random_posts
     sorted_posts = sort_posts_by_interactions(combined_posts)
     return sorted_posts

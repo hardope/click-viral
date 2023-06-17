@@ -15,7 +15,7 @@ def collect_personalized_posts(current_user):
     random_posts = list(get_random_posts())
     
     combined_posts = list(set(following_posts + liked_commented_posts + chat_posts + viral_posts + user_posts + random_posts))
-    sorted_posts = sort_posts_by_interactions(combined_posts)
+    sorted_posts = sort_posts_by_interactions(combined_posts, current_user)
     return sorted_posts
 
 def get_posts_by_chatted_users(current_user):

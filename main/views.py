@@ -64,6 +64,8 @@ def comment(request, query):
                     file.write(chunk)
 
         except:
+            if comment_article == "":
+                return HttpResponse("...")
             try:
                 update = Post.objects.get(id=query)
                 update.comments += 1
@@ -586,7 +588,10 @@ def get_post(request, query):
     try:
         post = Post.objects.get(id=query)
     except:
-        post = Comment.objects.get(id=query)
+        try:
+            post = Comment.objects.get(id=query)
+        except:
+            return HttpResponse("...")
     created = post.created_at
     now = datetime.now(timezone.utc)
     diff = now - created
@@ -615,6 +620,8 @@ def new_post(request):
 
         except:
             post = Post(media=media, user_id=user_id, article=post_article)
+            if post_article == "":
+                return HttpResponse("...")
 
         id = post.id
 

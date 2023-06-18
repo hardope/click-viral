@@ -36,6 +36,7 @@ function submit_comment (id){
         success: function(data) {
             // handle successful response
             if (data == "..."){
+                $("#new_comment_form_" + id + " #message").html("Cannot Uplload Empty Comment")
                 return;
             }
             add_post(data.id, "#new_comments_" + id)
@@ -498,6 +499,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 if (data == "..."){
+                    $("#upload_message").html("Cannot Create Empty Post")
                     return;
                 }
                 // handle successful response

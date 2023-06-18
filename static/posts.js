@@ -120,7 +120,7 @@ function view_comment(id){
                 <textarea id="comment_article_${post.id}" maxlength="1000"></textarea>
                 <input type="file" id="comment_media_${post.id}" name="media" onchange="validate_c_media(this)" accept="image/*,video/mp4" value="" hidden>
                 <div id="label_cont">
-                <label for="comment_media${post.id}" id="media_label_${post.id}">Upload Media &#128206;</label>
+                <label for="comment_media_${post.id}" id="media_label_${post.id}">Upload Media &#128206;</label>
                 </div>
                 <button onclick=submit_comment("${post.id}") id="button" data-mdb-ripple-color="dark" class="submit_button">
                     Comment

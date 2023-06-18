@@ -31,7 +31,7 @@
                 Require all granted
         </Directory>
 
-        Alias /static /home/ubuntu/viral/media
+        Alias /media /home/ubuntu/viral/media
         <Directory /home/ubuntu/viral/media>
                 Require all granted
         </Directory>

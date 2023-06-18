@@ -502,7 +502,7 @@ $(document).ready(function() {
                 }
                 // handle successful response
                 $("#upload_message").empty()
-                $("#media_label").css('background-color', 'green');
+                $("#media_label").css('background-color', 'rgb(239, 237, 237)');
                 add_post(data, "#body")
                 $("#article").val('');
                 $("#media").val('');

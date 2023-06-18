@@ -5,8 +5,8 @@ html *
 }
 
 .sidebar {
-  height: 0%; /* 100% Full-height */
-  width: 100%; /* 0 width - change this with JavaScript */
+  height: 0%; /* 0% Full-height change this with JavaScript*/
+  width: 100%;
   margin-left: 10px;
   max-width: 800px;
   margin-right: 20px;

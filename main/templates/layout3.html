@@ -19,29 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <meta charset="utf-8">
     <title>ClickViral</title>
-    <script>
-      document.addEventListener('click', close_likes())
-      document.addEventListener('click', closeNav())
-      document.addEventListener('DOMContentLoaded', function(){
-          window.addEventListener('offline', (e) => {
-          // User is offline
-          alert("You are disconnected from the Internet");
-          })
-      });
-      function openNav() {
-          document.getElementById("mySidebar").style.height = "800px";
-      
-          }
-      
-          /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-      function closeNav() {
-        document.getElementById("mySidebar").style.height = "0";
-        document.getElementById("mysidebar").style.paddingtop = "0px";
-      }
-      function up(){
-        window.scrollTo(0, 0);
-      }
-      </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/static/navbar.js"></script>
       
     <link rel="stylesheet" href="/static/nicepage.css" media="screen">
     <script class="u-script" type="text/javascript" src="/static/jquery.js" "="" defer=""></script>
@@ -90,6 +69,7 @@
           <a href="/profile/{{request.user.username}}"><div class="nav_link">Profile</div></a>
           <a href="/security"><div class="nav_link">Sign In & Security</div></a>
           <a href="/logout"><div class="nav_link">Logout</div></a>
+          <a href="/static/clickviral.apk"><div class="nav_link">Download Mobile App - Android</div></a>
         </div>
       </div></header>
 

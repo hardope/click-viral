@@ -9,6 +9,7 @@ urlpatterns = [
     path("profile/<query>", views.profile, name="profile"),
     path("security", views.security, name="security"),
     path("forgot_password", views.forgot_password, name="forgot_password"),
+    path("sitemap", views.sitemap, name="sitemap"),
     # Json Views
     path("request_code", views.request_code, name="request_code"),
     path("check_otp", views.check_otp, name="check_otp"),

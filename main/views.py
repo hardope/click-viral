@@ -24,6 +24,8 @@ def feed(request):
 
     return render(request, "posts.html")
 
+def sitemap(request):
+    return render(request, "sitemap.xml")
 
 def comment(request, query):
     # redirect if user isnt logged in

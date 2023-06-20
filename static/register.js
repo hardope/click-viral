@@ -29,12 +29,10 @@ function request_code(username, email) {
                 verify.show();
             } else if (responseText == '1') {
                 details_message.html('Username Is Unavailable');
-                $('#auth').css('backgroundcolor', 'red')
-                return;
+                $('#auth').css('background-color', 'red')
             } else if (responseText == '2') {
                 details_message.html('Email Is In use by another account');
-                $('#auth').css('backgroundcolor', 'red')
-                return;
+                $('#auth').css('background-color', 'red')
             } else {
                 alert('An Error occurred');
             }
@@ -56,20 +54,16 @@ function confirm() {
 
     if (first_name == '' || last_name == '' || email == '' || password == '' || confirm_password == '' || username == '') {
         details_message.html('Please Fill in All fields');
-        $('#auth').css('backgroundcolor', 'red')
-        return;
+        $('#auth').css('background-color', 'red')
     } else if (password != confirm_password) {
         details_message.html('Password Does Not Match Confirmation');
-        $('#auth').css('backgroundcolor', 'red')
-        return;
+        $('#auth').css('background-color', 'red')
     } else if (username.includes(' ')) {
         details_message.html('Username cannot contain spaces');
-        $('#auth').css('backgroundcolor', 'red')
-        return;
+        $('#auth').css('background-color', 'red')
     } else if (validateEmail(email) == false) {
         details_message.html('Invalid Email');
-        $('#auth').css('backgroundcolor', 'red')
-        return;
+        $('#auth').css('background-color', 'red')
     } else {
         request_code(username, email);
     }
@@ -100,10 +94,10 @@ function confirm_otp() {
                     window.location.replace(window.location.origin);
                 } else if (response == "1") {
                     verify_message.html("Invalid Code");
-                    $('#verify_otp').css('backgroundcolor', 'red')
+                    $('#verify_otp').css('background-color', 'red')
                 } else if (response == "2") {
                     verify_message.html("Code is expired");
-                    $('#verify_otp').css('backgroundcolor', 'red')
+                    $('#verify_otp').css('background-color', 'red')
                 } else {
                     alert("An Error occurred");
                 }

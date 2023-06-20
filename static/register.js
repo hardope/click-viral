@@ -38,44 +38,6 @@ function request_code(username, email) {
     });
 }
 
-function check_otp(username, password, first_name, last_name, email, otp) {
-    $('#verify_message').html('Loading...');
-    let verify = $('#verify');
-    let verify_message = $('#verify_message');
-    let url = window.location.origin;
-    let formdata = new FormData();
-    formdata.append('username', username);
-    formdata.append('password', password);
-    formdata.append('first_name', first_name);
-    formdata.append('last_name', last_name);
-    formdata.append('email', email);
-    formdata.append('otp', otp);
-
-    $.ajax({
-        url: url + '/check_otp',
-        type: 'POST',
-        data: formdata,
-        dataType: 'text',
-        contentType: false,
-        processData: false,
-        headers: {
-            'X-CSRFToken': csrftoken
-        },
-        success: function(responseText) {
-            if (responseText == '0') {
-                verify.hide();
-                window.location.replace(url);
-            } else if (responseText == '1') {
-                verify_message.html('Invalid Code');
-            } else if (responseText == '2') {
-                verify_message.html('Code is expired');
-            } else {
-                alert('An Error occurred');
-            }
-        }
-    });
-}
-
 function confirm() {
     $('#details_message').html('Loading...');
     let verify = $('#verify');
@@ -90,12 +52,20 @@ function confirm() {
 
     if (first_name == '' || last_name == '' || email == '' || password == '' || confirm_password == '' || username == '') {
         details_message.html('Please Fill in All fields');
+        $('#auth').style.backgroundColor = 'red';
+        return;
     } else if (password != confirm_password) {
         details_message.html('Password Does Not Match Confirmation');
+        $('#auth').style.backgroundColor = 'red';
+        return;
     } else if (username.includes(' ')) {
         details_message.html('Username cannot contain spaces');
+        $('#auth').style.backgroundColor = 'red';
+        return;
     } else if (validateEmail(email) == false) {
         details_message.html('Invalid Email');
+        $('#auth').style.backgroundColor = 'red';
+        return;
     } else {
         request_code(username, email);
     }
@@ -126,8 +96,10 @@ function confirm_otp() {
                     window.location.replace(window.location.origin);
                 } else if (response == "1") {
                     verify_message.html("Invalid Code");
+                    $('#verify_otp').style.backgroundColor = 'red';
                 } else if (response == "2") {
                     verify_message.html("Code is expired");
+                    $('#verify_otp').style.backgroundColor = 'red';
                 } else {
                     alert("An Error occurred");
                 }

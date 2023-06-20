@@ -12,15 +12,15 @@ function load_login() {
 
     if (username == "" && email == ""){
         details_message.text("Please enter a username or Email address");
-        $('#button').style.backgroundColor = 'red';
+        $('#button').css('backgroundcolor', 'red')
         return;
     } else if (validateEmail(email) == false) {
         details_message.text("Invalid Email");
-        $('#button').style.backgroundColor = 'red';
+        $('#button').css('backgroundcolor', 'red')
         return;
     } else if (password == ""){
         details_message.text("Please enter a password");
-        $('#button').style.backgroundColor = 'red';
+        $('#button').css('backgroundcolor', 'red')
         return;
     }
 
@@ -46,10 +46,10 @@ function load_login() {
                 window.location.replace(url);
             } else if (response == "1"){
                 details_message.text("Invalid Username or Password");
-                $('#button').style.backgroundColor = 'red';
+                $('#button').css('backgroundcolor', 'red')
             } else if (response == "2"){
                 details_message.text("Invalid");
-                $('#button').style.backgroundColor = 'red';
+                $('#button').css('backgroundcolor', 'red')
             }
         }
     });

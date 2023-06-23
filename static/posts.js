@@ -1,6 +1,6 @@
 let url = window.location.origin
 let c_blocks = []
-
+console.log
 function close_comment() {
     $('#comment_block_' + c_blocks[c_blocks.length - 1]).remove();
     c_blocks.splice(c_blocks.length - 1);
@@ -35,6 +35,10 @@ function submit_comment (id){
         },
         success: function(data) {
             // handle successful response
+            if (data == "..."){
+                $("#new_comment_form_" + id + " #message").html("Cannot Uplload Empty Comment")
+                return;
+            }
             add_post(data.id, "#new_comments_" + id)
             $("#new_comment_form_" + id + " #message").html("")
             var article = $('#comment_article_' + id).val('');
@@ -379,7 +383,6 @@ function validate(){
 }
 function validate_c_media (event) {
     if(event.value != "") {
-        console.log(event.id.split("_")[2])
         let label = $("#media_label_" + event.id.split("_")[2])
         label.css('background-color', 'green');
     }
@@ -495,7 +498,13 @@ $(document).ready(function() {
                 "X-CSRFToken": csrftoken
             },
             success: function(data) {
+                if (data == "..."){
+                    $("#upload_message").html("Cannot Create Empty Post")
+                    return;
+                }
                 // handle successful response
+                $("#upload_message").empty()
+                $("#media_label").css('background-color', 'rgb(239, 237, 237)');
                 add_post(data, "#body")
                 $("#article").val('');
                 $("#media").val('');

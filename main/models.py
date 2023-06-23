@@ -162,7 +162,6 @@ class Chat(models.Model):
     def __str__(self):
         return f"{self.sender.username} - {self.recipient.username}"
 
-
 class User_notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     notify = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notify")

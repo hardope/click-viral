@@ -163,6 +163,17 @@ class Chat(models.Model):
         return f"{self.sender.username} - {self.recipient.username}"
 
 
+def Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    notify = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notify")
+    created_at = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.notify.username}"
+
+    def parse(self):
+        return f"{self.notify.username}"
+
 def count_like(id):
     count = 0
 

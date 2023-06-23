@@ -492,7 +492,7 @@ def get_messages(request, query):
             chats = chats[int(count) :]
 
         try:
-            Notification.objects.get(user=request.user, notify=user).delete()
+            User_notification.objects.get(user=request.user, notify=user).delete()
         except:
             pass
 

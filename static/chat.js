@@ -183,6 +183,7 @@ function send_message(user){
     $(`#tab_${user} #send_message`).prop("disabled",true);
     let message = $(`#tab_${user} #message`).val();
     let media = $(`#tab_${user} #media_${user}`)[0].files[0];
+    console.log(media);
     let formData = new FormData();
     formData.append('message', message);
     formData.append('media', media);

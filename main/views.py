@@ -509,8 +509,6 @@ def send_message(request):
                     media=media,
                 )
                 new_message.save()
-                notify = User_notification(request.user, notify=recipient)
-                notify.save()
                 with open(
                     f"{root}/media/chats/{new_message.id}.{media}", "wb+"
                 ) as file:

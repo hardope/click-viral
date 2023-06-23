@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
 # Register your models here.
-from .models import Post, Like, Comment, Profile, Preference, Follow, Otp, Chat, User_notificationotification
+from .models import Post, Like, Comment, Profile, Preference, Follow, Otp, Chat, User_notification
 
 admin.site.register(Post)
 admin.site.register(Like)

@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.models import User
-from .models import Post, Like, Comment, Follow, Otp, Profile, Chat
+from .models import Post, Like, Comment, Follow, Otp, Profile, Chat, Notification
 from .sendmail import send_mail
 from .fetch_posts import collect_personalized_posts
 import json
@@ -402,6 +402,16 @@ def delete(request, query):
     return HttpResponse("...")
 
 
+def notification(request):
+    if request.user.is_authenticated:
+        notifications = Notification.objects.filter(user=request.user).order_by(
+            "-created_at"
+        )
+        notifications = [i.parse(request.user) for i in notifications]
+        return JsonResponse(notifications, safe=False)
+    else:
+        return HttpResponse("...")
+
 def follow(request, query):
     try:
         try:
@@ -480,6 +490,11 @@ def get_messages(request, query):
         chats = [i.to_dict() for i in chats]
         if count != "0":
             chats = chats[int(count) :]
+
+        try:
+            Notification.objects.get(user=request.user, notify=user).delete()
+        except:
+            pass
 
         return JsonResponse(chats, safe=False)
 

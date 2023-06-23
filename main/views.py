@@ -403,14 +403,7 @@ def delete(request, query):
 
 
 def notification(request):
-    if request.user.is_authenticated:
-        notifications = User_notification.objects.filter(user=request.user).order_by(
-            "-created_at"
-        )
-        notifications = [i.parse(request.user) for i in notifications]
-        return JsonResponse(notifications, safe=False)
-    else:
-        return HttpResponse("...")
+    return JsonResponse([], safe=False)
 
 def follow(request, query):
     try:
@@ -490,11 +483,6 @@ def get_messages(request, query):
         chats = [i.to_dict() for i in chats]
         if count != "0":
             chats = chats[int(count) :]
-
-        try:
-            User_notification.objects.get(user=request.user, notify=user).delete()
-        except:
-            pass
 
         return JsonResponse(chats, safe=False)
 

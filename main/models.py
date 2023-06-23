@@ -163,7 +163,7 @@ class Chat(models.Model):
         return f"{self.sender.username} - {self.recipient.username}"
 
 
-def Notification(models.Model):
+class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     notify = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notify")
     created_at = models.DateTimeField(default=datetime.now)

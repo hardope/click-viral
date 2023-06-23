@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.models import User
-from .models import Post, Like, Comment, Follow, Otp, Profile, Chat, Notification
+from .models import Post, Like, Comment, Follow, Otp, Profile, Chat, User_notification
 from .sendmail import send_mail
 from .fetch_posts import collect_personalized_posts
 import json
@@ -404,7 +404,7 @@ def delete(request, query):
 
 def notification(request):
     if request.user.is_authenticated:
-        notifications = Notification.objects.filter(user=request.user).order_by(
+        notifications = User_notification.objects.filter(user=request.user).order_by(
             "-created_at"
         )
         notifications = [i.parse(request.user) for i in notifications]
@@ -521,6 +521,8 @@ def send_message(request):
                     media=media,
                 )
                 new_message.save()
+                notify = User_notification(request.user, notify=recipient)
+                notify.save()
                 with open(
                     f"{root}/media/chats/{new_message.id}.{media}", "wb+"
                 ) as file:
@@ -549,13 +551,6 @@ def view_likes(request, query):
         names = []
 
     return HttpResponse(json.dumps(names))
-
-
-def notification(request):
-    # Todo
-
-    return HttpResponse(json.dumps([]))
-
 
 def like(request, query):
     id = request.user.id

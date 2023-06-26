@@ -404,7 +404,7 @@ def delete(request, query):
 
 def notification(request):
 
-    notifications = User_notification.objects.filter(user=request.user).order_by('created-at')
+    notifications = User_notification.objects.filter(user=request.user).order_by('created_at')
     notifications = [i.to_dict() for i in notifications]
     
     return JsonResponse(notifications, safe=False)

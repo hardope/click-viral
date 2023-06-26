@@ -484,6 +484,12 @@ def get_messages(request, query):
         if count != "0":
             chats = chats[int(count) :]
 
+        try:
+            notification = User_notification.objects.get(user=request.user, notify=user)
+            notification.delete()
+        except:
+            pass
+
         return JsonResponse(chats, safe=False)
 
 
@@ -514,6 +520,8 @@ def send_message(request):
                 ) as file:
                     for chunk in media_file.chunks():
                         file.write(chunk)
+
+                User_notification.objects.create(user=recipient, notify=request.user)
             except:
                 if request.POST.get("message") != "":
                     new_message = Chat(
@@ -521,10 +529,10 @@ def send_message(request):
                         recipient=recipient,
                         message=request.POST.get("message"),
                     )
+                User_notification.objects.create(user=recipient, notify=request.user)
             if request.POST.get("message") != "":
                 new_message.save()
             return HttpResponse("...")
-
 
 def view_likes(request, query):
     try:

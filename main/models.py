@@ -170,7 +170,7 @@ class User_notification(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.notify.username}"
 
-    def parse(self):
+    def __parse__(self):
         return f"{self.notify.username}"
 
 def count_like(id):

@@ -1,2 +1,2 @@
-from .feed import feed
-from .login import login_view
+from .feed import *
+from .login import *

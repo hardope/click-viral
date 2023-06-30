@@ -1,5 +1,5 @@
 # Description: View for the feed page
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from .fetch_posts import collect_personalized_posts

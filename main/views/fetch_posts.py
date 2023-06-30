@@ -1,4 +1,4 @@
-from models import Post, Like, Comment, Follow, Otp, Profile, Chat
+from ..models import Post, Like, Comment, Follow, Otp, Profile, Chat
 from django.db.models import Q
 from django.contrib.auth.models import User
 from collections import deque

@@ -85,4 +85,4 @@ def comment(request, query):
             i.to_dict(request.user.id) for i in comments1
         ]
 
-        return JsonResponse({"post": post, "comments": comments
+        return JsonResponse({"post": post, "comments": comments})

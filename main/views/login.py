@@ -41,3 +41,8 @@ def login_view(request):
             return HttpResponse("1")
 
     return render(request, "login.html")
+
+def logout_view(request):
+    logout(request)
+
+    return HttpResponseRedirect(reverse("login"))

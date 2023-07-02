@@ -107,7 +107,6 @@ def comment(request, query):
 
         return JsonResponse({"post": post, "comments": comments})
 
-
 def search(request):
     if not request.user.is_authenticated:
         return JsonResponse([], safe=False)
@@ -122,7 +121,6 @@ def search(request):
         )
         users = [i.username for i in users]
         return JsonResponse(users, safe=False)
-
 
 def edit_post(request, query):
     # redirect if user isnt logged in
@@ -145,7 +143,6 @@ def edit_post(request, query):
         post.save()
 
         return JsonResponse(json.dumps(post.to_dict(request.user.id)), safe=False)
-
 
 def profile(request, query):
     try:
@@ -183,7 +180,6 @@ def profile(request, query):
                 "profile": profile,
             },
         )
-
 
 def forgot_password(request):
     if request.method == "POST":
@@ -243,7 +239,6 @@ def forgot_password(request):
         )
 
     return render(request, "forgot_password.html")
-
 
 def security(request):
     if not request.user.is_authenticated:
@@ -325,7 +320,6 @@ def security(request):
 
     return render(request, "security.html")
 
-
 def edit_profile(request):
     if request.method == "POST":
         if request.user.is_authenticated:
@@ -375,7 +369,6 @@ def edit_profile(request):
         else:
             return HttpResponse("...")
 
-
 def delete(request, query):
     try:
         post = Post.objects.get(id=query)
@@ -400,7 +393,6 @@ def delete(request, query):
     except:
         post = Comment.objects.get(id=query).delete()
     return HttpResponse("...")
-
 
 def notification(request):
 
@@ -427,13 +419,11 @@ def follow(request, query):
     count = Follow.objects.filter(user=f_user).count()
     return HttpResponse(count)
 
-
 def fetch_posts(request):
     posts = collect_personalized_posts(request.user)
     posts = [i.to_dict(request.user) for i in posts]
 
     return JsonResponse(posts, safe=False)
-
 
 def chat(request, query):
     if not request.user.is_authenticated:
@@ -459,7 +449,6 @@ def chat(request, query):
             },
         )
 
-
 def get_chats(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
@@ -472,7 +461,6 @@ def get_chats(request):
         chats = list(set(chats))
 
         return JsonResponse(chats, safe=False)
-
 
 def get_messages(request, query):
     if not request.user.is_authenticated:
@@ -495,7 +483,6 @@ def get_messages(request, query):
             pass
 
         return JsonResponse(chats, safe=False)
-
 
 def send_message(request):
     if not request.user.is_authenticated:
@@ -575,7 +562,6 @@ def like(request, query):
 
     return HttpResponse(json.dumps([]))
 
-
 def unlike(request, query):
     id = request.user.id
 
@@ -591,7 +577,6 @@ def unlike(request, query):
         Like.objects.get(user_id=id, comment_id=query).delete()
 
     return HttpResponse("")
-
 
 def get_post(request, query):
     editable = True
@@ -612,7 +597,6 @@ def get_post(request, query):
         editable = False
     post["editable"] = editable
     return JsonResponse([post], safe=False)
-
 
 def new_post(request):
     if request.method == "POST":
@@ -639,7 +623,6 @@ def new_post(request):
 
         return HttpResponse(f"{id}")
     return render(request, "newpost.html")
-
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -678,19 +661,16 @@ def login_view(request):
 
     return render(request, "login.html")
 
-
 def register(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse("feed"))
 
     return render(request, "register.html")
 
-
 def logout_view(request):
     logout(request)
 
     return HttpResponseRedirect(reverse("login"))
-
 
 def request_code(request):
     if request.method == "POST":
@@ -725,7 +705,6 @@ def request_code(request):
             f"Hello {username},\n\nYour OTP is {otp}\n\nIf You did not request this code, please ignore this email.\n\nClickViral Team",
         )
         return HttpResponse("0")
-
 
 def check_otp(request):
     if request.method == "POST":

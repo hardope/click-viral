@@ -13,6 +13,14 @@ def login_view(request):
         password = request.POST["password"].strip()
         email = request.POST["email"].strip()
 
+        user = authenticate(request, username=username, password=password)
+
+        assert user is not None
+
+        login(request, user)
+
+        return HttpResponse("0")
+
         try:
             user = authenticate(request, username=username, password=password)
 

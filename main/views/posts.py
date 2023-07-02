@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from .models import Post, Like, Comment
 from datetime import datetime, timezone
 
-root = "/home/ubuntu/viral"
+root = "/home/clickviral/clickviral"
 
 def view_likes(request, query):
     try:

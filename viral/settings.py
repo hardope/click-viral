@@ -27,7 +27,6 @@ SECRET_KEY = "django-insecure-(n*a!c0j#sbyotyk331!w8@_036%@b3%%s__$#b1tp90ep13a)
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://clickviral.tech']
 
 # Application definition
 
@@ -116,15 +115,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = "static/"
-
-# default static files settings for PythonAnywhere.
-# see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
-MEDIA_URL = "/media/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATIC_URL = "/static/"
+MEDIA_ROOT = '/home/clickviral/clickviral/media'
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/clickviral/clickviral/static'
+STATIC_URL = '/static/'
 
 
 # Default primary key field type

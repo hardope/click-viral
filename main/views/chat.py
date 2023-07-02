@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.models import User
 from .models import Chat, User_notification
-root = "/home/ubuntu/viral"
+root = "/home/clickviral/clickviral"
 
 def chat(request, query):
     if not request.user.is_authenticated:

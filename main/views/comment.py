@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from ..models import Comment
 
-root = "/home/ubuntu/viral"
+root = "/home/clickviral/clickviral"
 
 def comment(request, query):
     # redirect if user isnt logged in

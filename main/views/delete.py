@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from .models import Post, Comment
 
-root = "/home/ubuntu/viral"
+root = "/home/clickviral/clickviral"
 # Create your views here.
 
 def delete(request, query):

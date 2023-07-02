@@ -2,7 +2,7 @@
 from django.http import HttpResponse, JsonResponse
 from .models import Profile
 
-root = "/home/ubuntu/viral"
+root = "/home/clickviral/clickviral"
 # Create your views here.
 
 

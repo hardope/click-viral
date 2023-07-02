@@ -8,8 +8,7 @@ from .sendmail import send_mail
 import random
 from datetime import datetime, timezone
 
-root = "/home/ubuntu/viral"
-# Create your views here.
+root = "/home/clickviral/clickviral"
 
 def register(request):
     if request.user.is_authenticated:

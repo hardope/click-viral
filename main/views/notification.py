@@ -1,6 +1,6 @@
 # Description: View for Notification
 from django.http import JsonResponse
-from .models import User_notification
+from ..models import User_notification
 
 def notification(request):
 

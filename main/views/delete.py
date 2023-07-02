@@ -1,6 +1,6 @@
 # Description: View for deleting posts and comments
 from django.http import HttpResponse
-from .models import Post, Comment
+from ..models import Post, Comment
 
 root = "/home/clickviral/clickviral"
 # Create your views here.

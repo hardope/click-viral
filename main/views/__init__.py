@@ -4,7 +4,6 @@ from .delete import *
 from .edit_posts import *
 from .edit_profile import *
 from .feed import *
-from .fetch_posts import *
 from .follow import *
 from .forgot_password import *
 from .login import *
@@ -14,5 +13,4 @@ from .profile import *
 from .register import *
 from .search import *
 from .security import *
-from .sendmail import *
 from .sitemap import *

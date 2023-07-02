@@ -1,7 +1,7 @@
 # Description: View for follow
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .models import Follow
+from ..models import Follow
 
 def follow(request, query):
     try:

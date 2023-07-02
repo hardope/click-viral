@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.models import User
-from .models import Post, Like, Comment
+from ..models import Post, Like, Comment
 from datetime import datetime, timezone
 
 root = "/home/clickviral/clickviral"

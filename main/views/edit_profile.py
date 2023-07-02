@@ -1,6 +1,6 @@
 # Description: Edit profile view.
 from django.http import HttpResponse, JsonResponse
-from .models import Profile
+from ..models import Profile
 
 root = "/home/clickviral/clickviral"
 # Create your views here.
